@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using CantStopServer;
+
+namespace CantStop
+{
+    public partial class Lobby : Form
+    {
+        public int idPartida{ get; set; }
+        //public int idJogador { get; set; }
+
+        public Lobby()
+        {
+            InitializeComponent();
+            lblVersao.Text = "Versão " + Jogo.Versao;
+        }
+
+        private void btnListarJogadores_Click_1(object sender, EventArgs e)
+        {
+            Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+            this.idPartida = partida.idPartida;
+            txtListaJogadores.Text = Jogo.ListarJogadores(idPartida);
+
+            //string retorno = Jogo.ListarJogadores(idPartida);
+            //retorno = retorno.Replace("\r", "");
+            //string[] linha = retorno.Split('\n');
+            //List<Jogador> jogadores = new List<Jogador>();
+
+            //for (int i = 0; i < linha.Length - 1; i++)
+            //{
+            //    Jogador p = new Jogador();
+            //    string[] items = linha[i].Split(',');
+            //    p.id = Convert.ToInt32(items[0]);
+            //    p.nome = items[1];
+            //    p.cor = items[2];
+            //    //p.senha = items[3];
+            //    jogadores.Add(p);
+            //}
+
+            //dgvJogadores.DataSource = jogadores;
+        }
+
+        private void btnExibirPartidas_Click(object sender, EventArgs e)
+        {
+            string retorno = Jogo.ListarPartidas("T");
+
+            retorno = retorno.Replace("\r", "");
+            string[] linha = retorno.Split('\n');
+            List<Partida> partidas = new List<Partida>();
+
+            for (int i = 0; i < linha.Length - 1; i++)
+            {
+                Partida p = new Partida();
+                string[] items = linha[i].Split(',');
+                p.idPartida = Convert.ToInt32(items[0]);
+                p.nome = items[1];
+                p.data = items[2];
+                p.status = items[3];
+                partidas.Add(p);
+            }
+
+            dgvPartidas.DataSource = partidas;
+            dgvPartidas.Columns[4].Visible = false;
+        }
+
+        private void btnCriarPartida_Click(object sender, EventArgs e)
+        {
+            Partida partida = new Partida();
+            string nome = txtNomePartida.Text;
+            string senha = txtSenha.Text;
+            partida.idPartida = Convert.ToInt32(Jogo.CriarPartida(nome, senha));
+            txtNomePartida.Text = "";
+            txtSenha.Text = "";
+        }
+
+        private void btnEntrarPartida_Click(object sender, EventArgs e)
+        {
+            Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+            this.idPartida = partida.idPartida;
+            string nome = txtNomeJogador.Text;
+            string senha = txtSenha.Text;
+            string jogador = Jogo.EntrarPartida(idPartida, nome, senha);
+
+            txtNomeJogador.Text = "";
+            txtSenha.Text = "";
+
+            if (jogador.Substring(0, 4) != "ERRO")
+            {
+                string[] x = jogador.Split(',');
+
+                lblInfoJogador.Text = x[0] + ". " + x[1] + ". " + x[2];
+                txtId.Text = x[0];
+                txtSenhaJogador.Text = x[1];
+                txtCorJogador.Text = x[2];
+            }
+            else
+            {
+                lblInfoJogador.Text = "O jogador já está dentro desta partida";
+            }            
+        }
+
+        private void btnIniciarPartida_Click(object sender, EventArgs e)
+        {
+            Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+            this.idPartida = partida.idPartida;
+            int idJogador = Convert.ToInt32(txtIdJogador.Text);
+            string senhaJogador = txtSenhaJogador.Text;
+            txtConsole.Text = Jogo.IniciarPartida(idJogador, senhaJogador);
+        }
+
+        //private void btnInfoJogador_Click(object sender, EventArgs e)
+        //{
+        //    Jogador jogador = (Jogador)dgvJogadores.SelectedRows[0].DataBoundItem;
+        //    this.idJogador = jogador.id;
+        //    txtId.Text = jogador.id.ToString();
+        //    txtNomeJogador.Text = jogador.nome;
+        //    txtCorJogador.Text = jogador.cor;
+        //}
+    }
+}

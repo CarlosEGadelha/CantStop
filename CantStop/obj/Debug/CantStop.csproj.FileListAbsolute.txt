@@ -1,0 +1,14 @@
+C:\Users\Second\source\repos\CantStop\CantStop\bin\Debug\CantStop.exe.config
+C:\Users\Second\source\repos\CantStop\CantStop\bin\Debug\CantStop.exe
+C:\Users\Second\source\repos\CantStop\CantStop\bin\Debug\CantStop.pdb
+C:\Users\Second\source\repos\CantStop\CantStop\bin\Debug\CantStopServer.dll
+C:\Users\Second\source\repos\CantStop\CantStop\bin\Debug\CantStopServer.xml
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.csprojAssemblyReference.cache
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.Properties.Resources.resources
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.csproj.GenerateResource.cache
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.csproj.CoreCompileInputs.cache
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.csproj.CopyComplete
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.exe
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.pdb
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.Lobby.resources
+C:\Users\Second\source\repos\CantStop\CantStop\obj\Debug\CantStop.Tabuleiro.resources
