@@ -13,7 +13,9 @@ namespace CantStop
 {
     public partial class Lobby : Form
     {
-        public int idPartida{ get; set; }
+        public int idPartida { get; set; }
+        public int idJogador { get; set; }
+        public string senhaJogador { get; set; }
         //public int idJogador { get; set; }
 
         public Lobby()
@@ -22,7 +24,7 @@ namespace CantStop
             lblVersao.Text = "Versão " + Jogo.Versao;
         }
 
-        private void btnListarJogadores_Click_1(object sender, EventArgs e)
+        private void btnListarJogadores_Click(object sender, EventArgs e)
         {
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
             this.idPartida = partida.idPartida;
@@ -96,13 +98,13 @@ namespace CantStop
                 string[] x = jogador.Split(',');
 
                 lblInfoJogador.Text = x[0] + ". " + x[1] + ". " + x[2];
-                txtId.Text = x[0];
+                txtIdJogador.Text = x[0];
                 txtSenhaJogador.Text = x[1];
                 txtCorJogador.Text = x[2];
             }
             else
             {
-                lblInfoJogador.Text = "O jogador já está dentro desta partida";
+                lblInfoJogador.Text = jogador.Substring(5);
             }            
         }
 
@@ -110,9 +112,31 @@ namespace CantStop
         {
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
             this.idPartida = partida.idPartida;
-            int idJogador = Convert.ToInt32(txtIdJogador.Text);
-            string senhaJogador = txtSenhaJogador.Text;
+            this.idJogador = Convert.ToInt32(txtIdJogador.Text);
+            this.senhaJogador = txtSenhaJogador.Text;
             txtConsole.Text = Jogo.IniciarPartida(idJogador, senhaJogador);
+            //txtConsole.Text = retorno.Substring(5);
+            //Tabuleiro tabuleiro = new Tabuleiro(idJogador, senhaJogador);
+            //tabuleiro.Show();
+            //this.Close();
+
+            //txtConsole.Text = Jogo.IniciarPartida(idJogador, senhaJogador);
+        }
+
+        private void btnRolarDados_Click(object sender, EventArgs e)
+        {
+            Lobby lobby = new Lobby();
+
+            string retorno = Jogo.RolarDados(idJogador, senhaJogador);
+
+            if (retorno.Substring(0, 4) != "ERRO")
+            {
+                txtConsole.Text = retorno;
+            }
+            else
+            {
+                txtConsole.Text = retorno.Substring(5);
+            }
         }
 
         //private void btnInfoJogador_Click(object sender, EventArgs e)

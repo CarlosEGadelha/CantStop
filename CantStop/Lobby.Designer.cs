@@ -47,16 +47,16 @@ namespace CantStop
             this.lblInfoJogador = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.lblSenhaJogador = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtIdJogador = new System.Windows.Forms.TextBox();
             this.txtSenhaJogador = new System.Windows.Forms.TextBox();
             this.txtCorJogador = new System.Windows.Forms.TextBox();
             this.lblCor = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblDadosDoJogador = new System.Windows.Forms.Label();
             this.btnIniciarPartida = new System.Windows.Forms.Button();
-            this.lblIdJogador = new System.Windows.Forms.Label();
+            this.btnRolarDados = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtConsole = new System.Windows.Forms.TextBox();
-            this.txtIdJogador = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +84,7 @@ namespace CantStop
             this.btnListarJogadores.TabIndex = 3;
             this.btnListarJogadores.Text = "Listar Jogadores";
             this.btnListarJogadores.UseVisualStyleBackColor = false;
-            this.btnListarJogadores.Click += new System.EventHandler(this.btnListarJogadores_Click_1);
+            this.btnListarJogadores.Click += new System.EventHandler(this.btnListarJogadores_Click);
             // 
             // dgvPartidas
             // 
@@ -249,12 +249,12 @@ namespace CantStop
             this.lblSenhaJogador.TabIndex = 24;
             this.lblSenhaJogador.Text = "Senha";
             // 
-            // txtId
+            // txtIdJogador
             // 
-            this.txtId.Location = new System.Drawing.Point(39, 306);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(42, 20);
-            this.txtId.TabIndex = 25;
+            this.txtIdJogador.Location = new System.Drawing.Point(39, 306);
+            this.txtIdJogador.Name = "txtIdJogador";
+            this.txtIdJogador.Size = new System.Drawing.Size(42, 20);
+            this.txtIdJogador.TabIndex = 25;
             // 
             // txtSenhaJogador
             // 
@@ -305,55 +305,61 @@ namespace CantStop
             this.btnIniciarPartida.BackColor = System.Drawing.Color.Teal;
             this.btnIniciarPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciarPartida.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnIniciarPartida.Location = new System.Drawing.Point(491, 168);
+            this.btnIniciarPartida.Location = new System.Drawing.Point(375, 187);
             this.btnIniciarPartida.Name = "btnIniciarPartida";
-            this.btnIniciarPartida.Size = new System.Drawing.Size(164, 42);
+            this.btnIniciarPartida.Size = new System.Drawing.Size(136, 48);
             this.btnIniciarPartida.TabIndex = 31;
             this.btnIniciarPartida.Text = "Jogar";
             this.btnIniciarPartida.UseVisualStyleBackColor = false;
             this.btnIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
             // 
-            // lblIdJogador
+            // btnRolarDados
             // 
-            this.lblIdJogador.AutoSize = true;
-            this.lblIdJogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdJogador.ForeColor = System.Drawing.Color.Teal;
-            this.lblIdJogador.Location = new System.Drawing.Point(378, 168);
-            this.lblIdJogador.Name = "lblIdJogador";
-            this.lblIdJogador.Size = new System.Drawing.Size(107, 16);
-            this.lblIdJogador.TabIndex = 32;
-            this.lblIdJogador.Text = "ID do Jogador";
+            this.btnRolarDados.BackColor = System.Drawing.Color.Teal;
+            this.btnRolarDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRolarDados.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRolarDados.Location = new System.Drawing.Point(375, 241);
+            this.btnRolarDados.Name = "btnRolarDados";
+            this.btnRolarDados.Size = new System.Drawing.Size(136, 48);
+            this.btnRolarDados.TabIndex = 40;
+            this.btnRolarDados.Text = "Rolar os Dados";
+            this.btnRolarDados.UseVisualStyleBackColor = false;
+            this.btnRolarDados.Click += new System.EventHandler(this.btnRolarDados_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Teal;
+            this.label1.Location = new System.Drawing.Point(514, 168);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 16);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Console da Partida";
             // 
             // txtConsole
             // 
-            this.txtConsole.Location = new System.Drawing.Point(381, 216);
+            this.txtConsole.Location = new System.Drawing.Point(517, 187);
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
-            this.txtConsole.Size = new System.Drawing.Size(274, 136);
-            this.txtConsole.TabIndex = 33;
-            // 
-            // txtIdJogador
-            // 
-            this.txtIdJogador.Location = new System.Drawing.Point(381, 190);
-            this.txtIdJogador.Name = "txtIdJogador";
-            this.txtIdJogador.Size = new System.Drawing.Size(104, 20);
-            this.txtIdJogador.TabIndex = 34;
+            this.txtConsole.Size = new System.Drawing.Size(138, 165);
+            this.txtConsole.TabIndex = 38;
             // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 402);
-            this.Controls.Add(this.txtIdJogador);
+            this.Controls.Add(this.btnRolarDados);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtConsole);
-            this.Controls.Add(this.lblIdJogador);
             this.Controls.Add(this.btnIniciarPartida);
             this.Controls.Add(this.lblDadosDoJogador);
             this.Controls.Add(this.txtCorJogador);
             this.Controls.Add(this.lblCor);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSenhaJogador);
-            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.txtIdJogador);
             this.Controls.Add(this.lblSenhaJogador);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.lblInfoJogador);
@@ -399,16 +405,16 @@ namespace CantStop
         private System.Windows.Forms.Label lblInfoJogador;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblSenhaJogador;
-        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtSenhaJogador;
         private System.Windows.Forms.TextBox txtCorJogador;
         private System.Windows.Forms.Label lblCor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblDadosDoJogador;
         private System.Windows.Forms.Button btnIniciarPartida;
-        private System.Windows.Forms.Label lblIdJogador;
-        private System.Windows.Forms.TextBox txtConsole;
         private System.Windows.Forms.TextBox txtIdJogador;
+        private System.Windows.Forms.Button btnRolarDados;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtConsole;
     }
 }
 
