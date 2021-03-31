@@ -131,12 +131,38 @@ namespace CantStop
 
             if (retorno.Substring(0, 4) != "ERRO")
             {
-                txtConsole.Text = retorno;
+                string[] x = retorno.Split('\n');
+
+                txtConsole.Text = x[0].Substring(1) + '\n' 
+                    + x[1].Substring(1) + '\n'
+                    + x[2].Substring(1) + '\n' 
+                    + x[3].Substring(1);
             }
             else
             {
                 txtConsole.Text = retorno.Substring(5);
             }
+        }
+
+        private void btnMover_Click(object sender, EventArgs e)
+        {
+            int idJogador = Convert.ToInt32(txtIdJogador.Text);
+            string senha = txtSenhaJogador.Text;
+            string ordem = txtOrdem.Text;
+            string trilha = txtTrilha.Text;
+            txtConsole.Text = Jogo.Mover(idJogador, senha, ordem, trilha);
+        }
+
+        private void btnParar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExibirTabuleiro_Click(object sender, EventArgs e)
+        {
+            Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+            this.idPartida = partida.idPartida;
+            txtTabuleiro.Text = Jogo.ExibirTabuleiro(idPartida); 
         }
 
         //private void btnInfoJogador_Click(object sender, EventArgs e)

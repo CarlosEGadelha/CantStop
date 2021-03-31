@@ -57,6 +57,15 @@ namespace CantStop
             this.btnRolarDados = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtConsole = new System.Windows.Forms.TextBox();
+            this.txtOrdem = new System.Windows.Forms.TextBox();
+            this.txtTrilha = new System.Windows.Forms.TextBox();
+            this.lblOrdem = new System.Windows.Forms.Label();
+            this.lblTrilha = new System.Windows.Forms.Label();
+            this.btnMover = new System.Windows.Forms.Button();
+            this.btnParar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtTabuleiro = new System.Windows.Forms.TextBox();
+            this.btnExibirTabuleiro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,6 +192,7 @@ namespace CantStop
             this.txtListaJogadores.Location = new System.Drawing.Point(230, 241);
             this.txtListaJogadores.Multiline = true;
             this.txtListaJogadores.Name = "txtListaJogadores";
+            this.txtListaJogadores.ReadOnly = true;
             this.txtListaJogadores.Size = new System.Drawing.Size(139, 111);
             this.txtListaJogadores.TabIndex = 18;
             // 
@@ -211,7 +221,7 @@ namespace CantStop
             // lblVersao
             // 
             this.lblVersao.AutoSize = true;
-            this.lblVersao.Location = new System.Drawing.Point(590, 380);
+            this.lblVersao.Location = new System.Drawing.Point(748, 377);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(40, 13);
             this.lblVersao.TabIndex = 21;
@@ -253,6 +263,7 @@ namespace CantStop
             // 
             this.txtIdJogador.Location = new System.Drawing.Point(39, 306);
             this.txtIdJogador.Name = "txtIdJogador";
+            this.txtIdJogador.ReadOnly = true;
             this.txtIdJogador.Size = new System.Drawing.Size(42, 20);
             this.txtIdJogador.TabIndex = 25;
             // 
@@ -260,6 +271,7 @@ namespace CantStop
             // 
             this.txtSenhaJogador.Location = new System.Drawing.Point(65, 332);
             this.txtSenhaJogador.Name = "txtSenhaJogador";
+            this.txtSenhaJogador.ReadOnly = true;
             this.txtSenhaJogador.Size = new System.Drawing.Size(150, 20);
             this.txtSenhaJogador.TabIndex = 26;
             // 
@@ -267,6 +279,7 @@ namespace CantStop
             // 
             this.txtCorJogador.Location = new System.Drawing.Point(122, 306);
             this.txtCorJogador.Name = "txtCorJogador";
+            this.txtCorJogador.ReadOnly = true;
             this.txtCorJogador.Size = new System.Drawing.Size(93, 20);
             this.txtCorJogador.TabIndex = 29;
             // 
@@ -309,7 +322,7 @@ namespace CantStop
             this.btnIniciarPartida.Name = "btnIniciarPartida";
             this.btnIniciarPartida.Size = new System.Drawing.Size(136, 48);
             this.btnIniciarPartida.TabIndex = 31;
-            this.btnIniciarPartida.Text = "Jogar";
+            this.btnIniciarPartida.Text = "Iniciar Partida";
             this.btnIniciarPartida.UseVisualStyleBackColor = false;
             this.btnIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
             // 
@@ -331,7 +344,7 @@ namespace CantStop
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Teal;
-            this.label1.Location = new System.Drawing.Point(514, 168);
+            this.label1.Location = new System.Drawing.Point(665, 215);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(141, 16);
             this.label1.TabIndex = 39;
@@ -339,17 +352,122 @@ namespace CantStop
             // 
             // txtConsole
             // 
-            this.txtConsole.Location = new System.Drawing.Point(517, 187);
+            this.txtConsole.Location = new System.Drawing.Point(668, 241);
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
-            this.txtConsole.Size = new System.Drawing.Size(138, 165);
+            this.txtConsole.ReadOnly = true;
+            this.txtConsole.Size = new System.Drawing.Size(138, 111);
             this.txtConsole.TabIndex = 38;
+            // 
+            // txtOrdem
+            // 
+            this.txtOrdem.Location = new System.Drawing.Point(519, 187);
+            this.txtOrdem.Name = "txtOrdem";
+            this.txtOrdem.Size = new System.Drawing.Size(67, 20);
+            this.txtOrdem.TabIndex = 42;
+            // 
+            // txtTrilha
+            // 
+            this.txtTrilha.Location = new System.Drawing.Point(592, 187);
+            this.txtTrilha.Name = "txtTrilha";
+            this.txtTrilha.Size = new System.Drawing.Size(63, 20);
+            this.txtTrilha.TabIndex = 44;
+            // 
+            // lblOrdem
+            // 
+            this.lblOrdem.AutoSize = true;
+            this.lblOrdem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrdem.ForeColor = System.Drawing.Color.Teal;
+            this.lblOrdem.Location = new System.Drawing.Point(519, 168);
+            this.lblOrdem.Name = "lblOrdem";
+            this.lblOrdem.Size = new System.Drawing.Size(54, 16);
+            this.lblOrdem.TabIndex = 45;
+            this.lblOrdem.Text = "Ordem";
+            // 
+            // lblTrilha
+            // 
+            this.lblTrilha.AutoSize = true;
+            this.lblTrilha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrilha.ForeColor = System.Drawing.Color.Teal;
+            this.lblTrilha.Location = new System.Drawing.Point(589, 168);
+            this.lblTrilha.Name = "lblTrilha";
+            this.lblTrilha.Size = new System.Drawing.Size(48, 16);
+            this.lblTrilha.TabIndex = 46;
+            this.lblTrilha.Text = "Trilha";
+            // 
+            // btnMover
+            // 
+            this.btnMover.BackColor = System.Drawing.Color.Teal;
+            this.btnMover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMover.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnMover.Location = new System.Drawing.Point(519, 215);
+            this.btnMover.Name = "btnMover";
+            this.btnMover.Size = new System.Drawing.Size(136, 48);
+            this.btnMover.TabIndex = 47;
+            this.btnMover.Text = "Mover";
+            this.btnMover.UseVisualStyleBackColor = false;
+            this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
+            // 
+            // btnParar
+            // 
+            this.btnParar.BackColor = System.Drawing.Color.Teal;
+            this.btnParar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnParar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnParar.Location = new System.Drawing.Point(519, 269);
+            this.btnParar.Name = "btnParar";
+            this.btnParar.Size = new System.Drawing.Size(136, 48);
+            this.btnParar.TabIndex = 48;
+            this.btnParar.Text = "Parar";
+            this.btnParar.UseVisualStyleBackColor = false;
+            this.btnParar.Click += new System.EventHandler(this.btnParar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Teal;
+            this.label3.Location = new System.Drawing.Point(670, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(118, 16);
+            this.label3.TabIndex = 49;
+            this.label3.Text = "Exibir Tabuleiro";
+            // 
+            // txtTabuleiro
+            // 
+            this.txtTabuleiro.Location = new System.Drawing.Point(667, 92);
+            this.txtTabuleiro.Multiline = true;
+            this.txtTabuleiro.Name = "txtTabuleiro";
+            this.txtTabuleiro.ReadOnly = true;
+            this.txtTabuleiro.Size = new System.Drawing.Size(139, 108);
+            this.txtTabuleiro.TabIndex = 50;
+            // 
+            // btnExibirTabuleiro
+            // 
+            this.btnExibirTabuleiro.BackColor = System.Drawing.Color.Teal;
+            this.btnExibirTabuleiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExibirTabuleiro.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnExibirTabuleiro.Location = new System.Drawing.Point(667, 9);
+            this.btnExibirTabuleiro.Name = "btnExibirTabuleiro";
+            this.btnExibirTabuleiro.Size = new System.Drawing.Size(136, 48);
+            this.btnExibirTabuleiro.TabIndex = 51;
+            this.btnExibirTabuleiro.Text = "Exibir Tabuleiro";
+            this.btnExibirTabuleiro.UseVisualStyleBackColor = false;
+            this.btnExibirTabuleiro.Click += new System.EventHandler(this.btnExibirTabuleiro_Click);
             // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 402);
+            this.ClientSize = new System.Drawing.Size(819, 407);
+            this.Controls.Add(this.btnExibirTabuleiro);
+            this.Controls.Add(this.txtTabuleiro);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnParar);
+            this.Controls.Add(this.btnMover);
+            this.Controls.Add(this.lblTrilha);
+            this.Controls.Add(this.lblOrdem);
+            this.Controls.Add(this.txtTrilha);
+            this.Controls.Add(this.txtOrdem);
             this.Controls.Add(this.btnRolarDados);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtConsole);
@@ -415,6 +533,15 @@ namespace CantStop
         private System.Windows.Forms.Button btnRolarDados;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtConsole;
+        private System.Windows.Forms.TextBox txtOrdem;
+        private System.Windows.Forms.TextBox txtTrilha;
+        private System.Windows.Forms.Label lblOrdem;
+        private System.Windows.Forms.Label lblTrilha;
+        private System.Windows.Forms.Button btnMover;
+        private System.Windows.Forms.Button btnParar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtTabuleiro;
+        private System.Windows.Forms.Button btnExibirTabuleiro;
     }
 }
 
