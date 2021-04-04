@@ -26,3 +26,17 @@ C:\Users\Second\Desktop\CantStop\CantStop\obj\Debug\CantStop.csproj.CoreCompileI
 C:\Users\Second\Desktop\CantStop\CantStop\obj\Debug\CantStop.csproj.CopyComplete
 C:\Users\Second\Desktop\CantStop\CantStop\obj\Debug\CantStop.exe
 C:\Users\Second\Desktop\CantStop\CantStop\obj\Debug\CantStop.pdb
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\bin\Debug\CantStop.exe.config
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\bin\Debug\CantStop.exe
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\bin\Debug\CantStop.pdb
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\bin\Debug\CantStopServer.dll
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\bin\Debug\CantStopServer.xml
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.csprojAssemblyReference.cache
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.Lobby.resources
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.Properties.Resources.resources
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.Tabuleiro.resources
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.csproj.GenerateResource.cache
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.csproj.CoreCompileInputs.cache
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.csproj.CopyComplete
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.exe
+C:\Users\eduar\OneDrive\Área de Trabalho\Faculdade-master\3ºSem\CantStop-master\CantStop\obj\Debug\CantStop.pdb
