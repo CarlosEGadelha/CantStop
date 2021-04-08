@@ -212,7 +212,7 @@ namespace CantStop
             // lblVersao
             // 
             this.lblVersao.AutoSize = true;
-            this.lblVersao.Location = new System.Drawing.Point(571, 362);
+            this.lblVersao.Location = new System.Drawing.Point(594, 362);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(40, 13);
             this.lblVersao.TabIndex = 21;
@@ -311,7 +311,7 @@ namespace CantStop
             this.btnIniciarPartida.ForeColor = System.Drawing.SystemColors.Control;
             this.btnIniciarPartida.Location = new System.Drawing.Point(375, 187);
             this.btnIniciarPartida.Name = "btnIniciarPartida";
-            this.btnIniciarPartida.Size = new System.Drawing.Size(136, 48);
+            this.btnIniciarPartida.Size = new System.Drawing.Size(135, 48);
             this.btnIniciarPartida.TabIndex = 31;
             this.btnIniciarPartida.Text = "Iniciar Partida";
             this.btnIniciarPartida.UseVisualStyleBackColor = false;
@@ -344,7 +344,7 @@ namespace CantStop
             this.btnExibirTabuleiro.ForeColor = System.Drawing.SystemColors.Control;
             this.btnExibirTabuleiro.Location = new System.Drawing.Point(377, 241);
             this.btnExibirTabuleiro.Name = "btnExibirTabuleiro";
-            this.btnExibirTabuleiro.Size = new System.Drawing.Size(136, 48);
+            this.btnExibirTabuleiro.Size = new System.Drawing.Size(133, 48);
             this.btnExibirTabuleiro.TabIndex = 51;
             this.btnExibirTabuleiro.Text = "Exibir Tabuleiro";
             this.btnExibirTabuleiro.UseVisualStyleBackColor = false;
@@ -354,7 +354,7 @@ namespace CantStop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 386);
+            this.ClientSize = new System.Drawing.Size(668, 386);
             this.Controls.Add(this.btnExibirTabuleiro);
             this.Controls.Add(this.txtTabuleiro);
             this.Controls.Add(this.label3);

@@ -16,6 +16,7 @@ namespace CantStop
         public int idPartida { get; set; }
         public int idJogador { get; set; }
         public string senhaJogador { get; set; }
+        public string corJogador { get; set; }
         //public int idJogador { get; set; }
 
         public Lobby()
@@ -88,14 +89,17 @@ namespace CantStop
             this.idPartida = partida.idPartida;
             string nome = txtNomeJogador.Text;
             string senha = txtSenha.Text;
-            string jogador = Jogo.EntrarPartida(idPartida, nome, senha);
+            string retorno = Jogo.EntrarPartida(idPartida, nome, senha);
 
             txtNomeJogador.Text = "";
             txtSenha.Text = "";
 
-            if (jogador.Substring(0, 4) != "ERRO")
+            retorno = retorno.Replace("\r", "");
+            string[] linha = retorno.Split('\n');
+
+            if (retorno.Substring(0, 4) != "ERRO")
             {
-                string[] x = jogador.Split(',');
+                string[] x = retorno.Split(',');
 
                 lblInfoJogador.Text = x[0] + ". " + x[1] + ". " + x[2];
                 txtIdJogador.Text = x[0];
@@ -104,7 +108,7 @@ namespace CantStop
             }
             else
             {
-                lblInfoJogador.Text = jogador.Substring(5);
+                lblInfoJogador.Text = retorno.Substring(5);
             }            
         }
 
@@ -126,35 +130,35 @@ namespace CantStop
             //txtConsole.Text = Jogo.IniciarPartida(idJogador, senhaJogador);
         }
 
-        private void btnRolarDados_Click(object sender, EventArgs e)
-        {
-            Lobby lobby = new Lobby();
+        //private void btnRolarDados_Click(object sender, EventArgs e)
+        //{
+        //    Lobby lobby = new Lobby();
 
-            string retorno = Jogo.RolarDados(idJogador, senhaJogador);
+        //    string retorno = Jogo.RolarDados(idJogador, senhaJogador);
 
-            if (retorno.Substring(0, 4) != "ERRO")
-            {
-                string[] x = retorno.Split('\n');
+        //    if (retorno.Substring(0, 4) != "ERRO")
+        //    {
+        //        string[] x = retorno.Split('\n');
 
-                txtConsole.Text = x[0].Substring(1) + '\n' 
-                    + x[1].Substring(1) + '\n'
-                    + x[2].Substring(1) + '\n' 
-                    + x[3].Substring(1);
-            }
-            else
-            {
-                txtConsole.Text = retorno.Substring(5);
-            }
-        }
+        //        txtConsole.Text = x[0].Substring(1) + '\n' 
+        //            + x[1].Substring(1) + '\n'
+        //            + x[2].Substring(1) + '\n' 
+        //            + x[3].Substring(1);
+        //    }
+        //    else
+        //    {
+        //        txtConsole.Text = retorno.Substring(5);
+        //    }
+        //}
 
-        private void btnMover_Click(object sender, EventArgs e)
-        {
-            int idJogador = Convert.ToInt32(txtIdJogador.Text);
-            string senha = txtSenhaJogador.Text;
-            string ordem = txtOrdem.Text;
-            string trilha = txtTrilha.Text;
-            txtConsole.Text = Jogo.Mover(idJogador, senha, ordem, trilha);
-        }
+        //private void btnMover_Click(object sender, EventArgs e)
+        //{
+        //    int idJogador = Convert.ToInt32(txtIdJogador.Text);
+        //    string senha = txtSenhaJogador.Text;
+        //    string ordem = txtOrdem.Text;
+        //    string trilha = txtTrilha.Text;
+        //    txtConsole.Text = Jogo.Mover(idJogador, senha, ordem, trilha);
+        //}
 
         private void btnParar_Click(object sender, EventArgs e)
         {
