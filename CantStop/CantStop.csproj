@@ -98,5 +98,23 @@
   <ItemGroup>
     <None Include="Resources\tabuleiro.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facesDado_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facesDado_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facesDado_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facesDado_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facesDado_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facesDado_6.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

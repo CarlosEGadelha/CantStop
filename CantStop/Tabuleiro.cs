@@ -48,6 +48,178 @@ namespace CantStop
             {
                 string[] x = retorno.Split('\n');
 
+                if(Convert.ToInt32(x[0].Substring(1)) == 1)
+                {
+                    picDado1.Image = Properties.Resources.facesDado_1;
+                    Size size = new Size(50, 50);
+                    picDado1.Size = size;
+                    picDado1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[0].Substring(1)) == 2)
+                {
+                    picDado1.Image = Properties.Resources.facesDado_2;
+                    Size size = new Size(50, 50);
+                    picDado1.Size = size;
+                    picDado1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if(Convert.ToInt32(x[0].Substring(1)) == 3)
+                {
+                    picDado1.Image = Properties.Resources.facesDado_3;
+                    Size size = new Size(50, 50);
+                    picDado1.Size = size;
+                    picDado1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[0].Substring(1)) == 4)
+                {
+                    picDado1.Image = Properties.Resources.facesDado_4;
+                    Size size = new Size(50, 50);
+                    picDado1.Size = size;
+                    picDado1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[0].Substring(1)) == 5)
+                {
+                    picDado1.Image = Properties.Resources.facesDado_5;
+                    Size size = new Size(50, 50);
+                    picDado1.Size = size;
+                    picDado1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[0].Substring(1)) == 6)
+                {
+                    picDado1.Image = Properties.Resources.facesDado_6;
+                    Size size = new Size(50, 50);
+                    picDado1.Size = size;
+                    picDado1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
+                if (Convert.ToInt32(x[1].Substring(1)) == 1)
+                {
+                    picDado2.Image = Properties.Resources.facesDado_1;
+                    Size size = new Size(50, 50);
+                    picDado2.Size = size;
+                    picDado2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[1].Substring(1)) == 2)
+                {
+                    picDado2.Image = Properties.Resources.facesDado_2;
+                    Size size = new Size(50, 50);
+                    picDado2.Size = size;
+                    picDado2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[1].Substring(1)) == 3)
+                {
+                    picDado2.Image = Properties.Resources.facesDado_3;
+                    Size size = new Size(50, 50);
+                    picDado2.Size = size;
+                    picDado2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[1].Substring(1)) == 4)
+                {
+                    picDado2.Image = Properties.Resources.facesDado_4;
+                    Size size = new Size(50, 50);
+                    picDado2.Size = size;
+                    picDado2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[1].Substring(1)) == 5)
+                {
+                    picDado2.Image = Properties.Resources.facesDado_5;
+                    Size size = new Size(50, 50);
+                    picDado2.Size = size;
+                    picDado2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[1].Substring(1)) == 6)
+                {
+                    picDado2.Image = Properties.Resources.facesDado_6;
+                    Size size = new Size(50, 50);
+                    picDado2.Size = size;
+                    picDado2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
+                if (Convert.ToInt32(x[2].Substring(1)) == 1)
+                {
+                    picDado3.Image = Properties.Resources.facesDado_1;
+                    Size size = new Size(50, 50);
+                    picDado3.Size = size;
+                    picDado3.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[2].Substring(1)) == 2)
+                {
+                    picDado3.Image = Properties.Resources.facesDado_2;
+                    Size size = new Size(50, 50);
+                    picDado3.Size = size;
+                    picDado3.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[2].Substring(1)) == 3)
+                {
+                    picDado3.Image = Properties.Resources.facesDado_3;
+                    Size size = new Size(50, 50);
+                    picDado3.Size = size;
+                    picDado3.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[2].Substring(1)) == 4)
+                {
+                    picDado3.Image = Properties.Resources.facesDado_4;
+                    Size size = new Size(50, 50);
+                    picDado3.Size = size;
+                    picDado3.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[2].Substring(1)) == 5)
+                {
+                    picDado3.Image = Properties.Resources.facesDado_5;
+                    Size size = new Size(50, 50);
+                    picDado3.Size = size;
+                    picDado3.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[2].Substring(1)) == 6)
+                {
+                    picDado3.Image = Properties.Resources.facesDado_6;
+                    Size size = new Size(50, 50);
+                    picDado3.Size = size;
+                    picDado3.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
+                if (Convert.ToInt32(x[3].Substring(1)) == 1)
+                {
+                    picDado4.Image = Properties.Resources.facesDado_1;
+                    Size size = new Size(50, 50);
+                    picDado4.Size = size;
+                    picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[3].Substring(1)) == 2)
+                {
+                    picDado4.Image = Properties.Resources.facesDado_2;
+                    Size size = new Size(50, 50);
+                    picDado4.Size = size;
+                    picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[3].Substring(1)) == 3)
+                {
+                    picDado4.Image = Properties.Resources.facesDado_3;
+                    Size size = new Size(50, 50);
+                    picDado4.Size = size;
+                    picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[3].Substring(1)) == 4)
+                {
+                    picDado4.Image = Properties.Resources.facesDado_4;
+                    Size size = new Size(50, 50);
+                    picDado4.Size = size;
+                    picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[3].Substring(1)) == 5)
+                {
+                    picDado4.Image = Properties.Resources.facesDado_5;
+                    Size size = new Size(50, 50);
+                    picDado4.Size = size;
+                    picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else if (Convert.ToInt32(x[3].Substring(1)) == 6)
+                {
+                    picDado4.Image = Properties.Resources.facesDado_6;
+                    Size size = new Size(50, 50);
+                    picDado4.Size = size;
+                    picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
                 txtConsole.Text = x[0].Substring(1) + '\n'
                     + x[1].Substring(1) + '\n'
                     + x[2].Substring(1) + '\n'
@@ -159,7 +331,6 @@ namespace CantStop
                     pBox.BackColor = Color.Yellow;
                 }
                 
-                
                 //pBox.Image = Image.FromFile(@"C:\Users\Second\Desktop\CantStop\CantStop\Resources\pinoVermelho.png");
                 //Adiciona o controle ao Form
                 Controls.Add(pBox);
@@ -174,6 +345,10 @@ namespace CantStop
 
         private void btnMover_Click(object sender, EventArgs e)
         {
+            picDado1.ImageLocation = null;
+            picDado2.ImageLocation = null;
+            picDado3.ImageLocation = null;
+            picDado4.ImageLocation = null;
             string ordem = txtOrdem.Text;
             string trilha = txtTrilha.Text;
             txtConsole.Text = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);

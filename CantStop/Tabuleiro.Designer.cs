@@ -42,7 +42,15 @@ namespace CantStop
             this.label3 = new System.Windows.Forms.Label();
             this.btnRolarDados = new System.Windows.Forms.Button();
             this.btnVerificarVez = new System.Windows.Forms.Button();
+            this.picDado4 = new System.Windows.Forms.PictureBox();
+            this.picDado3 = new System.Windows.Forms.PictureBox();
+            this.picDado2 = new System.Windows.Forms.PictureBox();
+            this.picDado1 = new System.Windows.Forms.PictureBox();
             this.picTabuleiro = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDado1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTabuleiro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,6 +195,38 @@ namespace CantStop
             this.btnVerificarVez.UseVisualStyleBackColor = false;
             this.btnVerificarVez.Click += new System.EventHandler(this.btnVerificarVez_Click);
             // 
+            // picDado4
+            // 
+            this.picDado4.Location = new System.Drawing.Point(216, 409);
+            this.picDado4.Name = "picDado4";
+            this.picDado4.Size = new System.Drawing.Size(50, 50);
+            this.picDado4.TabIndex = 69;
+            this.picDado4.TabStop = false;
+            // 
+            // picDado3
+            // 
+            this.picDado3.Location = new System.Drawing.Point(160, 409);
+            this.picDado3.Name = "picDado3";
+            this.picDado3.Size = new System.Drawing.Size(50, 50);
+            this.picDado3.TabIndex = 68;
+            this.picDado3.TabStop = false;
+            // 
+            // picDado2
+            // 
+            this.picDado2.Location = new System.Drawing.Point(104, 409);
+            this.picDado2.Name = "picDado2";
+            this.picDado2.Size = new System.Drawing.Size(50, 50);
+            this.picDado2.TabIndex = 67;
+            this.picDado2.TabStop = false;
+            // 
+            // picDado1
+            // 
+            this.picDado1.Location = new System.Drawing.Point(48, 409);
+            this.picDado1.Name = "picDado1";
+            this.picDado1.Size = new System.Drawing.Size(50, 50);
+            this.picDado1.TabIndex = 66;
+            this.picDado1.TabStop = false;
+            // 
             // picTabuleiro
             // 
             this.picTabuleiro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -205,6 +245,10 @@ namespace CantStop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(814, 537);
+            this.Controls.Add(this.picDado4);
+            this.Controls.Add(this.picDado3);
+            this.Controls.Add(this.picDado2);
+            this.Controls.Add(this.picDado1);
             this.Controls.Add(this.picTabuleiro);
             this.Controls.Add(this.btnVerificarVez);
             this.Controls.Add(this.btnRolarDados);
@@ -221,6 +265,10 @@ namespace CantStop
             this.Controls.Add(this.txtConsole);
             this.DoubleBuffered = true;
             this.Name = "Tabuleiro";
+            ((System.ComponentModel.ISupportInitialize)(this.picDado4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDado3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDado2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDado1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTabuleiro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -243,5 +291,9 @@ namespace CantStop
         private System.Windows.Forms.Button btnRolarDados;
         private System.Windows.Forms.Button btnVerificarVez;
         private System.Windows.Forms.PictureBox picTabuleiro;
+        private System.Windows.Forms.PictureBox picDado1;
+        private System.Windows.Forms.PictureBox picDado2;
+        private System.Windows.Forms.PictureBox picDado3;
+        private System.Windows.Forms.PictureBox picDado4;
     }
 }
