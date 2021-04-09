@@ -17,6 +17,9 @@ namespace CantStop
         public static int idPartidaAtual { get; set; }
         public static string senhaPlayer { get; set; }
         public static string corJogadorAtual { get; set; }
+        public static string baseJogo { get; set; }
+
+        List<PictureBox> listaPbox = new List<PictureBox>();
 
         public Tabuleiro(int idJogador, string senhaJogador, int idPartida)
         {
@@ -234,8 +237,9 @@ namespace CantStop
 
         private void btnExibirTabuleiro_Click(object sender, EventArgs e)
         {
+            txtTabuleiro.Text = "";
             txtTabuleiro.Text = Jogo.ExibirTabuleiro(idPartidaAtual);
-            string retorno = Jogo.ExibirTabuleiro(idPartidaAtual);
+            string retorno = txtTabuleiro.Text;
 
             int[] posX = new int[11];
             posX[0] = 417;
@@ -275,6 +279,7 @@ namespace CantStop
                 novoP.Linha = Convert.ToInt32(items[1]);
                 novoP.idJogador = Convert.ToInt32(items[2]);
                 novoP.Base = items[3];
+                //baseJogo = novoP.Base;
                 listaPinos.Add(novoP);
             }
 
@@ -294,9 +299,15 @@ namespace CantStop
                 listaJogadores.Add(novoJ);
             }
 
-            foreach(Pino pino in listaPinos)
+            foreach (PictureBox pBox in listaPbox)
+            {
+                pBox.Hide();
+            }
+
+            foreach (Pino pino in listaPinos)
             {
                 PictureBox pBox = new PictureBox();
+
                 int X = posX[pino.Coluna - 2];
                 int Y = posY[pino.Coluna - 2] - pino.Linha*(30);
                 pBox.Location = new Point(X, Y);
@@ -305,7 +316,7 @@ namespace CantStop
                 //Tamanho
                 pBox.Height = 20;
                 pBox.Width = 20;
-                
+
                 foreach(Jogador jogador in listaJogadores)
                 {
                     if(jogador.id == pino.idJogador)
@@ -313,8 +324,12 @@ namespace CantStop
                         corJogadorAtual = jogador.cor;
                     }
                 }
-                
-                if(corJogadorAtual == "Vermelho")
+
+                if (pino.Base == "A")
+                {
+                    pBox.BackColor = Color.Gray; 
+                }
+                else if(corJogadorAtual == "Vermelho")
                 {
                     pBox.BackColor = Color.Red;
                 }
@@ -330,11 +345,11 @@ namespace CantStop
                 {
                     pBox.BackColor = Color.Yellow;
                 }
-                
-                //pBox.Image = Image.FromFile(@"C:\Users\Second\Desktop\CantStop\CantStop\Resources\pinoVermelho.png");
+
                 //Adiciona o controle ao Form
-                Controls.Add(pBox);
-                picTabuleiro.SendToBack();
+                listaPbox.Add(pBox);
+                Controls.Add(listaPbox.Last());
+                listaPbox.Last().BringToFront();
             }
         }
 
@@ -345,13 +360,24 @@ namespace CantStop
 
         private void btnMover_Click(object sender, EventArgs e)
         {
-            picDado1.ImageLocation = null;
-            picDado2.ImageLocation = null;
-            picDado3.ImageLocation = null;
-            picDado4.ImageLocation = null;
+            picDado1.Image = null;
+            picDado2.Image = null;
+            picDado3.Image = null;
+            picDado4.Image = null;
+
             string ordem = txtOrdem.Text;
             string trilha = txtTrilha.Text;
             txtConsole.Text = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
+
+            //if (retorno.Substring(0, 4) != "ERRO")
+            //{
+                
+            //}
+            //else
+            //{
+            //    txtConsole.Text = retorno.Substring(5);
+            //}
+
             txtOrdem.Text = "";
             txtTrilha.Text = "";
         }
