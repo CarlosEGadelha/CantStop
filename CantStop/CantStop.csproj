@@ -116,5 +116,56 @@
   <ItemGroup>
     <None Include="Resources\facesDado_6.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabuleiroOficial.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\amarelo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\amarelo-azul.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\amarelo-azul-vermelho-verde.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\amarelo-verde.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\azul.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\azul-verde.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\verde.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\verde-azul-amarelo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\verde-azul-vermelho.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vermelho.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vermelho-verde-amarelo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vermelho-verde.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vermelho-azul-amarelo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vermelho-azul.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vermelho-amarelo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preto.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

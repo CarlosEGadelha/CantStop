@@ -118,9 +118,10 @@ namespace CantStop
             this.idPartida = partida.idPartida;
             this.idJogador = Convert.ToInt32(txtIdJogador.Text);
             this.senhaJogador = txtSenhaJogador.Text;
+            this.corJogador = txtCorJogador.Text;
             //txtConsole.Text = Jogo.IniciarPartida(idJogador, senhaJogador);
 
-            Tabuleiro tabuleiro = new Tabuleiro(idJogador, senhaJogador, idPartida);
+            Tabuleiro tabuleiro = new Tabuleiro(idJogador, senhaJogador, idPartida, corJogador);
             tabuleiro.Show();
             //txtConsole.Text = retorno.Substring(5);
             //Tabuleiro tabuleiro = new Tabuleiro(idJogador, senhaJogador);

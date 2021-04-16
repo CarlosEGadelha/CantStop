@@ -17,11 +17,12 @@ namespace CantStop
         public static int idPartidaAtual { get; set; }
         public static string senhaPlayer { get; set; }
         public static string corJogadorAtual { get; set; }
+        public static string corJogador { get; set; }
         public static string baseJogo { get; set; }
 
         List<PictureBox> listaPbox = new List<PictureBox>();
 
-        public Tabuleiro(int idJogador, string senhaJogador, int idPartida)
+        public Tabuleiro(int idJogador, string senhaJogador, int idPartida, string cor)
         {
             //Chama o Lobby
             //Lobby lobby = new Lobby();
@@ -32,8 +33,9 @@ namespace CantStop
             idPlayer = idJogador;
             senhaPlayer = senhaJogador;
             idPartidaAtual = idPartida;
+            corJogador = cor;
             txtConsole.Text = Jogo.IniciarPartida(idPlayer, senhaPlayer);
-
+            lblInfoJogador.Text = idJogador + ". " + senhaJogador + ". " + corJogador;
             //string retorno = Jogo.IniciarPartida(idJogador, senhaJogador);
             //txtConsole.Text = retorno.Substring(5);
 
@@ -242,30 +244,30 @@ namespace CantStop
             string retorno = txtTabuleiro.Text;
 
             int[] posX = new int[11];
-            posX[0] = 417;
-            posX[1] = 445;
-            posX[2] = 478;
-            posX[3] = 506;
-            posX[4] = 534;
-            posX[5] = 563;
-            posX[6] = 595;
-            posX[7] = 623;
-            posX[8] = 648;
-            posX[9] = 677;
-            posX[10] = 698;
+            posX[0] = 378;
+            posX[1] = 414;
+            posX[2] = 451;
+            posX[3] = 487;
+            posX[4] = 523;
+            posX[5] = 560;
+            posX[6] = 597;
+            posX[7] = 633;
+            posX[8] = 670;
+            posX[9] = 706;
+            posX[10] = 742;
 
             int[] posY = new int[11];
-            posY[0] = 307;
-            posY[1] = 346;
-            posY[2] = 369;
-            posY[3] = 407;
-            posY[4] = 432;
-            posY[5] = 459;
-            posY[6] = 432;
-            posY[7] = 405;
-            posY[8] = 369;
-            posY[9] = 335;
-            posY[10] = 316;
+            posY[0] = 319;
+            posY[1] = 352;
+            posY[2] = 385;
+            posY[3] = 418;
+            posY[4] = 451;
+            posY[5] = 484;
+            posY[6] = 451;
+            posY[7] = 418;
+            posY[8] = 385;
+            posY[9] = 352;
+            posY[10] = 319;
 
             retorno = retorno.Replace("\r", "");
             string[] linha = retorno.Split('\n');
@@ -309,7 +311,7 @@ namespace CantStop
                 PictureBox pBox = new PictureBox();
 
                 int X = posX[pino.Coluna - 2];
-                int Y = posY[pino.Coluna - 2] - pino.Linha*(30);
+                int Y = posY[pino.Coluna - 2] - pino.Linha*(33);
                 pBox.Location = new Point(X, Y);
                 //Nome
                 pBox.Name = pino.idJogador.ToString();
@@ -327,23 +329,23 @@ namespace CantStop
 
                 if (pino.Base == "A")
                 {
-                    pBox.BackColor = Color.Gray; 
+                    pBox.Image = Properties.Resources.preto;
                 }
                 else if(corJogadorAtual == "Vermelho")
                 {
-                    pBox.BackColor = Color.Red;
+                    pBox.Image = Properties.Resources.vermelho;
                 }
                 else if (corJogadorAtual == "Azul")
                 {
-                    pBox.BackColor = Color.Blue;
+                    pBox.Image = Properties.Resources.azul;
                 }
                 else if (corJogadorAtual == "Verde")
                 {
-                    pBox.BackColor = Color.Green;
+                    pBox.Image = Properties.Resources.verde;
                 }
                 else
                 {
-                    pBox.BackColor = Color.Yellow;
+                    pBox.Image = Properties.Resources.amarelo;
                 }
 
                 //Adiciona o controle ao Form

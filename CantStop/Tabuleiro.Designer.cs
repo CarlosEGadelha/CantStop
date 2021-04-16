@@ -47,6 +47,7 @@ namespace CantStop
             this.picDado2 = new System.Windows.Forms.PictureBox();
             this.picDado1 = new System.Windows.Forms.PictureBox();
             this.picTabuleiro = new System.Windows.Forms.PictureBox();
+            this.lblInfoJogador = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
@@ -231,7 +232,7 @@ namespace CantStop
             // 
             this.picTabuleiro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.picTabuleiro.Enabled = false;
-            this.picTabuleiro.Image = global::CantStop.Properties.Resources.tabuleiro;
+            this.picTabuleiro.Image = global::CantStop.Properties.Resources.tabuleiroOficial;
             this.picTabuleiro.Location = new System.Drawing.Point(345, 21);
             this.picTabuleiro.Name = "picTabuleiro";
             this.picTabuleiro.Size = new System.Drawing.Size(454, 471);
@@ -239,12 +240,22 @@ namespace CantStop
             this.picTabuleiro.TabIndex = 65;
             this.picTabuleiro.TabStop = false;
             // 
+            // lblInfoJogador
+            // 
+            this.lblInfoJogador.AutoSize = true;
+            this.lblInfoJogador.Location = new System.Drawing.Point(13, 512);
+            this.lblInfoJogador.Name = "lblInfoJogador";
+            this.lblInfoJogador.Size = new System.Drawing.Size(45, 13);
+            this.lblInfoJogador.TabIndex = 70;
+            this.lblInfoJogador.Text = "Jogador";
+            // 
             // Tabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(814, 537);
+            this.Controls.Add(this.lblInfoJogador);
             this.Controls.Add(this.picDado4);
             this.Controls.Add(this.picDado3);
             this.Controls.Add(this.picDado2);
@@ -295,5 +306,6 @@ namespace CantStop
         private System.Windows.Forms.PictureBox picDado2;
         private System.Windows.Forms.PictureBox picDado3;
         private System.Windows.Forms.PictureBox picDado4;
+        private System.Windows.Forms.Label lblInfoJogador;
     }
 }
