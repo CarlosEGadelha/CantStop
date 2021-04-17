@@ -34,7 +34,18 @@ namespace CantStop
             senhaPlayer = senhaJogador;
             idPartidaAtual = idPartida;
             corJogador = cor;
-            txtConsole.Text = Jogo.IniciarPartida(idPlayer, senhaPlayer);
+            string retornoVez = Jogo.IniciarPartida(idPlayer, senhaPlayer);
+            MessageBox.Show(retornoVez);
+            MessageBox.Show(idPlayer.ToString());
+            if (retornoVez == idPlayer.ToString())
+            {
+                txtConsole.Text = "É a sua vez!";
+            }
+            else
+            {
+                txtConsole.Text = "É a vez de outro jogador.";
+            }
+
             lblInfoJogador.Text = idJogador + ". " + senhaJogador + ". " + corJogador;
             //string retorno = Jogo.IniciarPartida(idJogador, senhaJogador);
             //txtConsole.Text = retorno.Substring(5);
@@ -312,12 +323,11 @@ namespace CantStop
 
                 int X = posX[pino.Coluna - 2];
                 int Y = posY[pino.Coluna - 2] - pino.Linha*(33);
-                pBox.Location = new Point(X, Y);
                 //Nome
                 pBox.Name = pino.idJogador.ToString();
                 //Tamanho
-                pBox.Height = 20;
-                pBox.Width = 20;
+                pBox.Height = 10;
+                pBox.Width = 10;
 
                 foreach(Jogador jogador in listaJogadores)
                 {
@@ -333,21 +343,30 @@ namespace CantStop
                 }
                 else if(corJogadorAtual == "Vermelho")
                 {
+                    Y-= 5;
+                    X-= 5;
                     pBox.Image = Properties.Resources.vermelho;
                 }
                 else if (corJogadorAtual == "Azul")
                 {
+                    Y += 5;
+                    X -= 5;
                     pBox.Image = Properties.Resources.azul;
                 }
                 else if (corJogadorAtual == "Verde")
                 {
+                    Y += 5;
+                    X += 5;
                     pBox.Image = Properties.Resources.verde;
                 }
                 else
                 {
+                    Y -= 5;
+                    X += 5;
                     pBox.Image = Properties.Resources.amarelo;
                 }
 
+                pBox.Location = new Point(X, Y);
                 //Adiciona o controle ao Form
                 listaPbox.Add(pBox);
                 Controls.Add(listaPbox.Last());
@@ -386,7 +405,22 @@ namespace CantStop
 
         private void btnVerificarVez_Click(object sender, EventArgs e)
         {
-            txtConsole.Text = Jogo.VerificarVez(idPartidaAtual);
+            string retornoVez = Jogo.VerificarVez(idPartidaAtual);
+            string[] vez = retornoVez.Split(',');
+
+            string turno = vez[1];
+            MessageBox.Show(turno);
+            MessageBox.Show(idPlayer.ToString());
+
+            if (Convert.ToInt32(turno) == idPlayer)
+            {
+                txtConsole.Text = "É a sua vez!";
+            }
+            else
+            {
+                txtConsole.Text = "É a vez de outro jogador.";
+            }
+
         }
     }
 }
