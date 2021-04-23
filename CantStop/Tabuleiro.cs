@@ -35,25 +35,46 @@ namespace CantStop
             senhaPlayer = senhaJogador;
             idPartidaAtual = idPartida;
             corJogador = cor;
-            string retornoVez = Jogo.IniciarPartida(idPlayer, senhaPlayer);
-            MessageBox.Show(retornoVez);
-            MessageBox.Show(idPlayer.ToString());
-            if (retornoVez == idPlayer.ToString())
+
+            string retorno = Jogo.IniciarPartida(idPlayer, senhaPlayer);
+
+            if (retorno.Substring(0, 1) != "E")
             {
-                txtConsole.Text = "É a sua vez!";
+                string retornoVez = Jogo.VerificarVez(idPartidaAtual);
+                string[] vez = retornoVez.Split(',');
+
+                string turno = vez[1];
+
+                if (Convert.ToInt32(turno) == idPlayer)
+                {
+                    txtConsole.Text = "É a sua vez!";
+                }
+                else
+                {
+                    txtConsole.Text = "É a vez de outro jogador.";
+                }
             }
             else
             {
-                txtConsole.Text = "É a vez de outro jogador.";
+                string retornoVez = Jogo.VerificarVez(idPartidaAtual);
+                string[] vez = retornoVez.Split(',');
+
+                string turno = vez[1];
+
+                if (Convert.ToInt32(turno) == idPlayer)
+                {
+                    txtConsole.Text = "É a sua vez!";
+                }
+                else
+                {
+                    txtConsole.Text = "É a vez de outro jogador.";
+                }
             }
 
             lblInfoJogador.Text = idJogador + ". " + senhaJogador + ". " + corJogador;
-            //string retorno = Jogo.IniciarPartida(idJogador, senhaJogador);
-            //txtConsole.Text = retorno.Substring(5);
-
-            //Exibe os jogadores da partida que foi selecionada lá no lobby
-            //textBox1.Text = Jogo.ListarJogadores(lobby.idPartida);
         }
+
+        uint alpinista = 3;
 
         private void btnRolarDados_Click_1(object sender, EventArgs e)
         {
@@ -241,6 +262,26 @@ namespace CantStop
                     + x[1].Substring(1) + '\n'
                     + x[2].Substring(1) + '\n'
                     + x[3].Substring(1);
+
+                int comb01 = Convert.ToInt32(x[0].Substring(1)) + Convert.ToInt32(x[1].Substring(1));
+                int comb02 = Convert.ToInt32(x[2].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
+                int comb03 = Convert.ToInt32(x[0].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
+                int comb04 = Convert.ToInt32(x[1].Substring(1)) + Convert.ToInt32(x[2].Substring(1));
+                int comb05 = Convert.ToInt32(x[2].Substring(1)) + Convert.ToInt32(x[0].Substring(1));
+                int comb06 = Convert.ToInt32(x[1].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
+
+                if (alpinista > 1)
+                {
+                    lblCombinacoes.Text = "Dado 1+2 e 3+4: " + comb01 + " e " + comb02 + "\n"
+                        + "Dado 1+4 e 2+3: " + comb03 + " e " + comb04 + "\n"
+                        + "Dado 3+1 e 2+4: " + comb05 + " e " + comb06 + "\n";
+                }
+                else
+                {
+                    lblCombinacoes.Text = "Dado 1+2: " + comb01 + " ou Dado 3+4: " + comb02 + "\n"
+                         + "Dado 1+4: " + comb03 + " ou Dado 2+3: " + comb04 + "\n"
+                         + "Dado 3+1: " + comb05 + " ou Dado 2+4: " + comb06 + "\n";
+                }
             }
             else
             {
@@ -368,7 +409,6 @@ namespace CantStop
                 }
 
                 pBox.Location = new Point(X, Y);
-                //Adiciona o controle ao Form
                 listaPbox.Add(pBox);
                 Controls.Add(listaPbox.Last());
                 listaPbox.Last().BringToFront();
@@ -378,30 +418,49 @@ namespace CantStop
         private void btnParar_Click(object sender, EventArgs e)
         {
             txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
+            btnMover.Enabled = false;
+            btnRolarDados.Enabled = false;
+            btnParar.Enabled = false;
+            lblCombinacoes.Text = "";
+            alpinista = 3;
         }
 
         private void btnMover_Click(object sender, EventArgs e)
         {
-            picDado1.Image = null;
-            picDado2.Image = null;
-            picDado3.Image = null;
-            picDado4.Image = null;
-
             string ordem = txtOrdem.Text;
             string trilha = txtTrilha.Text;
-            txtConsole.Text = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
+            string retorno = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
 
-            //if (retorno.Substring(0, 4) != "ERRO")
-            //{
-                
-            //}
-            //else
-            //{
-            //    txtConsole.Text = retorno.Substring(5);
-            //}
+            if (trilha == "" || ordem == "")
+            {
+                txtConsole.Text = "Trilha ou Ordem está vazio";
+            }
+
+            if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
+            {
+                if (trilha.Substring(1, 1) == "0" || trilha.Substring(0, 1).Equals(trilha.Substring(1, 1)))
+                {
+                    if(alpinista > 0)
+                    {
+                        alpinista--;
+                    }
+                }
+                else
+                {
+                    if (alpinista > 0)
+                    {
+                        alpinista -= 2;
+                    }
+                }
+            }
+            else
+            {
+                lblInfoJogador.Text = retorno.Substring(5);
+            }
 
             txtOrdem.Text = "";
             txtTrilha.Text = "";
+
         }
 
         private void btnVerificarVez_Click(object sender, EventArgs e)
@@ -410,12 +469,13 @@ namespace CantStop
             string[] vez = retornoVez.Split(',');
 
             string turno = vez[1];
-            MessageBox.Show(turno);
-            MessageBox.Show(idPlayer.ToString());
 
             if (Convert.ToInt32(turno) == idPlayer)
             {
                 txtConsole.Text = "É a sua vez!";
+                btnMover.Enabled = true;
+                btnRolarDados.Enabled = true;
+                btnParar.Enabled = true;
             }
             else
             {

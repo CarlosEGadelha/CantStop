@@ -17,7 +17,6 @@ namespace CantStop
         public int idJogador { get; set; }
         public string senhaJogador { get; set; }
         public string corJogador { get; set; }
-        //public int idJogador { get; set; }
 
         public Lobby()
         {
@@ -30,24 +29,6 @@ namespace CantStop
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
             this.idPartida = partida.idPartida;
             txtListaJogadores.Text = Jogo.ListarJogadores(idPartida);
-
-            //string retorno = Jogo.ListarJogadores(idPartida);
-            //retorno = retorno.Replace("\r", "");
-            //string[] linha = retorno.Split('\n');
-            //List<Jogador> jogadores = new List<Jogador>();
-
-            //for (int i = 0; i < linha.Length - 1; i++)
-            //{
-            //    Jogador p = new Jogador();
-            //    string[] items = linha[i].Split(',');
-            //    p.id = Convert.ToInt32(items[0]);
-            //    p.nome = items[1];
-            //    p.cor = items[2];
-            //    //p.senha = items[3];
-            //    jogadores.Add(p);
-            //}
-
-            //dgvJogadores.DataSource = jogadores;
         }
 
         private void btnExibirPartidas_Click(object sender, EventArgs e)
@@ -78,9 +59,18 @@ namespace CantStop
             Partida partida = new Partida();
             string nome = txtNomePartida.Text;
             string senha = txtSenha.Text;
-            partida.idPartida = Convert.ToInt32(Jogo.CriarPartida(nome, senha));
-            txtNomePartida.Text = "";
-            txtSenha.Text = "";
+            string retorno = Jogo.CriarPartida(nome, senha);
+            if (retorno.Substring(0, 1) != "E")
+            {
+                partida.idPartida = Convert.ToInt32(retorno);
+                txtNomePartida.Text = "";
+                txtSenha.Text = "";
+            }
+            else
+            {
+                lblInfoJogador.Text = retorno.Substring(5);
+            }
+            
         }
 
         private void btnEntrarPartida_Click(object sender, EventArgs e)
@@ -119,67 +109,9 @@ namespace CantStop
             this.idJogador = Convert.ToInt32(txtIdJogador.Text);
             this.senhaJogador = txtSenhaJogador.Text;
             this.corJogador = txtCorJogador.Text;
-            //txtConsole.Text = Jogo.IniciarPartida(idJogador, senhaJogador);
 
             Tabuleiro tabuleiro = new Tabuleiro(idJogador, senhaJogador, idPartida, corJogador);
             tabuleiro.Show();
-            //txtConsole.Text = retorno.Substring(5);
-            //Tabuleiro tabuleiro = new Tabuleiro(idJogador, senhaJogador);
-            //tabuleiro.Show();
-            //this.Close();
-
-            //txtConsole.Text = Jogo.IniciarPartida(idJogador, senhaJogador);
         }
-
-        //private void btnRolarDados_Click(object sender, EventArgs e)
-        //{
-        //    Lobby lobby = new Lobby();
-
-        //    string retorno = Jogo.RolarDados(idJogador, senhaJogador);
-
-        //    if (retorno.Substring(0, 4) != "ERRO")
-        //    {
-        //        string[] x = retorno.Split('\n');
-
-        //        txtConsole.Text = x[0].Substring(1) + '\n' 
-        //            + x[1].Substring(1) + '\n'
-        //            + x[2].Substring(1) + '\n' 
-        //            + x[3].Substring(1);
-        //    }
-        //    else
-        //    {
-        //        txtConsole.Text = retorno.Substring(5);
-        //    }
-        //}
-
-        //private void btnMover_Click(object sender, EventArgs e)
-        //{
-        //    int idJogador = Convert.ToInt32(txtIdJogador.Text);
-        //    string senha = txtSenhaJogador.Text;
-        //    string ordem = txtOrdem.Text;
-        //    string trilha = txtTrilha.Text;
-        //    txtConsole.Text = Jogo.Mover(idJogador, senha, ordem, trilha);
-        //}
-
-        private void btnParar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnExibirTabuleiro_Click(object sender, EventArgs e)
-        {
-            Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-            this.idPartida = partida.idPartida;
-            txtTabuleiro.Text = Jogo.ExibirTabuleiro(idPartida); 
-        }
-
-        //private void btnInfoJogador_Click(object sender, EventArgs e)
-        //{
-        //    Jogador jogador = (Jogador)dgvJogadores.SelectedRows[0].DataBoundItem;
-        //    this.idJogador = jogador.id;
-        //    txtId.Text = jogador.id.ToString();
-        //    txtNomeJogador.Text = jogador.nome;
-        //    txtCorJogador.Text = jogador.cor;
-        //}
     }
 }

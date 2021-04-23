@@ -54,9 +54,6 @@ namespace CantStop
             this.label2 = new System.Windows.Forms.Label();
             this.lblDadosDoJogador = new System.Windows.Forms.Label();
             this.btnIniciarPartida = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTabuleiro = new System.Windows.Forms.TextBox();
-            this.btnExibirTabuleiro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -309,7 +306,7 @@ namespace CantStop
             this.btnIniciarPartida.BackColor = System.Drawing.Color.Teal;
             this.btnIniciarPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciarPartida.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnIniciarPartida.Location = new System.Drawing.Point(375, 187);
+            this.btnIniciarPartida.Location = new System.Drawing.Point(462, 241);
             this.btnIniciarPartida.Name = "btnIniciarPartida";
             this.btnIniciarPartida.Size = new System.Drawing.Size(135, 48);
             this.btnIniciarPartida.TabIndex = 31;
@@ -317,47 +314,11 @@ namespace CantStop
             this.btnIniciarPartida.UseVisualStyleBackColor = false;
             this.btnIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Teal;
-            this.label3.Location = new System.Drawing.Point(526, 171);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 16);
-            this.label3.TabIndex = 49;
-            this.label3.Text = "Exibir Tabuleiro";
-            // 
-            // txtTabuleiro
-            // 
-            this.txtTabuleiro.Location = new System.Drawing.Point(516, 190);
-            this.txtTabuleiro.Multiline = true;
-            this.txtTabuleiro.Name = "txtTabuleiro";
-            this.txtTabuleiro.ReadOnly = true;
-            this.txtTabuleiro.Size = new System.Drawing.Size(139, 99);
-            this.txtTabuleiro.TabIndex = 50;
-            // 
-            // btnExibirTabuleiro
-            // 
-            this.btnExibirTabuleiro.BackColor = System.Drawing.Color.Teal;
-            this.btnExibirTabuleiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExibirTabuleiro.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnExibirTabuleiro.Location = new System.Drawing.Point(377, 241);
-            this.btnExibirTabuleiro.Name = "btnExibirTabuleiro";
-            this.btnExibirTabuleiro.Size = new System.Drawing.Size(133, 48);
-            this.btnExibirTabuleiro.TabIndex = 51;
-            this.btnExibirTabuleiro.Text = "Exibir Tabuleiro";
-            this.btnExibirTabuleiro.UseVisualStyleBackColor = false;
-            this.btnExibirTabuleiro.Click += new System.EventHandler(this.btnExibirTabuleiro_Click);
-            // 
             // Lobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 386);
-            this.Controls.Add(this.btnExibirTabuleiro);
-            this.Controls.Add(this.txtTabuleiro);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnIniciarPartida);
             this.Controls.Add(this.lblDadosDoJogador);
             this.Controls.Add(this.txtCorJogador);
@@ -417,9 +378,6 @@ namespace CantStop
         private System.Windows.Forms.Label lblDadosDoJogador;
         private System.Windows.Forms.Button btnIniciarPartida;
         private System.Windows.Forms.TextBox txtIdJogador;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTabuleiro;
-        private System.Windows.Forms.Button btnExibirTabuleiro;
     }
 }
 

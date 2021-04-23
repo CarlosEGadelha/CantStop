@@ -52,6 +52,7 @@ namespace CantStop
             this.txtHistorico = new System.Windows.Forms.TextBox();
             this.lblHistórico = new System.Windows.Forms.Label();
             this.lblVersao = new System.Windows.Forms.Label();
+            this.lblCombinacoes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
@@ -82,6 +83,7 @@ namespace CantStop
             // btnParar
             // 
             this.btnParar.BackColor = System.Drawing.Color.Teal;
+            this.btnParar.Enabled = false;
             this.btnParar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnParar.ForeColor = System.Drawing.SystemColors.Control;
             this.btnParar.Location = new System.Drawing.Point(13, 321);
@@ -95,6 +97,7 @@ namespace CantStop
             // btnMover
             // 
             this.btnMover.BackColor = System.Drawing.Color.Teal;
+            this.btnMover.Enabled = false;
             this.btnMover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMover.ForeColor = System.Drawing.SystemColors.Control;
             this.btnMover.Location = new System.Drawing.Point(13, 267);
@@ -178,6 +181,7 @@ namespace CantStop
             // btnRolarDados
             // 
             this.btnRolarDados.BackColor = System.Drawing.Color.Teal;
+            this.btnRolarDados.Enabled = false;
             this.btnRolarDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRolarDados.ForeColor = System.Drawing.SystemColors.Control;
             this.btnRolarDados.Location = new System.Drawing.Point(13, 166);
@@ -203,7 +207,7 @@ namespace CantStop
             // 
             // picDado4
             // 
-            this.picDado4.Location = new System.Drawing.Point(214, 462);
+            this.picDado4.Location = new System.Drawing.Point(214, 476);
             this.picDado4.Name = "picDado4";
             this.picDado4.Size = new System.Drawing.Size(50, 50);
             this.picDado4.TabIndex = 69;
@@ -211,7 +215,7 @@ namespace CantStop
             // 
             // picDado3
             // 
-            this.picDado3.Location = new System.Drawing.Point(158, 462);
+            this.picDado3.Location = new System.Drawing.Point(158, 476);
             this.picDado3.Name = "picDado3";
             this.picDado3.Size = new System.Drawing.Size(50, 50);
             this.picDado3.TabIndex = 68;
@@ -219,7 +223,7 @@ namespace CantStop
             // 
             // picDado2
             // 
-            this.picDado2.Location = new System.Drawing.Point(102, 462);
+            this.picDado2.Location = new System.Drawing.Point(102, 476);
             this.picDado2.Name = "picDado2";
             this.picDado2.Size = new System.Drawing.Size(50, 50);
             this.picDado2.TabIndex = 67;
@@ -227,7 +231,7 @@ namespace CantStop
             // 
             // picDado1
             // 
-            this.picDado1.Location = new System.Drawing.Point(46, 462);
+            this.picDado1.Location = new System.Drawing.Point(46, 476);
             this.picDado1.Name = "picDado1";
             this.picDado1.Size = new System.Drawing.Size(50, 50);
             this.picDado1.TabIndex = 66;
@@ -297,12 +301,22 @@ namespace CantStop
             this.lblVersao.TabIndex = 74;
             this.lblVersao.Text = "Versão";
             // 
+            // lblCombinacoes
+            // 
+            this.lblCombinacoes.AutoSize = true;
+            this.lblCombinacoes.Location = new System.Drawing.Point(5, 381);
+            this.lblCombinacoes.Name = "lblCombinacoes";
+            this.lblCombinacoes.Size = new System.Drawing.Size(71, 13);
+            this.lblCombinacoes.TabIndex = 75;
+            this.lblCombinacoes.Text = "Combinações";
+            // 
             // Tabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(814, 564);
+            this.Controls.Add(this.lblCombinacoes);
             this.Controls.Add(this.lblVersao);
             this.Controls.Add(this.btnHistorico);
             this.Controls.Add(this.txtHistorico);
@@ -363,5 +377,6 @@ namespace CantStop
         private System.Windows.Forms.TextBox txtHistorico;
         private System.Windows.Forms.Label lblHistórico;
         private System.Windows.Forms.Label lblVersao;
+        private System.Windows.Forms.Label lblCombinacoes;
     }
 }
