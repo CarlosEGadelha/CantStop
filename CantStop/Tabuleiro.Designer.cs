@@ -48,6 +48,10 @@ namespace CantStop
             this.picDado1 = new System.Windows.Forms.PictureBox();
             this.picTabuleiro = new System.Windows.Forms.PictureBox();
             this.lblInfoJogador = new System.Windows.Forms.Label();
+            this.btnHistorico = new System.Windows.Forms.Button();
+            this.txtHistorico = new System.Windows.Forms.TextBox();
+            this.lblHistórico = new System.Windows.Forms.Label();
+            this.lblVersao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
@@ -142,7 +146,7 @@ namespace CantStop
             this.btnExibirTabuleiro.BackColor = System.Drawing.Color.Teal;
             this.btnExibirTabuleiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExibirTabuleiro.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnExibirTabuleiro.Location = new System.Drawing.Point(158, 321);
+            this.btnExibirTabuleiro.Location = new System.Drawing.Point(158, 381);
             this.btnExibirTabuleiro.Name = "btnExibirTabuleiro";
             this.btnExibirTabuleiro.Size = new System.Drawing.Size(139, 48);
             this.btnExibirTabuleiro.TabIndex = 62;
@@ -152,11 +156,12 @@ namespace CantStop
             // 
             // txtTabuleiro
             // 
-            this.txtTabuleiro.Location = new System.Drawing.Point(156, 26);
+            this.txtTabuleiro.Location = new System.Drawing.Point(158, 241);
             this.txtTabuleiro.Multiline = true;
             this.txtTabuleiro.Name = "txtTabuleiro";
             this.txtTabuleiro.ReadOnly = true;
-            this.txtTabuleiro.Size = new System.Drawing.Size(139, 289);
+            this.txtTabuleiro.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTabuleiro.Size = new System.Drawing.Size(139, 134);
             this.txtTabuleiro.TabIndex = 61;
             // 
             // label3
@@ -164,7 +169,7 @@ namespace CantStop
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Teal;
-            this.label3.Location = new System.Drawing.Point(164, 7);
+            this.label3.Location = new System.Drawing.Point(166, 222);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(118, 16);
             this.label3.TabIndex = 60;
@@ -198,7 +203,7 @@ namespace CantStop
             // 
             // picDado4
             // 
-            this.picDado4.Location = new System.Drawing.Point(216, 409);
+            this.picDado4.Location = new System.Drawing.Point(214, 462);
             this.picDado4.Name = "picDado4";
             this.picDado4.Size = new System.Drawing.Size(50, 50);
             this.picDado4.TabIndex = 69;
@@ -206,7 +211,7 @@ namespace CantStop
             // 
             // picDado3
             // 
-            this.picDado3.Location = new System.Drawing.Point(160, 409);
+            this.picDado3.Location = new System.Drawing.Point(158, 462);
             this.picDado3.Name = "picDado3";
             this.picDado3.Size = new System.Drawing.Size(50, 50);
             this.picDado3.TabIndex = 68;
@@ -214,7 +219,7 @@ namespace CantStop
             // 
             // picDado2
             // 
-            this.picDado2.Location = new System.Drawing.Point(104, 409);
+            this.picDado2.Location = new System.Drawing.Point(102, 462);
             this.picDado2.Name = "picDado2";
             this.picDado2.Size = new System.Drawing.Size(50, 50);
             this.picDado2.TabIndex = 67;
@@ -222,7 +227,7 @@ namespace CantStop
             // 
             // picDado1
             // 
-            this.picDado1.Location = new System.Drawing.Point(48, 409);
+            this.picDado1.Location = new System.Drawing.Point(46, 462);
             this.picDado1.Name = "picDado1";
             this.picDado1.Size = new System.Drawing.Size(50, 50);
             this.picDado1.TabIndex = 66;
@@ -243,18 +248,65 @@ namespace CantStop
             // lblInfoJogador
             // 
             this.lblInfoJogador.AutoSize = true;
-            this.lblInfoJogador.Location = new System.Drawing.Point(13, 512);
+            this.lblInfoJogador.Location = new System.Drawing.Point(9, 542);
             this.lblInfoJogador.Name = "lblInfoJogador";
             this.lblInfoJogador.Size = new System.Drawing.Size(45, 13);
             this.lblInfoJogador.TabIndex = 70;
             this.lblInfoJogador.Text = "Jogador";
+            // 
+            // btnHistorico
+            // 
+            this.btnHistorico.BackColor = System.Drawing.Color.Teal;
+            this.btnHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistorico.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnHistorico.Location = new System.Drawing.Point(158, 166);
+            this.btnHistorico.Name = "btnHistorico";
+            this.btnHistorico.Size = new System.Drawing.Size(139, 48);
+            this.btnHistorico.TabIndex = 73;
+            this.btnHistorico.Text = "Exibir Histórico";
+            this.btnHistorico.UseVisualStyleBackColor = false;
+            this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
+            // 
+            // txtHistorico
+            // 
+            this.txtHistorico.Location = new System.Drawing.Point(158, 26);
+            this.txtHistorico.Multiline = true;
+            this.txtHistorico.Name = "txtHistorico";
+            this.txtHistorico.ReadOnly = true;
+            this.txtHistorico.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtHistorico.Size = new System.Drawing.Size(139, 134);
+            this.txtHistorico.TabIndex = 72;
+            // 
+            // lblHistórico
+            // 
+            this.lblHistórico.AutoSize = true;
+            this.lblHistórico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHistórico.ForeColor = System.Drawing.Color.Teal;
+            this.lblHistórico.Location = new System.Drawing.Point(166, 7);
+            this.lblHistórico.Name = "lblHistórico";
+            this.lblHistórico.Size = new System.Drawing.Size(113, 16);
+            this.lblHistórico.TabIndex = 71;
+            this.lblHistórico.Text = "Exibir Histórico";
+            // 
+            // lblVersao
+            // 
+            this.lblVersao.AutoSize = true;
+            this.lblVersao.Location = new System.Drawing.Point(740, 542);
+            this.lblVersao.Name = "lblVersao";
+            this.lblVersao.Size = new System.Drawing.Size(40, 13);
+            this.lblVersao.TabIndex = 74;
+            this.lblVersao.Text = "Versão";
             // 
             // Tabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(814, 537);
+            this.ClientSize = new System.Drawing.Size(814, 564);
+            this.Controls.Add(this.lblVersao);
+            this.Controls.Add(this.btnHistorico);
+            this.Controls.Add(this.txtHistorico);
+            this.Controls.Add(this.lblHistórico);
             this.Controls.Add(this.lblInfoJogador);
             this.Controls.Add(this.picDado4);
             this.Controls.Add(this.picDado3);
@@ -307,5 +359,9 @@ namespace CantStop
         private System.Windows.Forms.PictureBox picDado3;
         private System.Windows.Forms.PictureBox picDado4;
         private System.Windows.Forms.Label lblInfoJogador;
+        private System.Windows.Forms.Button btnHistorico;
+        private System.Windows.Forms.TextBox txtHistorico;
+        private System.Windows.Forms.Label lblHistórico;
+        private System.Windows.Forms.Label lblVersao;
     }
 }

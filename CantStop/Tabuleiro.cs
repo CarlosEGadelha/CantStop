@@ -29,6 +29,7 @@ namespace CantStop
             //lobby.ShowDialog();
 
             InitializeComponent();
+            lblVersao.Text = "Versão " + Jogo.Versao;
 
             idPlayer = idJogador;
             senhaPlayer = senhaJogador;
@@ -421,6 +422,11 @@ namespace CantStop
                 txtConsole.Text = "É a vez de outro jogador.";
             }
 
+        }
+
+        private void btnHistorico_Click(object sender, EventArgs e)
+        {
+            txtHistorico.Text = Jogo.ExibirHistorico(idPartidaAtual);
         }
     }
 }
