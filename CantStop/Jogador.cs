@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CantStop
 {
-    class Jogador
+    public class Jogador
     {
         public int id { get; set; }
         public string nome { get; set; }

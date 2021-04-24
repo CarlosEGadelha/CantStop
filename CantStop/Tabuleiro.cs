@@ -16,11 +16,12 @@ namespace CantStop
         public static int idPlayer { get; set; }
         public static int idPartidaAtual { get; set; }
         public static string senhaPlayer { get; set; }
-        public static string corJogadorAtual { get; set; }
+        public string corJogadorAtual { get; set; }
         public static string corJogador { get; set; }
         public static string baseJogo { get; set; }
 
         List<PictureBox> listaPbox = new List<PictureBox>();
+        List<Jogador> listaJogadores = new List<Jogador>();
 
         public Tabuleiro(int idJogador, string senhaJogador, int idPartida, string cor)
         {
@@ -38,36 +39,66 @@ namespace CantStop
 
             string retorno = Jogo.IniciarPartida(idPlayer, senhaPlayer);
 
+            string retornoJogador = Jogo.ListarJogadores(idPartidaAtual);
+
+            retornoJogador = retornoJogador.Replace("\r", "");
+            string[] linhaJogador = retornoJogador.Split('\n');
+            for (int i = 0; i < linhaJogador.Length - 1; i++)
+            {
+                Jogador novoJ = new Jogador();
+                string[] items = linhaJogador[i].Split(',');
+                novoJ.id = Convert.ToInt32(items[0]);
+                novoJ.nome = items[1];
+                novoJ.cor = items[2];
+                listaJogadores.Add(novoJ);
+            }
+
             if (retorno.Substring(0, 1) != "E")
             {
                 string retornoVez = Jogo.VerificarVez(idPartidaAtual);
                 string[] vez = retornoVez.Split(',');
-
                 string turno = vez[1];
+
+                foreach (Jogador jogador in listaJogadores)
+                {
+                    if (jogador.id == Convert.ToInt32(turno))
+                    {
+                        this.corJogadorAtual = jogador.cor;
+                    }
+                }
+
+                MessageBox.Show(corJogadorAtual);
 
                 if (Convert.ToInt32(turno) == idPlayer)
                 {
-                    txtConsole.Text = "É a sua vez!";
+                    txtConsole.Text = "É a sua vez! Cor " + corJogador;
                 }
                 else
                 {
-                    txtConsole.Text = "É a vez de outro jogador.";
+                    txtConsole.Text = "É a vez do jogador " + corJogadorAtual;
                 }
             }
             else
             {
                 string retornoVez = Jogo.VerificarVez(idPartidaAtual);
                 string[] vez = retornoVez.Split(',');
-
                 string turno = vez[1];
+
+                foreach (Jogador jogador in listaJogadores)
+                {
+                    if (jogador.id == Convert.ToInt32(turno))
+                    {
+                        this.corJogadorAtual = jogador.cor;
+                    }
+                }
 
                 if (Convert.ToInt32(turno) == idPlayer)
                 {
-                    txtConsole.Text = "É a sua vez!";
+                    txtConsole.Text = "É a sua vez! Cor " + corJogador;
                 }
                 else
                 {
-                    txtConsole.Text = "É a vez de outro jogador.";
+                    txtConsole.Text = "É a vez do jogador " + corJogadorAtual;
                 }
             }
 
@@ -272,15 +303,15 @@ namespace CantStop
 
                 if (alpinista > 1)
                 {
-                    lblCombinacoes.Text = "Dado 1+2 e 3+4: " + comb01 + " e " + comb02 + "\n"
-                        + "Dado 1+4 e 2+3: " + comb03 + " e " + comb04 + "\n"
-                        + "Dado 3+1 e 2+4: " + comb05 + " e " + comb06 + "\n";
+                    lblCombinacoes.Text = "ORDEM [1234]: " + comb01 + " e " + comb02 + "\n"
+                        + "ORDEM [1423]: " + comb03 + " e " + comb04 + "\n"
+                        + "ORDEM [1324]: " + comb05 + " e " + comb06 + "\n";
                 }
                 else
                 {
-                    lblCombinacoes.Text = "Dado 1+2: " + comb01 + " ou Dado 3+4: " + comb02 + "\n"
-                         + "Dado 1+4: " + comb03 + " ou Dado 2+3: " + comb04 + "\n"
-                         + "Dado 3+1: " + comb05 + " ou Dado 2+4: " + comb06 + "\n";
+                    lblCombinacoes.Text = "ORDEM [12]: " + comb01 + " ou ORDEM [34]: " + comb02 + "\n"
+                         + "ORDEM [14]: " + comb03 + " ORDEM [23]: " + comb04 + "\n"
+                         + "ORDEM [13]: " + comb05 + " ORDEM [24]: " + comb06 + "\n";
                 }
             }
             else
@@ -336,22 +367,6 @@ namespace CantStop
                 novoP.Base = items[3];
                 //baseJogo = novoP.Base;
                 listaPinos.Add(novoP);
-            }
-
-            string retornoJogador = Jogo.ListarJogadores(idPartidaAtual);
-
-            retornoJogador = retornoJogador.Replace("\r", "");
-            string[] linhaJogador = retornoJogador.Split('\n');
-            List<Jogador> listaJogadores = new List<Jogador>();
-
-            for (int i = 0; i < linhaJogador.Length - 1; i++)
-            {
-                Jogador novoJ = new Jogador();
-                string[] items = linhaJogador[i].Split(',');
-                novoJ.id = Convert.ToInt32(items[0]);
-                novoJ.nome = items[1];
-                novoJ.cor = items[2];
-                listaJogadores.Add(novoJ);
             }
 
             foreach (PictureBox pBox in listaPbox)
@@ -455,7 +470,7 @@ namespace CantStop
             }
             else
             {
-                lblInfoJogador.Text = retorno.Substring(5);
+                txtConsole.Text = retorno.Substring(5);
             }
 
             txtOrdem.Text = "";
@@ -467,21 +482,27 @@ namespace CantStop
         {
             string retornoVez = Jogo.VerificarVez(idPartidaAtual);
             string[] vez = retornoVez.Split(',');
-
             string turno = vez[1];
+            
+            foreach (Jogador jogador in listaJogadores)
+            {
+                if (jogador.id == Convert.ToInt32(turno))
+                {
+                    this.corJogadorAtual = jogador.cor;
+                }
+            }
 
             if (Convert.ToInt32(turno) == idPlayer)
             {
-                txtConsole.Text = "É a sua vez!";
+                txtConsole.Text = "É a sua vez! Cor " + corJogador;
                 btnMover.Enabled = true;
                 btnRolarDados.Enabled = true;
                 btnParar.Enabled = true;
             }
             else
             {
-                txtConsole.Text = "É a vez de outro jogador.";
+                txtConsole.Text = "É a vez do jogador " + corJogadorAtual;
             }
-
         }
 
         private void btnHistorico_Click(object sender, EventArgs e)
