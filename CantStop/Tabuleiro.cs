@@ -441,7 +441,6 @@ namespace CantStop
             btnParar.Enabled = false;
             lblCombinacoes.Text = "";
             alpinista = 3;
-            //pararJogada = true;
             qtdJogadas = 0;
         }
 
@@ -454,6 +453,7 @@ namespace CantStop
             if (trilha == "" || ordem == "")
             {
                 txtConsole.Text = "Trilha ou Ordem está vazio";
+                return;
             }
 
             if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
@@ -472,6 +472,10 @@ namespace CantStop
                         alpinista -= 2;
                     }
                 }
+
+                qtdJogadas++;
+                //tmrAtualizacao.Dispose();
+                tmrAtualizacao.Start(); 
             }
             else
             {
@@ -480,8 +484,6 @@ namespace CantStop
 
             txtOrdem.Text = "";
             txtTrilha.Text = "";
-            qtdJogadas++;
-            tmrAtualizacao.Start();
         }
 
         //private void btnVerificarVez_Click(object sender, EventArgs e)
@@ -518,9 +520,9 @@ namespace CantStop
 
         public void ExibirTabuleiro()
         {
-            txtTabuleiro.Text = "";
-            txtTabuleiro.Text = Jogo.ExibirTabuleiro(idPartidaAtual);
-            string retorno = txtTabuleiro.Text;
+            //txtTabuleiro.Text = "";
+            //txtTabuleiro.Text = Jogo.ExibirTabuleiro(idPartidaAtual);
+            string retorno = Jogo.ExibirTabuleiro(idPartidaAtual); ;
 
             int[] posX = new int[11];
             posX[0] = 378;
@@ -857,48 +859,63 @@ namespace CantStop
                 lblVezJogador.Text = "É a sua vez! Cor " + corJogador;
                 vezJogador = true;
                 btnMover.Enabled = true;
+                //btnParar.Enabled = false;
             }
             else
             {
                 lblVezJogador.Text = "É a vez do jogador " + corJogadorAtual;
+                btnMover.Enabled = false;
+                btnParar.Enabled = false;
                 vezJogador = false;
             }
         }
 
-        public void Parar()
-        {
-            txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
-            btnMover.Enabled = false;
-            btnParar.Enabled = false;
-            lblCombinacoes.Text = "";
-            alpinista = 3;
-            //pararJogada = true;
-            qtdJogadas = 0;
-        }
+        //public void Parar()
+        //{
+        //    txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
+        //    btnMover.Enabled = false;
+        //    btnParar.Enabled = false;
+        //    lblCombinacoes.Text = "";
+        //    alpinista = 3;
+        //    //pararJogada = true;
+        //    qtdJogadas = 0;
+        //}
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
+            tmrAtualizaTabuleiro.Enabled = true;
+            tmrAtualizaTabuleiro.Start();
+            tmrAtualizaTabuleiro.Interval = 5000;
+            tmrAtualizaTabuleiro.Tick += new EventHandler(tmrAtualizaTabuleiro_Tick);
+
             tmrAtualizacao.Enabled = true;
             tmrAtualizacao.Start();
-            tmrAtualizacao.Interval = 4000;
+            tmrAtualizacao.Interval = 3000;
             tmrAtualizacao.Tick += new EventHandler(tmrAtualizacao_Tick);
         }
 
         private void tmrAtualizacao_Tick(object sender, EventArgs e)
         {
             VerificarVez();
-            ExibirTabuleiro();
-            //MessageBox.Show(vezJogador.ToString());
+            
             if (qtdJogadas < 2 && vezJogador == true)
             {
                 RolarDados();
+                btnParar.Enabled = false;
+                btnMover.Enabled = true;
                 tmrAtualizacao.Stop();
+                //tmrAtualizacao.Enabled = false;
             }
             else
             {
-                MessageBox.Show("Chegou parar");
-                Parar();
+                btnMover.Enabled = false;
+                btnParar.Enabled = true;
             }
-        }   
+        }
+
+        private void tmrAtualizaTabuleiro_Tick(object sender, EventArgs e)
+        {
+            ExibirTabuleiro();
+        }
     }
 }

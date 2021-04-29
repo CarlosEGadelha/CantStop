@@ -53,6 +53,7 @@ namespace CantStop
             this.tmrAtualizacao = new System.Windows.Forms.Timer(this.components);
             this.lblVezJogador = new System.Windows.Forms.Label();
             this.btnParar = new System.Windows.Forms.Button();
+            this.tmrAtualizaTabuleiro = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
@@ -258,7 +259,7 @@ namespace CantStop
             // 
             // tmrAtualizacao
             // 
-            this.tmrAtualizacao.Interval = 4000;
+            this.tmrAtualizacao.Interval = 3000;
             this.tmrAtualizacao.Tick += new System.EventHandler(this.tmrAtualizacao_Tick);
             // 
             // lblVezJogador
@@ -283,6 +284,11 @@ namespace CantStop
             this.btnParar.Text = "Parar";
             this.btnParar.UseVisualStyleBackColor = false;
             this.btnParar.Click += new System.EventHandler(this.btnParar_Click);
+            // 
+            // tmrAtualizaTabuleiro
+            // 
+            this.tmrAtualizaTabuleiro.Interval = 5000;
+            this.tmrAtualizaTabuleiro.Tick += new System.EventHandler(this.tmrAtualizaTabuleiro_Tick);
             // 
             // Tabuleiro
             // 
@@ -350,5 +356,6 @@ namespace CantStop
         private System.Windows.Forms.Timer tmrAtualizacao;
         private System.Windows.Forms.Label lblVezJogador;
         private System.Windows.Forms.Button btnParar;
+        private System.Windows.Forms.Timer tmrAtualizaTabuleiro;
     }
 }
