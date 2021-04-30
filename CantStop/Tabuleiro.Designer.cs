@@ -1,7 +1,7 @@
 ﻿
 namespace CantStop
 {
-    partial class Tabuleiro
+    partial class frmTabuleiro
     {
         /// <summary>
         /// Required designer variable.
@@ -37,8 +37,6 @@ namespace CantStop
             this.lblOrdem = new System.Windows.Forms.Label();
             this.txtTrilha = new System.Windows.Forms.TextBox();
             this.txtOrdem = new System.Windows.Forms.TextBox();
-            this.txtTabuleiro = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.picDado4 = new System.Windows.Forms.PictureBox();
             this.picDado3 = new System.Windows.Forms.PictureBox();
             this.picDado2 = new System.Windows.Forms.PictureBox();
@@ -87,7 +85,7 @@ namespace CantStop
             this.btnMover.Enabled = false;
             this.btnMover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMover.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnMover.Location = new System.Drawing.Point(13, 241);
+            this.btnMover.Location = new System.Drawing.Point(13, 247);
             this.btnMover.Name = "btnMover";
             this.btnMover.Size = new System.Drawing.Size(139, 48);
             this.btnMover.TabIndex = 57;
@@ -100,7 +98,7 @@ namespace CantStop
             this.lblTrilha.AutoSize = true;
             this.lblTrilha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrilha.ForeColor = System.Drawing.Color.Teal;
-            this.lblTrilha.Location = new System.Drawing.Point(91, 196);
+            this.lblTrilha.Location = new System.Drawing.Point(91, 202);
             this.lblTrilha.Name = "lblTrilha";
             this.lblTrilha.Size = new System.Drawing.Size(48, 16);
             this.lblTrilha.TabIndex = 56;
@@ -111,7 +109,7 @@ namespace CantStop
             this.lblOrdem.AutoSize = true;
             this.lblOrdem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrdem.ForeColor = System.Drawing.Color.Teal;
-            this.lblOrdem.Location = new System.Drawing.Point(10, 196);
+            this.lblOrdem.Location = new System.Drawing.Point(10, 202);
             this.lblOrdem.Name = "lblOrdem";
             this.lblOrdem.Size = new System.Drawing.Size(54, 16);
             this.lblOrdem.TabIndex = 55;
@@ -119,38 +117,17 @@ namespace CantStop
             // 
             // txtTrilha
             // 
-            this.txtTrilha.Location = new System.Drawing.Point(89, 215);
+            this.txtTrilha.Location = new System.Drawing.Point(89, 221);
             this.txtTrilha.Name = "txtTrilha";
             this.txtTrilha.Size = new System.Drawing.Size(63, 20);
             this.txtTrilha.TabIndex = 54;
             // 
             // txtOrdem
             // 
-            this.txtOrdem.Location = new System.Drawing.Point(13, 215);
+            this.txtOrdem.Location = new System.Drawing.Point(13, 221);
             this.txtOrdem.Name = "txtOrdem";
             this.txtOrdem.Size = new System.Drawing.Size(63, 20);
             this.txtOrdem.TabIndex = 53;
-            // 
-            // txtTabuleiro
-            // 
-            this.txtTabuleiro.Location = new System.Drawing.Point(157, 269);
-            this.txtTabuleiro.Multiline = true;
-            this.txtTabuleiro.Name = "txtTabuleiro";
-            this.txtTabuleiro.ReadOnly = true;
-            this.txtTabuleiro.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtTabuleiro.Size = new System.Drawing.Size(139, 74);
-            this.txtTabuleiro.TabIndex = 61;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Teal;
-            this.label3.Location = new System.Drawing.Point(165, 250);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 16);
-            this.label3.TabIndex = 60;
-            this.label3.Text = "Exibir Tabuleiro";
             // 
             // picDado4
             // 
@@ -210,7 +187,7 @@ namespace CantStop
             this.btnHistorico.BackColor = System.Drawing.Color.Teal;
             this.btnHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistorico.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnHistorico.Location = new System.Drawing.Point(157, 194);
+            this.btnHistorico.Location = new System.Drawing.Point(158, 194);
             this.btnHistorico.Name = "btnHistorico";
             this.btnHistorico.Size = new System.Drawing.Size(139, 48);
             this.btnHistorico.TabIndex = 73;
@@ -251,16 +228,11 @@ namespace CantStop
             // lblCombinacoes
             // 
             this.lblCombinacoes.AutoSize = true;
-            this.lblCombinacoes.Location = new System.Drawing.Point(12, 375);
+            this.lblCombinacoes.Location = new System.Drawing.Point(22, 374);
             this.lblCombinacoes.Name = "lblCombinacoes";
             this.lblCombinacoes.Size = new System.Drawing.Size(71, 13);
             this.lblCombinacoes.TabIndex = 75;
             this.lblCombinacoes.Text = "Combinações";
-            // 
-            // tmrAtualizacao
-            // 
-            this.tmrAtualizacao.Interval = 3000;
-            this.tmrAtualizacao.Tick += new System.EventHandler(this.tmrAtualizacao_Tick);
             // 
             // lblVezJogador
             // 
@@ -277,7 +249,7 @@ namespace CantStop
             this.btnParar.Enabled = false;
             this.btnParar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnParar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnParar.Location = new System.Drawing.Point(13, 295);
+            this.btnParar.Location = new System.Drawing.Point(15, 301);
             this.btnParar.Name = "btnParar";
             this.btnParar.Size = new System.Drawing.Size(139, 48);
             this.btnParar.TabIndex = 58;
@@ -290,7 +262,7 @@ namespace CantStop
             this.tmrAtualizaTabuleiro.Interval = 5000;
             this.tmrAtualizaTabuleiro.Tick += new System.EventHandler(this.tmrAtualizaTabuleiro_Tick);
             // 
-            // Tabuleiro
+            // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -308,8 +280,6 @@ namespace CantStop
             this.Controls.Add(this.picDado2);
             this.Controls.Add(this.picDado1);
             this.Controls.Add(this.picTabuleiro);
-            this.Controls.Add(this.txtTabuleiro);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnParar);
             this.Controls.Add(this.btnMover);
             this.Controls.Add(this.lblTrilha);
@@ -319,7 +289,7 @@ namespace CantStop
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtConsole);
             this.DoubleBuffered = true;
-            this.Name = "Tabuleiro";
+            this.Name = "frmTabuleiro";
             this.Load += new System.EventHandler(this.Tabuleiro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).EndInit();
@@ -340,8 +310,6 @@ namespace CantStop
         private System.Windows.Forms.Label lblOrdem;
         private System.Windows.Forms.TextBox txtTrilha;
         private System.Windows.Forms.TextBox txtOrdem;
-        private System.Windows.Forms.TextBox txtTabuleiro;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox picTabuleiro;
         private System.Windows.Forms.PictureBox picDado1;
         private System.Windows.Forms.PictureBox picDado2;

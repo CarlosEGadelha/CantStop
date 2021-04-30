@@ -30,7 +30,6 @@ namespace CantStop
             this.idPartida = partida.idPartida;
             txtListaJogadores.Text = Jogo.ListarJogadores(idPartida);
         }
-
         private void btnExibirPartidas_Click(object sender, EventArgs e)
         {
             string retorno = Jogo.ListarPartidas("T");
@@ -72,7 +71,6 @@ namespace CantStop
             }
             
         }
-
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
@@ -101,7 +99,6 @@ namespace CantStop
                 lblInfoJogador.Text = retorno.Substring(5);
             }            
         }
-
         private void btnIniciarPartida_Click(object sender, EventArgs e)
         {
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
@@ -110,7 +107,7 @@ namespace CantStop
             this.senhaJogador = txtSenhaJogador.Text;
             this.corJogador = txtCorJogador.Text;
 
-            Tabuleiro tabuleiro = new Tabuleiro(idJogador, senhaJogador, idPartida, corJogador);
+            frmTabuleiro tabuleiro = new frmTabuleiro(idJogador, senhaJogador, idPartida, corJogador);
             tabuleiro.Show();
         }
     }
