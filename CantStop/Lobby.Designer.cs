@@ -1,7 +1,7 @@
 ﻿
 namespace CantStop
 {
-    partial class Lobby
+    partial class frmLobby
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -314,7 +314,7 @@ namespace CantStop
             this.btnIniciarPartida.UseVisualStyleBackColor = false;
             this.btnIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
             // 
-            // Lobby
+            // frmLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -344,7 +344,7 @@ namespace CantStop
             this.Controls.Add(this.dgvPartidas);
             this.Controls.Add(this.btnListarJogadores);
             this.Controls.Add(this.btnExibirPartidas);
-            this.Name = "Lobby";
+            this.Name = "frmLobby";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidas)).EndInit();
             this.ResumeLayout(false);

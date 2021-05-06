@@ -52,6 +52,9 @@ namespace CantStop
             this.lblVezJogador = new System.Windows.Forms.Label();
             this.btnParar = new System.Windows.Forms.Button();
             this.tmrAtualizaTabuleiro = new System.Windows.Forms.Timer(this.components);
+            this.lblDadosSorteados = new System.Windows.Forms.Label();
+            this.lblSorteioDados = new System.Windows.Forms.Label();
+            this.btnVoltarLobby = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
@@ -262,12 +265,48 @@ namespace CantStop
             this.tmrAtualizaTabuleiro.Interval = 5000;
             this.tmrAtualizaTabuleiro.Tick += new System.EventHandler(this.tmrAtualizaTabuleiro_Tick);
             // 
+            // lblDadosSorteados
+            // 
+            this.lblDadosSorteados.AutoSize = true;
+            this.lblDadosSorteados.Location = new System.Drawing.Point(189, 319);
+            this.lblDadosSorteados.Name = "lblDadosSorteados";
+            this.lblDadosSorteados.Size = new System.Drawing.Size(89, 13);
+            this.lblDadosSorteados.TabIndex = 77;
+            this.lblDadosSorteados.Text = "Dados Sorteados";
+            // 
+            // lblSorteioDados
+            // 
+            this.lblSorteioDados.AutoSize = true;
+            this.lblSorteioDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSorteioDados.ForeColor = System.Drawing.Color.Teal;
+            this.lblSorteioDados.Location = new System.Drawing.Point(169, 279);
+            this.lblSorteioDados.Name = "lblSorteioDados";
+            this.lblSorteioDados.Size = new System.Drawing.Size(130, 16);
+            this.lblSorteioDados.TabIndex = 78;
+            this.lblSorteioDados.Text = "Dados Sorteados";
+            // 
+            // btnVoltarLobby
+            // 
+            this.btnVoltarLobby.BackColor = System.Drawing.Color.Teal;
+            this.btnVoltarLobby.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltarLobby.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnVoltarLobby.Location = new System.Drawing.Point(345, 504);
+            this.btnVoltarLobby.Name = "btnVoltarLobby";
+            this.btnVoltarLobby.Size = new System.Drawing.Size(139, 48);
+            this.btnVoltarLobby.TabIndex = 79;
+            this.btnVoltarLobby.Text = "Voltar para o Lobby";
+            this.btnVoltarLobby.UseVisualStyleBackColor = false;
+            this.btnVoltarLobby.Click += new System.EventHandler(this.btnVoltarLobby_Click);
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(814, 564);
+            this.Controls.Add(this.btnVoltarLobby);
+            this.Controls.Add(this.lblSorteioDados);
+            this.Controls.Add(this.lblDadosSorteados);
             this.Controls.Add(this.lblVezJogador);
             this.Controls.Add(this.lblCombinacoes);
             this.Controls.Add(this.lblVersao);
@@ -325,5 +364,8 @@ namespace CantStop
         private System.Windows.Forms.Label lblVezJogador;
         private System.Windows.Forms.Button btnParar;
         private System.Windows.Forms.Timer tmrAtualizaTabuleiro;
+        private System.Windows.Forms.Label lblDadosSorteados;
+        private System.Windows.Forms.Label lblSorteioDados;
+        private System.Windows.Forms.Button btnVoltarLobby;
     }
 }

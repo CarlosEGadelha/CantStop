@@ -20,8 +20,21 @@ namespace CantStop
         public static string corJogador { get; set; }
         public static string baseJogo { get; set; }
 
+        string trilhaMover = "";
+        string escolha02 = "";
+        string escolha03 = "";
+        string escolha04 = "";
+        string escolha05 = "";
+        string escolha06 = "";
+        string escolha07 = "";
+        string escolha08 = "";
+        string escolha09 = "";
+        string escolha10 = "";
+        string escolha11 = "";
+        string escolha12 = "";
         bool vezJogador = false;
         int qtdJogadas = 0;
+        string ordemMover = "1234";
 
         List<PictureBox> listaPbox = new List<PictureBox>();
         List<Jogador> listaJogadores = new List<Jogador>();
@@ -139,8 +152,7 @@ namespace CantStop
                 }
 
                 qtdJogadas++;
-
-                tmrAtualizacao.Start(); 
+                //tmrAtualizacao.Start(); 
             }
             else
             {
@@ -469,30 +481,148 @@ namespace CantStop
                     picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
 
-                txtConsole.Text = x[0].Substring(1) + '\n'
+                lblDadosSorteados.Text = x[0].Substring(1) + '\n'
                     + x[1].Substring(1) + '\n'
                     + x[2].Substring(1) + '\n'
                     + x[3].Substring(1);
 
                 int comb01 = Convert.ToInt32(x[0].Substring(1)) + Convert.ToInt32(x[1].Substring(1));
                 int comb02 = Convert.ToInt32(x[2].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
+
                 int comb03 = Convert.ToInt32(x[0].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
                 int comb04 = Convert.ToInt32(x[1].Substring(1)) + Convert.ToInt32(x[2].Substring(1));
+                
                 int comb05 = Convert.ToInt32(x[2].Substring(1)) + Convert.ToInt32(x[0].Substring(1));
                 int comb06 = Convert.ToInt32(x[1].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
 
-                if (alpinista > 1)
+                string combi01 = comb01.ToString();
+                string combi02 = comb02.ToString();
+
+                string combi03 = comb03.ToString();
+                string combi04 = comb04.ToString();
+
+                string combi05 = comb04.ToString();
+                string combi06 = comb04.ToString();
+
+                if (comb01 == 10)
                 {
-                    lblCombinacoes.Text = "ORDEM [1234]: " + comb01 + " e " + comb02 + "\n"
-                        + "ORDEM [1423]: " + comb03 + " e " + comb04 + "\n"
-                        + "ORDEM [1324]: " + comb05 + " e " + comb06 + "\n";
+                    combi01 = "A";
                 }
-                else
+                else if(comb01 == 11)
                 {
-                    lblCombinacoes.Text = "ORDEM [12]: " + comb01 + " ou [34]: " + comb02 + "\n"
-                         + "ORDEM [14]: " + comb03 + "  ou [23]: " + comb04 + "\n"
-                         + "ORDEM [13]: " + comb05 + "  ou [24]: " + comb06 + "\n";
+                    combi01 = "B";
                 }
+                else if (comb01 == 12)
+                {
+                    combi01 = "C";
+                }
+
+                if (comb02 == 10)
+                {
+                    combi02 = "A";
+                }
+                else if (comb02 == 11)
+                {
+                    combi02 = "B";
+                }
+                else if (comb02 == 12)
+                {
+                    combi02 = "C";
+                }
+
+                // ------------------------------------ //
+
+                if (comb03 == 10)
+                {
+                    combi03 = "A";
+                }
+                else if (comb03 == 11)
+                {
+                    combi03 = "B";
+                }
+                else if (comb03 == 12)
+                {
+                    combi03 = "C";
+                }
+
+                if (comb04 == 10)
+                {
+                    combi04 = "A";
+                }
+                else if (comb04 == 11)
+                {
+                    combi04 = "B";
+                }
+                else if (comb04 == 12)
+                {
+                    combi04 = "C";
+                }
+
+                // ------------------------------------ //
+
+                if (comb05 == 10)
+                {
+                    combi05 = "A";
+                }
+                else if (comb05 == 11)
+                {
+                    combi05 = "B";
+                }
+                else if (comb05 == 12)
+                {
+                    combi05 = "C";
+                }
+
+                if (comb06 == 10)
+                {
+                    combi06 = "A";
+                }
+                else if (comb06 == 11)
+                {
+                    combi06 = "B";
+                }
+                else if (comb06 == 12)
+                {
+                    combi06 = "C";
+                }
+
+                //if(alpinista < 2)
+                //{
+                //    trilhaMover = combi01 + "0";
+                //}
+                //else
+                //{
+                //    trilhaMover = combi01 + combi02;
+                //}
+
+                trilhaMover = combi01 + combi02;
+                escolha02 = combi03 + combi04;
+                escolha03 = combi05 + combi06;
+                escolha04 = combi02 + combi01;
+                escolha09 = combi04 + combi03;
+                escolha10 = combi06 + combi05;
+
+                escolha05 = combi01 + "0";
+                escolha06 = combi02 + "0";
+                escolha07 = combi03 + "0";
+                escolha08 = combi04 + "0";
+                escolha11 = combi05 + "0";
+                escolha12 = combi06 + "0";
+
+                //MessageBox.Show(trilhaMover);
+
+                //if (alpinista > 1)
+                //{
+                //    lblCombinacoes.Text = "ORDEM [1234]: " + comb01 + " e " + comb02 + "\n"
+                //        + "ORDEM [1423]: " + comb03 + " e " + comb04 + "\n"
+                //        + "ORDEM [1324]: " + comb05 + " e " + comb06 + "\n";
+                //}
+                //else
+                //{
+                //    lblCombinacoes.Text = "ORDEM [12]: " + comb01 + " ou [34]: " + comb02 + "\n"
+                //         + "ORDEM [14]: " + comb03 + "  ou [23]: " + comb04 + "\n"
+                //         + "ORDEM [13]: " + comb05 + "  ou [24]: " + comb06 + "\n";
+                //}
             }
             else
             {
@@ -517,28 +647,134 @@ namespace CantStop
             if (Convert.ToInt32(turno) == idPlayer)
             {
                 lblVezJogador.Text = "É a sua vez! Cor " + corJogador;
-                btnMover.Enabled = true;
+                //btnMover.Enabled = true;
                 vezJogador = true;
             }
             else
             {
                 lblVezJogador.Text = "É a vez do jogador " + corJogadorAtual;
-                btnMover.Enabled = false;
-                btnParar.Enabled = false;
+                //btnMover.Enabled = false;
+                //btnParar.Enabled = false;
                 vezJogador = false;
             }
         }
 
-        //public void Parar()
-        //{
-        //    txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
-        //    btnMover.Enabled = false;
-        //    btnParar.Enabled = false;
-        //    lblCombinacoes.Text = "";
-        //    alpinista = 3;
-        //    //pararJogada = true;
-        //    qtdJogadas = 0;
-        //}
+        public void Mover()
+        {
+            string ordem = ordemMover;
+            string trilha = trilhaMover;
+            string retorno = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
+
+            if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
+            {
+                if (trilha.Substring(1, 1) == "0" || trilha.Substring(0, 1).Equals(trilha.Substring(1, 1)))
+                {
+                    if (alpinista > 0)
+                    {
+                        alpinista--;
+                    }
+                }
+                else
+                {
+                    if (alpinista > 0)
+                    {
+                        alpinista -= 2;
+                    }
+                }
+
+                trilhaMover = "1234";
+                qtdJogadas++;
+
+                tmrAtualizacao.Start();
+            }
+            else if (retorno.Substring(0, 4) == "Soma")
+            {
+                txtConsole.Text = retorno.Substring(5);
+                Random randNum = new Random();
+                int numRand = randNum.Next(0, 4);
+
+                if (numRand == 0)
+                {
+                    trilhaMover = escolha02;
+                    ordemMover = "1423";
+                }
+                else if (numRand == 1)
+                {
+                    trilhaMover = escolha03;
+                    ordemMover = "1324";
+                }
+                else if (numRand == 2)
+                {
+                    trilhaMover = escolha04;
+                    ordemMover = "3412";
+                }
+                else if (numRand == 3)
+                {
+                    trilhaMover = escolha09;
+                    ordemMover = "2314";
+                }
+                else
+                {
+                    trilhaMover = escolha10;
+                    ordemMover = "2413";
+                }
+            }
+            else
+            {
+                txtConsole.Text = retorno.Substring(5);
+                Random randNum = new Random();
+                int numRand = randNum.Next(0, 5);
+
+                if (numRand == 0)
+                {
+                    trilhaMover = escolha05;
+                    ordemMover = "1234";
+                }
+                else if (numRand == 1)
+                {
+                    trilhaMover = escolha06;
+                    ordemMover = "3412";
+                }
+                else if (numRand == 2)
+                {
+                    trilhaMover = escolha07;
+                    ordemMover = "1423";
+                }
+                else if (numRand == 3)
+                {
+                    trilhaMover = escolha08;
+                    ordemMover = "2314";
+                }
+                else if (numRand == 4)
+                {
+                    trilhaMover = escolha11;
+                    ordemMover = "1324";
+                }
+                else
+                {
+                    trilhaMover = escolha12;
+                    ordemMover = "2413";
+                }
+            }
+
+            txtOrdem.Text = "";
+            txtTrilha.Text = "";
+        }
+
+        public void Parar()
+        {
+            //txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
+            //btnMover.Enabled = false;
+            //btnParar.Enabled = false;
+            //lblCombinacoes.Text = "";
+            //alpinista = 3;
+            //pararJogada = true;
+            //qtdJogadas = 0;
+            txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
+            lblCombinacoes.Text = "";
+            alpinista = 3;
+            qtdJogadas = 0;
+        }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
@@ -557,27 +793,34 @@ namespace CantStop
         {
             VerificarVez();
 
-            if (qtdJogadas < 2 && vezJogador == true)
+            if (qtdJogadas < 1 && vezJogador == true)
             {
                 RolarDados();
-                btnMover.Enabled = true;
-                tmrAtualizacao.Stop();
+                Mover();
+                //btnMover.Enabled = true;
+                //tmrAtualizacao.Stop();
             }
-            else if(qtdJogadas == 2)
+            else if (qtdJogadas == 1)
             {
-                btnMover.Enabled = false;
-                btnParar.Enabled = true;
+                Parar();
             }
-            else
-            {
-                btnMover.Enabled = false;
-                btnParar.Enabled = false;
-            }
+            //else
+            //{
+            //    btnMover.Enabled = false;
+            //    btnParar.Enabled = false;
+            //}
         }
 
         private void tmrAtualizaTabuleiro_Tick(object sender, EventArgs e)
         {
             ExibirTabuleiro();
+        }
+
+        private void btnVoltarLobby_Click(object sender, EventArgs e)
+        {
+            frmLobby form = new frmLobby();
+            this.Close();
+            form.Show();
         }
     }
 }

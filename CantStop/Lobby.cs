@@ -11,14 +11,14 @@ using CantStopServer;
 
 namespace CantStop
 {
-    public partial class Lobby : Form
+    public partial class frmLobby : Form
     {
         public int idPartida { get; set; }
         public int idJogador { get; set; }
         public string senhaJogador { get; set; }
         public string corJogador { get; set; }
 
-        public Lobby()
+        public frmLobby()
         {
             InitializeComponent();
             lblVersao.Text = "Versão " + Jogo.Versao;
@@ -108,6 +108,7 @@ namespace CantStop
             this.corJogador = txtCorJogador.Text;
 
             frmTabuleiro tabuleiro = new frmTabuleiro(idJogador, senhaJogador, idPartida, corJogador);
+            this.Hide();
             tabuleiro.Show();
         }
     }
