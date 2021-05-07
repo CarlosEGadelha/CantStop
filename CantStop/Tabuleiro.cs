@@ -35,6 +35,7 @@ namespace CantStop
         bool vezJogador = false;
         int qtdJogadas = 0;
         string ordemMover = "1234";
+        int teste = 0;
 
         List<PictureBox> listaPbox = new List<PictureBox>();
         List<Jogador> listaJogadores = new List<Jogador>();
@@ -79,8 +80,6 @@ namespace CantStop
                         this.corJogadorAtual = jogador.cor;
                     }
                 }
-
-                MessageBox.Show(corJogadorAtual);
 
                 if (Convert.ToInt32(turno) == idPlayer)
                 {
@@ -633,29 +632,40 @@ namespace CantStop
         public void VerificarVez()
         {
             string retornoVez = Jogo.VerificarVez(idPartidaAtual);
-            string[] vez = retornoVez.Split(',');
-            string turno = vez[1];
 
-            foreach (Jogador jogador in listaJogadores)
+            if (retornoVez.Substring(0, 4) != "ERRO")
             {
-                if (jogador.id == Convert.ToInt32(turno))
+                string[] vez = retornoVez.Split(',');
+                string turno = vez[1];
+
+                foreach (Jogador jogador in listaJogadores)
                 {
-                    this.corJogadorAtual = jogador.cor;
+                    if (jogador.id == Convert.ToInt32(turno))
+                    {
+                        this.corJogadorAtual = jogador.cor;
+                    }
                 }
-            }
 
-            if (Convert.ToInt32(turno) == idPlayer)
-            {
-                lblVezJogador.Text = "É a sua vez! Cor " + corJogador;
-                //btnMover.Enabled = true;
-                vezJogador = true;
+                if (Convert.ToInt32(turno) == idPlayer)
+                {
+                    lblVezJogador.Text = "É a sua vez! Cor " + corJogador;
+                    //btnMover.Enabled = true;
+                    vezJogador = true;
+                }
+                else
+                {
+                    lblVezJogador.Text = "É a vez do jogador " + corJogadorAtual;
+                    //btnMover.Enabled = false;
+                    //btnParar.Enabled = false;
+                    vezJogador = false;
+                }
             }
             else
             {
-                lblVezJogador.Text = "É a vez do jogador " + corJogadorAtual;
-                //btnMover.Enabled = false;
-                //btnParar.Enabled = false;
-                vezJogador = false;
+                tmrAtualizaTabuleiro.Stop();
+                tmrAtualizacao.Stop();
+                MessageBox.Show("Partida terminou! Temos um vencedor");
+                VotarLobby();
             }
         }
 
@@ -682,12 +692,115 @@ namespace CantStop
                     }
                 }
 
-                trilhaMover = "1234";
+                trilhaMover = "";
+                ordemMover = "1234";
                 qtdJogadas++;
+                teste = 0;
 
-                tmrAtualizacao.Start();
+                //tmrAtualizacao.Start();
             }
-            else if (retorno.Substring(0, 4) == "Soma")
+            else if (retorno.Substring(0, 26) == "ERRO: Não é possível mover")
+            {
+                //txtConsole.Text = retorno.Substring(0);
+                //Random randNum = new Random();
+                //int numRand = randNum.Next(0, 4);
+
+                //if (numRand == 0)
+                //{
+                //    trilhaMover = escolha02;
+                //    ordemMover = "1423";
+                //    teste++;
+                //}
+                //else if (numRand == 1)
+                //{
+                //    trilhaMover = escolha03;
+                //    ordemMover = "1324";
+                //}
+                //else if (numRand == 2)
+                //{
+                //    trilhaMover = escolha04;
+                //    ordemMover = "3412";
+                //}
+                //else if (numRand == 3)
+                //{
+                //    trilhaMover = escolha09;
+                //    ordemMover = "2314";
+                //}
+                //else 
+                //{
+                //    trilhaMover = escolha10;
+                //    ordemMover = "2413";
+                //}
+                txtConsole.Text = retorno.Substring(5);
+
+                if (teste == 0)
+                {
+                    trilhaMover = escolha02;
+                    ordemMover = "1423";
+                    teste++;
+                }
+                else if (teste == 1)
+                {
+                    trilhaMover = escolha03;
+                    ordemMover = "1324";
+                    teste++;
+                }
+                else if (teste == 2)
+                {
+                    trilhaMover = escolha04;
+                    ordemMover = "3412";
+                    teste++;
+                }
+                else if (teste == 3)
+                {
+                    trilhaMover = escolha09;
+                    ordemMover = "2314";
+                    teste++;
+                }
+                else if (teste == 4)
+                {
+                    trilhaMover = escolha10;
+                    ordemMover = "2413";
+                    teste++;
+                }
+                else if (teste == 5)
+                {
+                    trilhaMover = escolha05;
+                    ordemMover = "1234";
+                    teste++;
+                }
+                else if (teste == 6)
+                {
+                    trilhaMover = escolha06;
+                    ordemMover = "3412";
+                    teste++;
+                }
+                else if (teste == 7)
+                {
+                    trilhaMover = escolha07;
+                    ordemMover = "1423";
+                    teste++;
+                }
+                else if (teste == 8)
+                {
+                    trilhaMover = escolha08;
+                    ordemMover = "2314";
+                    teste++;
+                }
+                else if (teste == 9)
+                {
+                    trilhaMover = escolha11;
+                    ordemMover = "1324";
+                    teste++;
+                }
+                else if (teste == 10)
+                {
+                    trilhaMover = escolha12;
+                    ordemMover = "2413";
+                    teste++;
+                }
+            }
+            else
             {
                 txtConsole.Text = retorno.Substring(5);
                 Random randNum = new Random();
@@ -697,65 +810,70 @@ namespace CantStop
                 {
                     trilhaMover = escolha02;
                     ordemMover = "1423";
+                    teste++;
                 }
                 else if (numRand == 1)
                 {
                     trilhaMover = escolha03;
                     ordemMover = "1324";
+                    teste++;
                 }
                 else if (numRand == 2)
                 {
                     trilhaMover = escolha04;
                     ordemMover = "3412";
+                    teste++;
                 }
                 else if (numRand == 3)
                 {
                     trilhaMover = escolha09;
                     ordemMover = "2314";
-                }
-                else
-                {
-                    trilhaMover = escolha10;
-                    ordemMover = "2413";
-                }
-            }
-            else
-            {
-                txtConsole.Text = retorno.Substring(5);
-                Random randNum = new Random();
-                int numRand = randNum.Next(0, 5);
-
-                if (numRand == 0)
-                {
-                    trilhaMover = escolha05;
-                    ordemMover = "1234";
-                }
-                else if (numRand == 1)
-                {
-                    trilhaMover = escolha06;
-                    ordemMover = "3412";
-                }
-                else if (numRand == 2)
-                {
-                    trilhaMover = escolha07;
-                    ordemMover = "1423";
-                }
-                else if (numRand == 3)
-                {
-                    trilhaMover = escolha08;
-                    ordemMover = "2314";
+                    teste++;
                 }
                 else if (numRand == 4)
                 {
-                    trilhaMover = escolha11;
-                    ordemMover = "1324";
-                }
-                else
-                {
-                    trilhaMover = escolha12;
+                    trilhaMover = escolha10;
                     ordemMover = "2413";
+                    teste++;
                 }
             }
+            //else
+            //{
+            //    txtConsole.Text = retorno.Substring(0);
+            //    Random randNum = new Random();
+            //    int numRand = randNum.Next(0, 5);
+
+            //    if (numRand == 0)
+            //    {
+            //        trilhaMover = escolha05;
+            //        ordemMover = "1234";
+            //    }
+            //    else if (numRand == 1)
+            //    {
+            //        trilhaMover = escolha06;
+            //        ordemMover = "3412";
+            //    }
+            //    else if (numRand == 2)
+            //    {
+            //        trilhaMover = escolha07;
+            //        ordemMover = "1423";
+            //    }
+            //    else if (numRand == 3)
+            //    {
+            //        trilhaMover = escolha08;
+            //        ordemMover = "2314";
+            //    }
+            //    else if (numRand == 4)
+            //    {
+            //        trilhaMover = escolha11;
+            //        ordemMover = "1324";
+            //    }
+            //    else
+            //    {
+            //        trilhaMover = escolha12;
+            //        ordemMover = "2413";
+            //    }
+            //}
 
             txtOrdem.Text = "";
             txtTrilha.Text = "";
@@ -817,6 +935,11 @@ namespace CantStop
         }
 
         private void btnVoltarLobby_Click(object sender, EventArgs e)
+        {
+            VotarLobby();
+        }
+
+        public void VotarLobby()
         {
             frmLobby form = new frmLobby();
             this.Close();
