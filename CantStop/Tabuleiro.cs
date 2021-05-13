@@ -127,68 +127,7 @@ namespace CantStop
             qtdJogadas = 0;
         }
 
-        private void btnMover_Click(object sender, EventArgs e)
-        {
-            string ordem = txtOrdem.Text;
-            string trilha = txtTrilha.Text;
-            string retorno = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
-
-            if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
-            {
-                if (trilha.Substring(1, 1) == "0" || trilha.Substring(0, 1).Equals(trilha.Substring(1, 1)))
-                {
-                    if(alpinista > 0)
-                    {
-                        alpinista--;
-                    }
-                }
-                else
-                {
-                    if (alpinista > 0)
-                    {
-                        alpinista -= 2;
-                    }
-                }
-
-                qtdJogadas++;
-                //tmrAtualizacao.Start(); 
-            }
-            else
-            {
-                txtConsole.Text = retorno.Substring(5);
-            }
-
-            txtOrdem.Text = "";
-            txtTrilha.Text = "";
-        }
-
-        //private void btnVerificarVez_Click(object sender, EventArgs e)
-        //{
-        //    string retornoVez = Jogo.VerificarVez(idPartidaAtual);
-        //    string[] vez = retornoVez.Split(',');
-        //    string turno = vez[1];
-            
-        //    foreach (Jogador jogador in listaJogadores)
-        //    {
-        //        if (jogador.id == Convert.ToInt32(turno))
-        //        {
-        //            this.corJogadorAtual = jogador.cor;
-        //        }
-        //    }
-
-        //    if (Convert.ToInt32(turno) == idPlayer)
-        //    {
-        //        txtConsole.Text = "É a sua vez! Cor " + corJogador;
-        //        btnMover.Enabled = true;
-        //        btnRolarDados.Enabled = true;
-        //        btnParar.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        txtConsole.Text = "É a vez do jogador " + corJogadorAtual;
-        //    }
-        //}
-
+        
         private void btnHistorico_Click(object sender, EventArgs e)
         {
             txtHistorico.Text = Jogo.ExibirHistorico(idPartidaAtual);
@@ -610,12 +549,11 @@ namespace CantStop
 
                 //MessageBox.Show(trilhaMover);
 
-                //if (alpinista > 1)
-                //{
-                //    lblCombinacoes.Text = "ORDEM [1234]: " + comb01 + " e " + comb02 + "\n"
-                //        + "ORDEM [1423]: " + comb03 + " e " + comb04 + "\n"
-                //        + "ORDEM [1324]: " + comb05 + " e " + comb06 + "\n";
-                //}
+                
+                lblCombinacoes.Text = "ORDEM [1234]: " + comb01 + " e " + comb02 + "\n"
+                + "ORDEM [1423]: " + comb03 + " e " + comb04 + "\n"
+                + "ORDEM [1324]: " + comb05 + " e " + comb06 + "\n";
+               
                 //else
                 //{
                 //    lblCombinacoes.Text = "ORDEM [12]: " + comb01 + " ou [34]: " + comb02 + "\n"
@@ -875,8 +813,6 @@ namespace CantStop
             //    }
             //}
 
-            txtOrdem.Text = "";
-            txtTrilha.Text = "";
         }
 
         public void Parar()

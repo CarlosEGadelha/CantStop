@@ -32,11 +32,6 @@ namespace CantStop
             this.components = new System.ComponentModel.Container();
             this.txtConsole = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnMover = new System.Windows.Forms.Button();
-            this.lblTrilha = new System.Windows.Forms.Label();
-            this.lblOrdem = new System.Windows.Forms.Label();
-            this.txtTrilha = new System.Windows.Forms.TextBox();
-            this.txtOrdem = new System.Windows.Forms.TextBox();
             this.picDado4 = new System.Windows.Forms.PictureBox();
             this.picDado3 = new System.Windows.Forms.PictureBox();
             this.picDado2 = new System.Windows.Forms.PictureBox();
@@ -50,7 +45,6 @@ namespace CantStop
             this.lblCombinacoes = new System.Windows.Forms.Label();
             this.tmrAtualizacao = new System.Windows.Forms.Timer(this.components);
             this.lblVezJogador = new System.Windows.Forms.Label();
-            this.btnParar = new System.Windows.Forms.Button();
             this.tmrAtualizaTabuleiro = new System.Windows.Forms.Timer(this.components);
             this.lblDadosSorteados = new System.Windows.Forms.Label();
             this.lblSorteioDados = new System.Windows.Forms.Label();
@@ -81,56 +75,6 @@ namespace CantStop
             this.label1.Size = new System.Drawing.Size(141, 16);
             this.label1.TabIndex = 35;
             this.label1.Text = "Console da Partida";
-            // 
-            // btnMover
-            // 
-            this.btnMover.BackColor = System.Drawing.Color.Teal;
-            this.btnMover.Enabled = false;
-            this.btnMover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMover.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnMover.Location = new System.Drawing.Point(13, 247);
-            this.btnMover.Name = "btnMover";
-            this.btnMover.Size = new System.Drawing.Size(139, 48);
-            this.btnMover.TabIndex = 57;
-            this.btnMover.Text = "Mover";
-            this.btnMover.UseVisualStyleBackColor = false;
-            this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
-            // 
-            // lblTrilha
-            // 
-            this.lblTrilha.AutoSize = true;
-            this.lblTrilha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTrilha.ForeColor = System.Drawing.Color.Teal;
-            this.lblTrilha.Location = new System.Drawing.Point(91, 202);
-            this.lblTrilha.Name = "lblTrilha";
-            this.lblTrilha.Size = new System.Drawing.Size(48, 16);
-            this.lblTrilha.TabIndex = 56;
-            this.lblTrilha.Text = "Trilha";
-            // 
-            // lblOrdem
-            // 
-            this.lblOrdem.AutoSize = true;
-            this.lblOrdem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrdem.ForeColor = System.Drawing.Color.Teal;
-            this.lblOrdem.Location = new System.Drawing.Point(10, 202);
-            this.lblOrdem.Name = "lblOrdem";
-            this.lblOrdem.Size = new System.Drawing.Size(54, 16);
-            this.lblOrdem.TabIndex = 55;
-            this.lblOrdem.Text = "Ordem";
-            // 
-            // txtTrilha
-            // 
-            this.txtTrilha.Location = new System.Drawing.Point(89, 221);
-            this.txtTrilha.Name = "txtTrilha";
-            this.txtTrilha.Size = new System.Drawing.Size(63, 20);
-            this.txtTrilha.TabIndex = 54;
-            // 
-            // txtOrdem
-            // 
-            this.txtOrdem.Location = new System.Drawing.Point(13, 221);
-            this.txtOrdem.Name = "txtOrdem";
-            this.txtOrdem.Size = new System.Drawing.Size(63, 20);
-            this.txtOrdem.TabIndex = 53;
             // 
             // picDado4
             // 
@@ -231,7 +175,7 @@ namespace CantStop
             // lblCombinacoes
             // 
             this.lblCombinacoes.AutoSize = true;
-            this.lblCombinacoes.Location = new System.Drawing.Point(22, 374);
+            this.lblCombinacoes.Location = new System.Drawing.Point(22, 364);
             this.lblCombinacoes.Name = "lblCombinacoes";
             this.lblCombinacoes.Size = new System.Drawing.Size(71, 13);
             this.lblCombinacoes.TabIndex = 75;
@@ -246,20 +190,6 @@ namespace CantStop
             this.lblVezJogador.TabIndex = 76;
             this.lblVezJogador.Text = "Vez do Jogador";
             // 
-            // btnParar
-            // 
-            this.btnParar.BackColor = System.Drawing.Color.Teal;
-            this.btnParar.Enabled = false;
-            this.btnParar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnParar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnParar.Location = new System.Drawing.Point(15, 301);
-            this.btnParar.Name = "btnParar";
-            this.btnParar.Size = new System.Drawing.Size(139, 48);
-            this.btnParar.TabIndex = 58;
-            this.btnParar.Text = "Parar";
-            this.btnParar.UseVisualStyleBackColor = false;
-            this.btnParar.Click += new System.EventHandler(this.btnParar_Click);
-            // 
             // tmrAtualizaTabuleiro
             // 
             this.tmrAtualizaTabuleiro.Interval = 5000;
@@ -268,7 +198,7 @@ namespace CantStop
             // lblDadosSorteados
             // 
             this.lblDadosSorteados.AutoSize = true;
-            this.lblDadosSorteados.Location = new System.Drawing.Point(189, 319);
+            this.lblDadosSorteados.Location = new System.Drawing.Point(32, 234);
             this.lblDadosSorteados.Name = "lblDadosSorteados";
             this.lblDadosSorteados.Size = new System.Drawing.Size(89, 13);
             this.lblDadosSorteados.TabIndex = 77;
@@ -279,7 +209,7 @@ namespace CantStop
             this.lblSorteioDados.AutoSize = true;
             this.lblSorteioDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSorteioDados.ForeColor = System.Drawing.Color.Teal;
-            this.lblSorteioDados.Location = new System.Drawing.Point(169, 279);
+            this.lblSorteioDados.Location = new System.Drawing.Point(12, 194);
             this.lblSorteioDados.Name = "lblSorteioDados";
             this.lblSorteioDados.Size = new System.Drawing.Size(130, 16);
             this.lblSorteioDados.TabIndex = 78;
@@ -319,12 +249,6 @@ namespace CantStop
             this.Controls.Add(this.picDado2);
             this.Controls.Add(this.picDado1);
             this.Controls.Add(this.picTabuleiro);
-            this.Controls.Add(this.btnParar);
-            this.Controls.Add(this.btnMover);
-            this.Controls.Add(this.lblTrilha);
-            this.Controls.Add(this.lblOrdem);
-            this.Controls.Add(this.txtTrilha);
-            this.Controls.Add(this.txtOrdem);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtConsole);
             this.DoubleBuffered = true;
@@ -344,11 +268,6 @@ namespace CantStop
 
         private System.Windows.Forms.TextBox txtConsole;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnMover;
-        private System.Windows.Forms.Label lblTrilha;
-        private System.Windows.Forms.Label lblOrdem;
-        private System.Windows.Forms.TextBox txtTrilha;
-        private System.Windows.Forms.TextBox txtOrdem;
         private System.Windows.Forms.PictureBox picTabuleiro;
         private System.Windows.Forms.PictureBox picDado1;
         private System.Windows.Forms.PictureBox picDado2;
@@ -362,7 +281,6 @@ namespace CantStop
         private System.Windows.Forms.Label lblCombinacoes;
         private System.Windows.Forms.Timer tmrAtualizacao;
         private System.Windows.Forms.Label lblVezJogador;
-        private System.Windows.Forms.Button btnParar;
         private System.Windows.Forms.Timer tmrAtualizaTabuleiro;
         private System.Windows.Forms.Label lblDadosSorteados;
         private System.Windows.Forms.Label lblSorteioDados;
