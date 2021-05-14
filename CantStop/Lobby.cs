@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,10 @@ namespace CantStop
 {
     public partial class frmLobby : Form
     {
-        public int idPartida { get; set; }
-        public int idJogador { get; set; }
-        public string senhaJogador { get; set; }
-        public string corJogador { get; set; }
+        public static int idPartida { get; set; }
+        public static int idJogador { get; set; }
+        public static string senhaJogador { get; set; }
+        public static string corJogador { get; set; }
 
         public frmLobby()
         {
@@ -27,7 +28,7 @@ namespace CantStop
         private void btnListarJogadores_Click(object sender, EventArgs e)
         {
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-            this.idPartida = partida.idPartida;
+            idPartida = partida.idPartida;
             txtListaJogadores.Text = Jogo.ListarJogadores(idPartida);
         }
         private void btnExibirPartidas_Click(object sender, EventArgs e)
@@ -62,19 +63,18 @@ namespace CantStop
             if (retorno.Substring(0, 1) != "E")
             {
                 partida.idPartida = Convert.ToInt32(retorno);
-                txtNomePartida.Text = "";
-                txtSenha.Text = "";
+                txtNomePartida.Clear();
+                txtSenha.Clear();
             }
             else
             {
                 lblInfoJogador.Text = retorno.Substring(5);
             }
-            
         }
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-            this.idPartida = partida.idPartida;
+            idPartida = partida.idPartida;
             string nome = txtNomeJogador.Text;
             string senha = txtSenha.Text;
             string retorno = Jogo.EntrarPartida(idPartida, nome, senha);
@@ -87,29 +87,84 @@ namespace CantStop
 
             if (retorno.Substring(0, 4) != "ERRO")
             {
-                string[] x = retorno.Split(',');
+                using (StreamWriter usuario = new StreamWriter("backupUser.txt"))
+                {
+                    usuario.WriteLine(linha[0]);
+                }
 
-                lblInfoJogador.Text = x[0] + ". " + x[1] + ". " + x[2];
-                txtIdJogador.Text = x[0];
-                txtSenhaJogador.Text = x[1];
-                txtCorJogador.Text = x[2];
+                if (File.Exists("backupUser.txt"))
+                {
+                    using (StreamReader SR = new StreamReader("backupUser.txt"))
+                    {
+                        string retornoUser = SR.ReadLine();
+
+                        if (retornoUser != null)
+                        {
+                            lblInfoJogador.Text = retornoUser;
+
+                            retornoUser = retornoUser.Replace("\r", "");
+
+                            string[] x = retornoUser.Split(',');
+                            txtIdJogador.Text = x[0];
+                            txtSenhaJogador.Text = x[1];
+                            txtCorJogador.Text = x[2];
+                        }
+                        else
+                        {
+                            lblInfoJogador.Text = "";
+                        }
+                    }
+                }
+                //string[] x = linha[0].Split(',');
+                //lblInfoJogador.Text = x[0] + "." + x[1] + "." + x[2];
+                //txtIdJogador.Text = x[0];
+                //txtSenhaJogador.Text = x[1];
+                //txtCorJogador.Text = x[2];
             }
             else
             {
                 lblInfoJogador.Text = retorno.Substring(5);
-            }            
+            }
         }
         private void btnIniciarPartida_Click(object sender, EventArgs e)
         {
             Partida partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-            this.idPartida = partida.idPartida;
-            this.idJogador = Convert.ToInt32(txtIdJogador.Text);
-            this.senhaJogador = txtSenhaJogador.Text;
-            this.corJogador = txtCorJogador.Text;
+            idPartida = partida.idPartida;
+            idJogador = Convert.ToInt32(txtIdJogador.Text);
+            senhaJogador = txtSenhaJogador.Text;
+            corJogador = txtCorJogador.Text;
 
             frmTabuleiro tabuleiro = new frmTabuleiro(idJogador, senhaJogador, idPartida, corJogador);
             this.Hide();
-            tabuleiro.Show();
+            tabuleiro.ShowDialog();
+            this.Show();
+        }
+
+        private void frmLobby_Load(object sender, EventArgs e)
+        {
+            if (File.Exists("backupUser.txt"))
+            {
+                using (StreamReader SR = new StreamReader("backupUser.txt"))
+                {
+                    string retorno = SR.ReadLine();
+
+                    if (retorno != null)
+                    {
+                        lblInfoJogador.Text = retorno;
+
+                        retorno = retorno.Replace("\r", "");
+
+                        string[] x = retorno.Split(',');
+                        txtIdJogador.Text = x[0];
+                        txtSenhaJogador.Text = x[1];
+                        txtCorJogador.Text = x[2];
+                    }
+                    else
+                    {
+                        lblInfoJogador.Text = "";
+                    }
+                }
+            }
         }
     }
 }

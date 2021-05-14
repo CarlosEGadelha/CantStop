@@ -38,27 +38,32 @@ namespace CantStop
             this.picDado1 = new System.Windows.Forms.PictureBox();
             this.picTabuleiro = new System.Windows.Forms.PictureBox();
             this.lblInfoJogador = new System.Windows.Forms.Label();
-            this.btnHistorico = new System.Windows.Forms.Button();
             this.txtHistorico = new System.Windows.Forms.TextBox();
             this.lblHistórico = new System.Windows.Forms.Label();
             this.lblVersao = new System.Windows.Forms.Label();
             this.lblCombinacoes = new System.Windows.Forms.Label();
             this.tmrAtualizacao = new System.Windows.Forms.Timer(this.components);
-            this.lblVezJogador = new System.Windows.Forms.Label();
             this.tmrAtualizaTabuleiro = new System.Windows.Forms.Timer(this.components);
-            this.lblDadosSorteados = new System.Windows.Forms.Label();
             this.lblSorteioDados = new System.Windows.Forms.Label();
-            this.btnVoltarLobby = new System.Windows.Forms.Button();
+            this.picSuaCor = new System.Windows.Forms.PictureBox();
+            this.picJogadorVez = new System.Windows.Forms.PictureBox();
+            this.lblSuaCor = new System.Windows.Forms.Label();
+            this.lblJogadorVez = new System.Windows.Forms.Label();
+            this.lblTeste1 = new System.Windows.Forms.Label();
+            this.lblTeste2 = new System.Windows.Forms.Label();
+            this.lblTeste3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTabuleiro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSuaCor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picJogadorVez)).BeginInit();
             this.SuspendLayout();
             // 
             // txtConsole
             // 
-            this.txtConsole.Location = new System.Drawing.Point(11, 54);
+            this.txtConsole.Location = new System.Drawing.Point(14, 42);
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ReadOnly = true;
@@ -69,8 +74,8 @@ namespace CantStop
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Teal;
-            this.label1.Location = new System.Drawing.Point(9, 35);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.label1.Location = new System.Drawing.Point(12, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(141, 16);
             this.label1.TabIndex = 35;
@@ -78,7 +83,7 @@ namespace CantStop
             // 
             // picDado4
             // 
-            this.picDado4.Location = new System.Drawing.Point(228, 442);
+            this.picDado4.Location = new System.Drawing.Point(78, 269);
             this.picDado4.Name = "picDado4";
             this.picDado4.Size = new System.Drawing.Size(50, 50);
             this.picDado4.TabIndex = 69;
@@ -86,7 +91,7 @@ namespace CantStop
             // 
             // picDado3
             // 
-            this.picDado3.Location = new System.Drawing.Point(172, 442);
+            this.picDado3.Location = new System.Drawing.Point(22, 269);
             this.picDado3.Name = "picDado3";
             this.picDado3.Size = new System.Drawing.Size(50, 50);
             this.picDado3.TabIndex = 68;
@@ -94,7 +99,7 @@ namespace CantStop
             // 
             // picDado2
             // 
-            this.picDado2.Location = new System.Drawing.Point(116, 442);
+            this.picDado2.Location = new System.Drawing.Point(78, 213);
             this.picDado2.Name = "picDado2";
             this.picDado2.Size = new System.Drawing.Size(50, 50);
             this.picDado2.TabIndex = 67;
@@ -102,7 +107,7 @@ namespace CantStop
             // 
             // picDado1
             // 
-            this.picDado1.Location = new System.Drawing.Point(60, 442);
+            this.picDado1.Location = new System.Drawing.Point(22, 213);
             this.picDado1.Name = "picDado1";
             this.picDado1.Size = new System.Drawing.Size(50, 50);
             this.picDado1.TabIndex = 66;
@@ -129,22 +134,9 @@ namespace CantStop
             this.lblInfoJogador.TabIndex = 70;
             this.lblInfoJogador.Text = "Jogador";
             // 
-            // btnHistorico
-            // 
-            this.btnHistorico.BackColor = System.Drawing.Color.Teal;
-            this.btnHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistorico.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnHistorico.Location = new System.Drawing.Point(158, 194);
-            this.btnHistorico.Name = "btnHistorico";
-            this.btnHistorico.Size = new System.Drawing.Size(139, 48);
-            this.btnHistorico.TabIndex = 73;
-            this.btnHistorico.Text = "Exibir Histórico";
-            this.btnHistorico.UseVisualStyleBackColor = false;
-            this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
-            // 
             // txtHistorico
             // 
-            this.txtHistorico.Location = new System.Drawing.Point(157, 54);
+            this.txtHistorico.Location = new System.Drawing.Point(160, 42);
             this.txtHistorico.Multiline = true;
             this.txtHistorico.Name = "txtHistorico";
             this.txtHistorico.ReadOnly = true;
@@ -156,8 +148,8 @@ namespace CantStop
             // 
             this.lblHistórico.AutoSize = true;
             this.lblHistórico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHistórico.ForeColor = System.Drawing.Color.Teal;
-            this.lblHistórico.Location = new System.Drawing.Point(165, 35);
+            this.lblHistórico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblHistórico.Location = new System.Drawing.Point(168, 23);
             this.lblHistórico.Name = "lblHistórico";
             this.lblHistórico.Size = new System.Drawing.Size(113, 16);
             this.lblHistórico.TabIndex = 71;
@@ -175,58 +167,92 @@ namespace CantStop
             // lblCombinacoes
             // 
             this.lblCombinacoes.AutoSize = true;
-            this.lblCombinacoes.Location = new System.Drawing.Point(22, 364);
+            this.lblCombinacoes.Location = new System.Drawing.Point(22, 341);
             this.lblCombinacoes.Name = "lblCombinacoes";
             this.lblCombinacoes.Size = new System.Drawing.Size(71, 13);
             this.lblCombinacoes.TabIndex = 75;
             this.lblCombinacoes.Text = "Combinações";
             // 
-            // lblVezJogador
+            // tmrAtualizacao
             // 
-            this.lblVezJogador.AutoSize = true;
-            this.lblVezJogador.Location = new System.Drawing.Point(12, 9);
-            this.lblVezJogador.Name = "lblVezJogador";
-            this.lblVezJogador.Size = new System.Drawing.Size(81, 13);
-            this.lblVezJogador.TabIndex = 76;
-            this.lblVezJogador.Text = "Vez do Jogador";
+            this.tmrAtualizacao.Interval = 2600;
             // 
             // tmrAtualizaTabuleiro
             // 
-            this.tmrAtualizaTabuleiro.Interval = 5000;
+            this.tmrAtualizaTabuleiro.Interval = 2600;
             this.tmrAtualizaTabuleiro.Tick += new System.EventHandler(this.tmrAtualizaTabuleiro_Tick);
-            // 
-            // lblDadosSorteados
-            // 
-            this.lblDadosSorteados.AutoSize = true;
-            this.lblDadosSorteados.Location = new System.Drawing.Point(32, 234);
-            this.lblDadosSorteados.Name = "lblDadosSorteados";
-            this.lblDadosSorteados.Size = new System.Drawing.Size(89, 13);
-            this.lblDadosSorteados.TabIndex = 77;
-            this.lblDadosSorteados.Text = "Dados Sorteados";
             // 
             // lblSorteioDados
             // 
             this.lblSorteioDados.AutoSize = true;
             this.lblSorteioDados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSorteioDados.ForeColor = System.Drawing.Color.Teal;
+            this.lblSorteioDados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.lblSorteioDados.Location = new System.Drawing.Point(12, 194);
             this.lblSorteioDados.Name = "lblSorteioDados";
             this.lblSorteioDados.Size = new System.Drawing.Size(130, 16);
             this.lblSorteioDados.TabIndex = 78;
             this.lblSorteioDados.Text = "Dados Sorteados";
             // 
-            // btnVoltarLobby
+            // picSuaCor
             // 
-            this.btnVoltarLobby.BackColor = System.Drawing.Color.Teal;
-            this.btnVoltarLobby.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltarLobby.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnVoltarLobby.Location = new System.Drawing.Point(345, 504);
-            this.btnVoltarLobby.Name = "btnVoltarLobby";
-            this.btnVoltarLobby.Size = new System.Drawing.Size(139, 48);
-            this.btnVoltarLobby.TabIndex = 79;
-            this.btnVoltarLobby.Text = "Voltar para o Lobby";
-            this.btnVoltarLobby.UseVisualStyleBackColor = false;
-            this.btnVoltarLobby.Click += new System.EventHandler(this.btnVoltarLobby_Click);
+            this.picSuaCor.Location = new System.Drawing.Point(98, 462);
+            this.picSuaCor.Name = "picSuaCor";
+            this.picSuaCor.Size = new System.Drawing.Size(30, 30);
+            this.picSuaCor.TabIndex = 80;
+            this.picSuaCor.TabStop = false;
+            // 
+            // picJogadorVez
+            // 
+            this.picJogadorVez.Location = new System.Drawing.Point(248, 462);
+            this.picJogadorVez.Name = "picJogadorVez";
+            this.picJogadorVez.Size = new System.Drawing.Size(30, 30);
+            this.picJogadorVez.TabIndex = 81;
+            this.picJogadorVez.TabStop = false;
+            // 
+            // lblSuaCor
+            // 
+            this.lblSuaCor.AutoSize = true;
+            this.lblSuaCor.Location = new System.Drawing.Point(48, 470);
+            this.lblSuaCor.Name = "lblSuaCor";
+            this.lblSuaCor.Size = new System.Drawing.Size(44, 13);
+            this.lblSuaCor.TabIndex = 82;
+            this.lblSuaCor.Text = "Sua cor";
+            // 
+            // lblJogadorVez
+            // 
+            this.lblJogadorVez.AutoSize = true;
+            this.lblJogadorVez.Location = new System.Drawing.Point(165, 470);
+            this.lblJogadorVez.Name = "lblJogadorVez";
+            this.lblJogadorVez.Size = new System.Drawing.Size(78, 13);
+            this.lblJogadorVez.TabIndex = 83;
+            this.lblJogadorVez.Text = "Vez do jogador";
+            // 
+            // lblTeste1
+            // 
+            this.lblTeste1.AutoSize = true;
+            this.lblTeste1.Location = new System.Drawing.Point(132, 542);
+            this.lblTeste1.Name = "lblTeste1";
+            this.lblTeste1.Size = new System.Drawing.Size(43, 13);
+            this.lblTeste1.TabIndex = 84;
+            this.lblTeste1.Text = "Teste 1";
+            // 
+            // lblTeste2
+            // 
+            this.lblTeste2.AutoSize = true;
+            this.lblTeste2.Location = new System.Drawing.Point(181, 542);
+            this.lblTeste2.Name = "lblTeste2";
+            this.lblTeste2.Size = new System.Drawing.Size(43, 13);
+            this.lblTeste2.TabIndex = 85;
+            this.lblTeste2.Text = "Teste 2";
+            // 
+            // lblTeste3
+            // 
+            this.lblTeste3.AutoSize = true;
+            this.lblTeste3.Location = new System.Drawing.Point(230, 542);
+            this.lblTeste3.Name = "lblTeste3";
+            this.lblTeste3.Size = new System.Drawing.Size(43, 13);
+            this.lblTeste3.TabIndex = 87;
+            this.lblTeste3.Text = "Teste 3";
             // 
             // frmTabuleiro
             // 
@@ -234,13 +260,16 @@ namespace CantStop
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(814, 564);
-            this.Controls.Add(this.btnVoltarLobby);
+            this.Controls.Add(this.lblTeste3);
+            this.Controls.Add(this.lblTeste2);
+            this.Controls.Add(this.lblTeste1);
+            this.Controls.Add(this.lblJogadorVez);
+            this.Controls.Add(this.lblSuaCor);
+            this.Controls.Add(this.picJogadorVez);
+            this.Controls.Add(this.picSuaCor);
             this.Controls.Add(this.lblSorteioDados);
-            this.Controls.Add(this.lblDadosSorteados);
-            this.Controls.Add(this.lblVezJogador);
             this.Controls.Add(this.lblCombinacoes);
             this.Controls.Add(this.lblVersao);
-            this.Controls.Add(this.btnHistorico);
             this.Controls.Add(this.txtHistorico);
             this.Controls.Add(this.lblHistórico);
             this.Controls.Add(this.lblInfoJogador);
@@ -252,13 +281,19 @@ namespace CantStop
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtConsole);
             this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmTabuleiro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Tabuleiro";
             this.Load += new System.EventHandler(this.Tabuleiro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTabuleiro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSuaCor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picJogadorVez)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,16 +309,19 @@ namespace CantStop
         private System.Windows.Forms.PictureBox picDado3;
         private System.Windows.Forms.PictureBox picDado4;
         private System.Windows.Forms.Label lblInfoJogador;
-        private System.Windows.Forms.Button btnHistorico;
         private System.Windows.Forms.TextBox txtHistorico;
         private System.Windows.Forms.Label lblHistórico;
         private System.Windows.Forms.Label lblVersao;
         private System.Windows.Forms.Label lblCombinacoes;
         private System.Windows.Forms.Timer tmrAtualizacao;
-        private System.Windows.Forms.Label lblVezJogador;
         private System.Windows.Forms.Timer tmrAtualizaTabuleiro;
-        private System.Windows.Forms.Label lblDadosSorteados;
         private System.Windows.Forms.Label lblSorteioDados;
-        private System.Windows.Forms.Button btnVoltarLobby;
+        private System.Windows.Forms.PictureBox picSuaCor;
+        private System.Windows.Forms.PictureBox picJogadorVez;
+        private System.Windows.Forms.Label lblSuaCor;
+        private System.Windows.Forms.Label lblJogadorVez;
+        private System.Windows.Forms.Label lblTeste1;
+        private System.Windows.Forms.Label lblTeste2;
+        private System.Windows.Forms.Label lblTeste3;
     }
 }

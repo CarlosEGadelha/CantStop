@@ -21,6 +21,7 @@ namespace CantStop
         public static string baseJogo { get; set; }
 
         string trilhaMover = "";
+        string escolha01 = "";
         string escolha02 = "";
         string escolha03 = "";
         string escolha04 = "";
@@ -32,17 +33,21 @@ namespace CantStop
         string escolha10 = "";
         string escolha11 = "";
         string escolha12 = "";
+
+        int qntRodadas = 0;
+
         bool vezJogador = false;
         int qtdJogadas = 0;
         string ordemMover = "1234";
         int teste = 0;
+        int teste2 = 0;
+        int teste3 = 0;
 
         List<PictureBox> listaPbox = new List<PictureBox>();
         List<Jogador> listaJogadores = new List<Jogador>();
 
         public frmTabuleiro(int idJogador, string senhaJogador, int idPartida, string cor)
         {
-
             InitializeComponent();
             lblVersao.Text = "Versão " + Jogo.Versao;
 
@@ -80,15 +85,6 @@ namespace CantStop
                         this.corJogadorAtual = jogador.cor;
                     }
                 }
-
-                if (Convert.ToInt32(turno) == idPlayer)
-                {
-                    lblVezJogador.Text = "É a sua vez! Cor " + corJogador;
-                }
-                else
-                {
-                    lblVezJogador.Text = "É a vez do jogador " + corJogadorAtual;
-                }
             }
             else
             {
@@ -103,39 +99,60 @@ namespace CantStop
                         this.corJogadorAtual = jogador.cor;
                     }
                 }
+            }
 
-                if (Convert.ToInt32(turno) == idPlayer)
-                {
-                    lblVezJogador.Text = "É a sua vez! Cor " + corJogador;
-                }
-                else
-                {
-                    lblVezJogador.Text = "É a vez do jogador " + corJogadorAtual;
-                }
+            if (corJogador == "Vermelho")
+            {
+                picSuaCor.Image = Properties.Resources.vermelho;
+            }
+            else if (corJogador == "Azul")
+            {
+                picSuaCor.Image = Properties.Resources.azul;
+            }
+            else if (corJogador == "Amarelo")
+            {
+                picSuaCor.Image = Properties.Resources.amarelo;
+            }
+            else if (corJogador == "Verde")
+            {
+                picSuaCor.Image = Properties.Resources.verde;
+            }
+
+            if (corJogadorAtual == "Vermelho")
+            {
+                picJogadorVez.Image = Properties.Resources.vermelho;
+            }
+            else if (corJogadorAtual == "Azul")
+            {
+                picJogadorVez.Image = Properties.Resources.azul;
+            }
+            else if (corJogadorAtual == "Amarelo")
+            {
+                picJogadorVez.Image = Properties.Resources.amarelo;
+            }
+            else if (corJogadorAtual == "Verde")
+            {
+                picJogadorVez.Image = Properties.Resources.verde;
             }
 
             lblInfoJogador.Text = idJogador + ". " + senhaJogador + ". " + corJogador;
         }
 
-        uint alpinista = 3;
-
         private void btnParar_Click(object sender, EventArgs e)
         {
             txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
             lblCombinacoes.Text = "";
-            alpinista = 3;
             qtdJogadas = 0;
         }
 
-        
-        private void btnHistorico_Click(object sender, EventArgs e)
+        public void ExibirHistorico()
         {
             txtHistorico.Text = Jogo.ExibirHistorico(idPartidaAtual);
         }
 
         public void ExibirTabuleiro()
         {
-            string retorno = Jogo.ExibirTabuleiro(idPartidaAtual); ;
+            string retorno = Jogo.ExibirTabuleiro(idPartidaAtual);
 
             int[] posX = new int[11];
             posX[0] = 378;
@@ -419,17 +436,12 @@ namespace CantStop
                     picDado4.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
 
-                lblDadosSorteados.Text = x[0].Substring(1) + '\n'
-                    + x[1].Substring(1) + '\n'
-                    + x[2].Substring(1) + '\n'
-                    + x[3].Substring(1);
-
                 int comb01 = Convert.ToInt32(x[0].Substring(1)) + Convert.ToInt32(x[1].Substring(1));
                 int comb02 = Convert.ToInt32(x[2].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
 
                 int comb03 = Convert.ToInt32(x[0].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
                 int comb04 = Convert.ToInt32(x[1].Substring(1)) + Convert.ToInt32(x[2].Substring(1));
-                
+
                 int comb05 = Convert.ToInt32(x[2].Substring(1)) + Convert.ToInt32(x[0].Substring(1));
                 int comb06 = Convert.ToInt32(x[1].Substring(1)) + Convert.ToInt32(x[3].Substring(1));
 
@@ -439,14 +451,14 @@ namespace CantStop
                 string combi03 = comb03.ToString();
                 string combi04 = comb04.ToString();
 
-                string combi05 = comb04.ToString();
-                string combi06 = comb04.ToString();
+                string combi05 = comb05.ToString();
+                string combi06 = comb06.ToString();
 
                 if (comb01 == 10)
                 {
                     combi01 = "A";
                 }
-                else if(comb01 == 11)
+                else if (comb01 == 11)
                 {
                     combi01 = "B";
                 }
@@ -524,16 +536,8 @@ namespace CantStop
                     combi06 = "C";
                 }
 
-                //if(alpinista < 2)
-                //{
-                //    trilhaMover = combi01 + "0";
-                //}
-                //else
-                //{
-                //    trilhaMover = combi01 + combi02;
-                //}
-
                 trilhaMover = combi01 + combi02;
+                escolha01 = combi01 + combi02;
                 escolha02 = combi03 + combi04;
                 escolha03 = combi05 + combi06;
                 escolha04 = combi02 + combi01;
@@ -547,13 +551,10 @@ namespace CantStop
                 escolha11 = combi05 + "0";
                 escolha12 = combi06 + "0";
 
-                //MessageBox.Show(trilhaMover);
-
-                
                 lblCombinacoes.Text = "ORDEM [1234]: " + comb01 + " e " + comb02 + "\n"
                 + "ORDEM [1423]: " + comb03 + " e " + comb04 + "\n"
                 + "ORDEM [1324]: " + comb05 + " e " + comb06 + "\n";
-               
+
                 //else
                 //{
                 //    lblCombinacoes.Text = "ORDEM [12]: " + comb01 + " ou [34]: " + comb02 + "\n"
@@ -564,6 +565,7 @@ namespace CantStop
             else
             {
                 txtConsole.Text = retorno.Substring(5);
+                //qtdJogadas = 0;
             }
         }
 
@@ -584,17 +586,29 @@ namespace CantStop
                     }
                 }
 
+                if (corJogadorAtual == "Vermelho")
+                {
+                    picJogadorVez.Image = Properties.Resources.vermelho;
+                }
+                else if (corJogadorAtual == "Azul")
+                {
+                    picJogadorVez.Image = Properties.Resources.azul;
+                }
+                else if (corJogadorAtual == "Amarelo")
+                {
+                    picJogadorVez.Image = Properties.Resources.amarelo;
+                }
+                else if (corJogadorAtual == "Verde")
+                {
+                    picJogadorVez.Image = Properties.Resources.verde;
+                }
+
                 if (Convert.ToInt32(turno) == idPlayer)
                 {
-                    lblVezJogador.Text = "É a sua vez! Cor " + corJogador;
-                    //btnMover.Enabled = true;
                     vezJogador = true;
                 }
                 else
                 {
-                    lblVezJogador.Text = "É a vez do jogador " + corJogadorAtual;
-                    //btnMover.Enabled = false;
-                    //btnParar.Enabled = false;
                     vezJogador = false;
                 }
             }
@@ -609,67 +623,26 @@ namespace CantStop
 
         public void Mover()
         {
+            lblTeste1.Text = teste.ToString();
+            lblTeste2.Text = teste2.ToString();
+            lblTeste3.Text = teste3.ToString();
+
             string ordem = ordemMover;
             string trilha = trilhaMover;
             string retorno = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
 
             if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
             {
-                if (trilha.Substring(1, 1) == "0" || trilha.Substring(0, 1).Equals(trilha.Substring(1, 1)))
-                {
-                    if (alpinista > 0)
-                    {
-                        alpinista--;
-                    }
-                }
-                else
-                {
-                    if (alpinista > 0)
-                    {
-                        alpinista -= 2;
-                    }
-                }
-
                 trilhaMover = "";
                 ordemMover = "1234";
                 qtdJogadas++;
                 teste = 0;
-
-                //tmrAtualizacao.Start();
+                teste2 = 0;
+                teste3 = 0;
             }
             else if (retorno.Substring(0, 26) == "ERRO: Não é possível mover")
             {
-                //txtConsole.Text = retorno.Substring(0);
-                //Random randNum = new Random();
-                //int numRand = randNum.Next(0, 4);
-
-                //if (numRand == 0)
-                //{
-                //    trilhaMover = escolha02;
-                //    ordemMover = "1423";
-                //    teste++;
-                //}
-                //else if (numRand == 1)
-                //{
-                //    trilhaMover = escolha03;
-                //    ordemMover = "1324";
-                //}
-                //else if (numRand == 2)
-                //{
-                //    trilhaMover = escolha04;
-                //    ordemMover = "3412";
-                //}
-                //else if (numRand == 3)
-                //{
-                //    trilhaMover = escolha09;
-                //    ordemMover = "2314";
-                //}
-                //else 
-                //{
-                //    trilhaMover = escolha10;
-                //    ordemMover = "2413";
-                //}
-                txtConsole.Text = retorno.Substring(5);
+                txtConsole.Text = retorno;
 
                 if (teste == 0)
                 {
@@ -735,111 +708,140 @@ namespace CantStop
                 {
                     trilhaMover = escolha12;
                     ordemMover = "2413";
-                    teste++;
+                    teste = 0;
                 }
             }
-            else
+            else if (retorno.Substring(0, 15) == "ERRO:É possível")
             {
-                txtConsole.Text = retorno.Substring(5);
-                Random randNum = new Random();
-                int numRand = randNum.Next(0, 4);
+                txtConsole.Text = retorno;
 
-                if (numRand == 0)
+                if (teste3 == 0)
+                {
+                    trilhaMover = escolha01;
+                    ordemMover = "1234";
+                    teste3++;
+                }
+                else if (teste3 == 1)
                 {
                     trilhaMover = escolha02;
                     ordemMover = "1423";
-                    teste++;
+                    teste3++;
                 }
-                else if (numRand == 1)
+                else if (teste3 == 2)
                 {
                     trilhaMover = escolha03;
                     ordemMover = "1324";
-                    teste++;
+                    teste3++;
                 }
-                else if (numRand == 2)
+                else if (teste3 == 3)
                 {
                     trilhaMover = escolha04;
                     ordemMover = "3412";
-                    teste++;
+                    teste3++;
                 }
-                else if (numRand == 3)
+                else if (teste3 == 4)
                 {
                     trilhaMover = escolha09;
                     ordemMover = "2314";
-                    teste++;
+                    teste3++;
                 }
-                else if (numRand == 4)
+                else if (teste3 == 5)
                 {
                     trilhaMover = escolha10;
                     ordemMover = "2413";
-                    teste++;
+                    teste3 = 0;
                 }
             }
-            //else
-            //{
-            //    txtConsole.Text = retorno.Substring(0);
-            //    Random randNum = new Random();
-            //    int numRand = randNum.Next(0, 5);
+            else 
+            {
+                txtConsole.Text = retorno;
 
-            //    if (numRand == 0)
-            //    {
-            //        trilhaMover = escolha05;
-            //        ordemMover = "1234";
-            //    }
-            //    else if (numRand == 1)
-            //    {
-            //        trilhaMover = escolha06;
-            //        ordemMover = "3412";
-            //    }
-            //    else if (numRand == 2)
-            //    {
-            //        trilhaMover = escolha07;
-            //        ordemMover = "1423";
-            //    }
-            //    else if (numRand == 3)
-            //    {
-            //        trilhaMover = escolha08;
-            //        ordemMover = "2314";
-            //    }
-            //    else if (numRand == 4)
-            //    {
-            //        trilhaMover = escolha11;
-            //        ordemMover = "1324";
-            //    }
-            //    else
-            //    {
-            //        trilhaMover = escolha12;
-            //        ordemMover = "2413";
-            //    }
-            //}
-
+                if (teste2 == 0)
+                {
+                    trilhaMover = escolha02;
+                    ordemMover = "1423";
+                    teste2++;
+                }
+                else if (teste2 == 1)
+                {
+                    trilhaMover = escolha03;
+                    ordemMover = "1324";
+                    teste2++;
+                }
+                else if (teste2 == 2)
+                {
+                    trilhaMover = escolha04;
+                    ordemMover = "3412";
+                    teste2++;
+                }
+                else if (teste2 == 3)
+                {
+                    trilhaMover = escolha09;
+                    ordemMover = "2314";
+                    teste2++;
+                }
+                else if (teste2 == 4)
+                {
+                    trilhaMover = escolha10;
+                    ordemMover = "2413";
+                    teste2++;
+                }
+                else if (teste2 == 5)
+                {
+                    trilhaMover = escolha05;
+                    ordemMover = "1234";
+                    teste2++;
+                }
+                else if (teste2 == 6)
+                {
+                    trilhaMover = escolha06;
+                    ordemMover = "3412";
+                    teste2++;
+                }
+                else if (teste2 == 7)
+                {
+                    trilhaMover = escolha07;
+                    ordemMover = "1423";
+                    teste2++;
+                }
+                else if (teste2 == 8)
+                {
+                    trilhaMover = escolha08;
+                    ordemMover = "2314";
+                    teste2++;
+                }
+                else if (teste2 == 9)
+                {
+                    trilhaMover = escolha11;
+                    ordemMover = "1324";
+                    teste2++;
+                }
+                else if (teste2 == 10)
+                {
+                    trilhaMover = escolha12;
+                    ordemMover = "2413";
+                    teste2 = 0;
+                }
+            }
         }
 
         public void Parar()
         {
-            //txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
-            //btnMover.Enabled = false;
-            //btnParar.Enabled = false;
-            //lblCombinacoes.Text = "";
-            //alpinista = 3;
-            //pararJogada = true;
-            //qtdJogadas = 0;
             txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
             lblCombinacoes.Text = "";
-            alpinista = 3;
-            qtdJogadas = 0;
+            //qtdJogadas = 0;
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
             tmrAtualizaTabuleiro.Enabled = true;
             tmrAtualizaTabuleiro.Start();
-            tmrAtualizaTabuleiro.Interval = 5000;
+            tmrAtualizaTabuleiro.Interval = 2600;
             tmrAtualizaTabuleiro.Tick += new EventHandler(tmrAtualizaTabuleiro_Tick);
 
             tmrAtualizacao.Enabled = true;
             tmrAtualizacao.Start();
-            tmrAtualizacao.Interval = 3000;
+            tmrAtualizacao.Interval = 2600;
             tmrAtualizacao.Tick += new EventHandler(tmrAtualizacao_Tick);
         }
 
@@ -847,32 +849,64 @@ namespace CantStop
         {
             VerificarVez();
 
-            if (qtdJogadas < 1 && vezJogador == true)
+            if(vezJogador == false)
             {
-                RolarDados();
-                Mover();
-                //btnMover.Enabled = true;
-                //tmrAtualizacao.Stop();
+                qtdJogadas = 0;
+                teste = 0;
+                teste2 = 0;
+                teste3 = 0;
             }
-            else if (qtdJogadas == 1)
+
+            if (qntRodadas < 5)
             {
-                Parar();
+                if (qtdJogadas < 5 && vezJogador == true)
+                {
+                    RolarDados();
+                    Mover();
+                }
+                else if (qtdJogadas == 5)
+                {
+                    Parar();
+                    qntRodadas++;
+                }
             }
-            //else
-            //{
-            //    btnMover.Enabled = false;
-            //    btnParar.Enabled = false;
-            //}
+            else if (qntRodadas < 10)
+            {
+                if (qtdJogadas < 2 && vezJogador == true)
+                {
+                    RolarDados();
+                    Mover();
+                }
+                else if (qtdJogadas == 2)
+                {
+                    Parar();
+                    qntRodadas++;
+                }
+            }
+            else
+            {
+                if (qtdJogadas < 1 && vezJogador == true)
+                {
+                    RolarDados();
+                    Mover();
+                }
+                else if (qtdJogadas == 1)
+                {
+                    Parar();
+                    qntRodadas++;
+                }
+            }
         }
 
         private void tmrAtualizaTabuleiro_Tick(object sender, EventArgs e)
         {
             ExibirTabuleiro();
+            ExibirHistorico();
         }
 
         private void btnVoltarLobby_Click(object sender, EventArgs e)
         {
-            VotarLobby();
+            this.Close();
         }
 
         public void VotarLobby()
