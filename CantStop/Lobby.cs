@@ -115,11 +115,6 @@ namespace CantStop
                         }
                     }
                 }
-                //string[] x = linha[0].Split(',');
-                //lblInfoJogador.Text = x[0] + "." + x[1] + "." + x[2];
-                //txtIdJogador.Text = x[0];
-                //txtSenhaJogador.Text = x[1];
-                //txtCorJogador.Text = x[2];
             }
             else
             {
