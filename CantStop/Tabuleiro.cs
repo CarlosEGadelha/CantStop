@@ -153,7 +153,23 @@ namespace CantStop
 
         public void ExibirHistorico()
         {
-            txtHistorico.Text = Jogo.ExibirHistorico(idPartidaAtual);
+            //lblHistorico.Text = Jogo.ExibirHistorico(idPartidaAtual);
+            lblHistorico.Text = "";
+            string retorno = Jogo.ExibirHistorico(idPartidaAtual);
+
+            retorno = retorno.Replace("\r", "");
+            string[] linha = retorno.Split('\n');
+
+            int contador = linha.Length;
+            if (linha.Length > 15)
+            {
+                contador = 15;
+            }
+
+            for (int i = 0; i < contador; i++)
+            {
+                lblHistorico.Text += linha[i] +  "\n";
+            }
         }
 
         bool[] trilhasDominadas = new bool[11] { false, false, false, false, false, false, false, false, false, false, false };
@@ -174,30 +190,32 @@ namespace CantStop
             string retorno = Jogo.ExibirTabuleiro(idPartidaAtual);
 
             int[] posX = new int[11];
-            posX[0] = 378;
-            posX[1] = 414;
-            posX[2] = 451;
-            posX[3] = 487;
-            posX[4] = 523;
-            posX[5] = 560;
-            posX[6] = 597;
-            posX[7] = 633;
-            posX[8] = 670;
-            posX[9] = 706;
-            posX[10] = 742;
+            posX[0] = 495;
+            posX[1] = 535;
+            posX[2] = 575;
+            posX[3] = 615;
+            posX[4] = 655;
+            posX[5] = 695;
+            posX[6] = 735;
+            posX[7] = 775;
+            posX[8] = 815;
+            posX[9] = 855;
+            posX[10] = 895;
 
-            int[] posY = new int[11];
-            posY[0] = 319;
-            posY[1] = 352;
-            posY[2] = 385;
-            posY[3] = 418;
-            posY[4] = 451;
-            posY[5] = 484;
-            posY[6] = 451;
-            posY[7] = 418;
-            posY[8] = 385;
-            posY[9] = 352;
-            posY[10] = 319;
+            int posY = 620;
+
+            //int[] posY = new int[11];
+            //posY[0] = 620;
+            //posY[1] = 404;
+            //posY[2] = 437;
+            //posY[3] = 470;
+            //posY[4] = 503;
+            //posY[5] = 536;
+            //posY[6] = 503;
+            //posY[7] = 470;
+            //posY[8] = 437;
+            //posY[9] = 404;
+            //posY[10] = 371;
 
             retorno = retorno.Replace("\r", "");
             string[] linha = retorno.Split('\n');
@@ -226,7 +244,8 @@ namespace CantStop
                 PictureBox pBox = new PictureBox();
 
                 int X = posX[pino.Coluna - 2];
-                int Y = posY[pino.Coluna - 2] - pino.Linha * (33);
+                //int Y = posY[pino.Coluna - 2] - pino.Linha * (40);
+                int Y = posY - pino.Linha * (40);
                 pBox.Name = pino.idJogador.ToString();
                 pBox.Height = 10;
                 pBox.Width = 10;
@@ -245,26 +264,26 @@ namespace CantStop
                 }
                 else if (corJogadorAtual == "Vermelho")
                 {
-                    Y -= 5;
-                    X -= 5;
+                    Y -= 6;
+                    X -= 6;
                     pBox.Image = Properties.Resources.vermelho;
                 }
                 else if (corJogadorAtual == "Azul")
                 {
-                    Y += 5;
-                    X -= 5;
+                    Y += 6;
+                    X -= 6;
                     pBox.Image = Properties.Resources.azul;
                 }
                 else if (corJogadorAtual == "Verde")
                 {
-                    Y += 5;
-                    X += 5;
+                    Y += 6;
+                    X += 6;
                     pBox.Image = Properties.Resources.verde;
                 }
                 else
                 {
-                    Y -= 5;
-                    X += 5;
+                    Y -= 6;
+                    X += 6;
                     pBox.Image = Properties.Resources.amarelo;
                 }
 
@@ -275,164 +294,164 @@ namespace CantStop
             }
         }
 
-        public void DadosOutroJogador()
-        {
-            string retorno = Jogo.VerificarDados(idPartidaAtual);
+        //public void DadosOutroJogador()
+        //{
+        //    string retorno = Jogo.VerificarDados(idPartidaAtual);
 
-            if (retorno.Substring(0, 4) != "ERRO")
-            {
-                string[] x = retorno.Split('\n');
-                Size size = new Size(50, 50);
+        //    if (retorno.Substring(0, 4) != "ERRO")
+        //    {
+        //        string[] x = retorno.Split('\n');
+        //        Size size = new Size(50, 50);
 
-                if (Convert.ToInt32(x[0].Substring(11, 1)) == 1)
-                {
-                    picDadoPlayer1.Image = Properties.Resources.facesDado_1;
-                    picDadoPlayer1.Size = size;
-                    picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[0].Substring(11, 1)) == 2)
-                {
-                    picDadoPlayer1.Image = Properties.Resources.facesDado_2;
-                    picDadoPlayer1.Size = size;
-                    picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[0].Substring(11, 1)) == 3)
-                {
-                    picDadoPlayer1.Image = Properties.Resources.facesDado_3;
-                    picDadoPlayer1.Size = size;
-                    picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[0].Substring(11, 1)) == 4)
-                {
-                    picDadoPlayer1.Image = Properties.Resources.facesDado_4;
-                    picDadoPlayer1.Size = size;
-                    picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[0].Substring(11, 1)) == 5)
-                {
-                    picDadoPlayer1.Image = Properties.Resources.facesDado_5;
-                    picDadoPlayer1.Size = size;
-                    picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[0].Substring(11, 1)) == 6)
-                {
-                    picDadoPlayer1.Image = Properties.Resources.facesDado_6;
-                    picDadoPlayer1.Size = size;
-                    picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
+        //        if (Convert.ToInt32(x[0].Substring(11, 1)) == 1)
+        //        {
+        //            picDadoPlayer1.Image = Properties.Resources.facesDado_1;
+        //            picDadoPlayer1.Size = size;
+        //            picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[0].Substring(11, 1)) == 2)
+        //        {
+        //            picDadoPlayer1.Image = Properties.Resources.facesDado_2;
+        //            picDadoPlayer1.Size = size;
+        //            picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[0].Substring(11, 1)) == 3)
+        //        {
+        //            picDadoPlayer1.Image = Properties.Resources.facesDado_3;
+        //            picDadoPlayer1.Size = size;
+        //            picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[0].Substring(11, 1)) == 4)
+        //        {
+        //            picDadoPlayer1.Image = Properties.Resources.facesDado_4;
+        //            picDadoPlayer1.Size = size;
+        //            picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[0].Substring(11, 1)) == 5)
+        //        {
+        //            picDadoPlayer1.Image = Properties.Resources.facesDado_5;
+        //            picDadoPlayer1.Size = size;
+        //            picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[0].Substring(11, 1)) == 6)
+        //        {
+        //            picDadoPlayer1.Image = Properties.Resources.facesDado_6;
+        //            picDadoPlayer1.Size = size;
+        //            picDadoPlayer1.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
 
-                if (Convert.ToInt32(x[1].Substring(11, 1)) == 1)
-                {
-                    picDadoPlayer2.Image = Properties.Resources.facesDado_1;
-                    picDadoPlayer2.Size = size;
-                    picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[1].Substring(11, 1)) == 2)
-                {
-                    picDadoPlayer2.Image = Properties.Resources.facesDado_2;
-                    picDadoPlayer2.Size = size;
-                    picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[1].Substring(11, 1)) == 3)
-                {
-                    picDadoPlayer2.Image = Properties.Resources.facesDado_3;
-                    picDadoPlayer2.Size = size;
-                    picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[1].Substring(11, 1)) == 4)
-                {
-                    picDadoPlayer2.Image = Properties.Resources.facesDado_4;
-                    picDadoPlayer2.Size = size;
-                    picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[1].Substring(11, 1)) == 5)
-                {
-                    picDadoPlayer2.Image = Properties.Resources.facesDado_5;
-                    picDadoPlayer2.Size = size;
-                    picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[1].Substring(11, 1)) == 6)
-                {
-                    picDadoPlayer2.Image = Properties.Resources.facesDado_6;
-                    picDadoPlayer2.Size = size;
-                    picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
+        //        if (Convert.ToInt32(x[1].Substring(11, 1)) == 1)
+        //        {
+        //            picDadoPlayer2.Image = Properties.Resources.facesDado_1;
+        //            picDadoPlayer2.Size = size;
+        //            picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[1].Substring(11, 1)) == 2)
+        //        {
+        //            picDadoPlayer2.Image = Properties.Resources.facesDado_2;
+        //            picDadoPlayer2.Size = size;
+        //            picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[1].Substring(11, 1)) == 3)
+        //        {
+        //            picDadoPlayer2.Image = Properties.Resources.facesDado_3;
+        //            picDadoPlayer2.Size = size;
+        //            picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[1].Substring(11, 1)) == 4)
+        //        {
+        //            picDadoPlayer2.Image = Properties.Resources.facesDado_4;
+        //            picDadoPlayer2.Size = size;
+        //            picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[1].Substring(11, 1)) == 5)
+        //        {
+        //            picDadoPlayer2.Image = Properties.Resources.facesDado_5;
+        //            picDadoPlayer2.Size = size;
+        //            picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[1].Substring(11, 1)) == 6)
+        //        {
+        //            picDadoPlayer2.Image = Properties.Resources.facesDado_6;
+        //            picDadoPlayer2.Size = size;
+        //            picDadoPlayer2.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
 
-                if (Convert.ToInt32(x[2].Substring(11, 1)) == 1)
-                {
-                    picDadoPlayer3.Image = Properties.Resources.facesDado_1;
-                    picDadoPlayer3.Size = size;
-                    picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[2].Substring(11, 1)) == 2)
-                {
-                    picDadoPlayer3.Image = Properties.Resources.facesDado_2;
-                    picDadoPlayer3.Size = size;
-                    picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[2].Substring(11, 1)) == 3)
-                {
-                    picDadoPlayer3.Image = Properties.Resources.facesDado_3;
-                    picDadoPlayer3.Size = size;
-                    picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[2].Substring(11, 1)) == 4)
-                {
-                    picDadoPlayer3.Image = Properties.Resources.facesDado_4;
-                    picDadoPlayer3.Size = size;
-                    picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[2].Substring(11, 1)) == 5)
-                {
-                    picDadoPlayer3.Image = Properties.Resources.facesDado_5;
-                    picDadoPlayer3.Size = size;
-                    picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[2].Substring(11, 1)) == 6)
-                {
-                    picDadoPlayer3.Image = Properties.Resources.facesDado_6;
-                    picDadoPlayer3.Size = size;
-                    picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
+        //        if (Convert.ToInt32(x[2].Substring(11, 1)) == 1)
+        //        {
+        //            picDadoPlayer3.Image = Properties.Resources.facesDado_1;
+        //            picDadoPlayer3.Size = size;
+        //            picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[2].Substring(11, 1)) == 2)
+        //        {
+        //            picDadoPlayer3.Image = Properties.Resources.facesDado_2;
+        //            picDadoPlayer3.Size = size;
+        //            picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[2].Substring(11, 1)) == 3)
+        //        {
+        //            picDadoPlayer3.Image = Properties.Resources.facesDado_3;
+        //            picDadoPlayer3.Size = size;
+        //            picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[2].Substring(11, 1)) == 4)
+        //        {
+        //            picDadoPlayer3.Image = Properties.Resources.facesDado_4;
+        //            picDadoPlayer3.Size = size;
+        //            picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[2].Substring(11, 1)) == 5)
+        //        {
+        //            picDadoPlayer3.Image = Properties.Resources.facesDado_5;
+        //            picDadoPlayer3.Size = size;
+        //            picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[2].Substring(11, 1)) == 6)
+        //        {
+        //            picDadoPlayer3.Image = Properties.Resources.facesDado_6;
+        //            picDadoPlayer3.Size = size;
+        //            picDadoPlayer3.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
 
-                if (Convert.ToInt32(x[3].Substring(11, 1)) == 1)
-                {
-                    picDadoPlayer4.Image = Properties.Resources.facesDado_1;
-                    picDadoPlayer4.Size = size;
-                    picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[3].Substring(11, 1)) == 2)
-                {
-                    picDadoPlayer4.Image = Properties.Resources.facesDado_2;
-                    picDadoPlayer4.Size = size;
-                    picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[3].Substring(11, 1)) == 3)
-                {
-                    picDadoPlayer4.Image = Properties.Resources.facesDado_3;
-                    picDadoPlayer4.Size = size;
-                    picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[3].Substring(11, 1)) == 4)
-                {
-                    picDadoPlayer4.Image = Properties.Resources.facesDado_4;
-                    picDadoPlayer4.Size = size;
-                    picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[3].Substring(11, 1)) == 5)
-                {
-                    picDadoPlayer4.Image = Properties.Resources.facesDado_5;
-                    picDadoPlayer4.Size = size;
-                    picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                else if (Convert.ToInt32(x[3].Substring(11, 1)) == 6)
-                {
-                    picDadoPlayer4.Image = Properties.Resources.facesDado_6;
-                    picDadoPlayer4.Size = size;
-                    picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-            }
-        }
+        //        if (Convert.ToInt32(x[3].Substring(11, 1)) == 1)
+        //        {
+        //            picDadoPlayer4.Image = Properties.Resources.facesDado_1;
+        //            picDadoPlayer4.Size = size;
+        //            picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[3].Substring(11, 1)) == 2)
+        //        {
+        //            picDadoPlayer4.Image = Properties.Resources.facesDado_2;
+        //            picDadoPlayer4.Size = size;
+        //            picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[3].Substring(11, 1)) == 3)
+        //        {
+        //            picDadoPlayer4.Image = Properties.Resources.facesDado_3;
+        //            picDadoPlayer4.Size = size;
+        //            picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[3].Substring(11, 1)) == 4)
+        //        {
+        //            picDadoPlayer4.Image = Properties.Resources.facesDado_4;
+        //            picDadoPlayer4.Size = size;
+        //            picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[3].Substring(11, 1)) == 5)
+        //        {
+        //            picDadoPlayer4.Image = Properties.Resources.facesDado_5;
+        //            picDadoPlayer4.Size = size;
+        //            picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //        else if (Convert.ToInt32(x[3].Substring(11, 1)) == 6)
+        //        {
+        //            picDadoPlayer4.Image = Properties.Resources.facesDado_6;
+        //            picDadoPlayer4.Size = size;
+        //            picDadoPlayer4.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //    }
+        //}
 
         public void RolarDados()
         {
@@ -769,7 +788,7 @@ namespace CantStop
             }
             else
             {
-                txtConsole.Text = retorno.Substring(5);
+                lblErro.Text = retorno.Substring(5);
                 //qtdJogadas = 0;
             }
         }
@@ -822,7 +841,7 @@ namespace CantStop
                 tmrAtualizaTabuleiro.Stop();
                 tmrAtualizacao.Stop();
                 MessageBox.Show(retornoVez.Substring(5));
-                MessageBox.Show("Jogador " + corJogadorAtual + " ganhou!!!");
+                //MessageBox.Show("Jogador " + corJogadorAtual + " ganhou!!!");
                 VotarLobby();
             }
         }
@@ -945,18 +964,21 @@ namespace CantStop
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                    guardaPosicoes[0] = escolha07.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     alpinistas--;
                 }
                 else if ((combinacao02 == true && posicaoJogador[Convert.ToInt32(combi03) - 2] == penultimaPosicao[Convert.ToInt32(combi03) - 2]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                    guardaPosicoes[0] = escolha09.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     alpinistas--;
                 }
                 else if ((combinacao03 == true && posicaoJogador[Convert.ToInt32(combi05) - 2] == penultimaPosicao[Convert.ToInt32(combi05) - 2]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                    guardaPosicoes[0] = escolha11.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     alpinistas--;
                 }
@@ -984,12 +1006,78 @@ namespace CantStop
                 }
                 else
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                    guardaPosicoes[0] = escolha01.Substring(0, 1);
-                    guardaPosicoes[1] = escolha01.Substring(1, 1);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
-                    alpinistas = 1;
+                    if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                        guardaPosicoes[0] = escolha01.Substring(0, 1);
+                        guardaPosicoes[1] = escolha01.Substring(1, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                        alpinistas = 1;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                        guardaPosicoes[0] = escolha02.Substring(0, 1);
+                        guardaPosicoes[1] = escolha02.Substring(1, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                        alpinistas = 1;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                        guardaPosicoes[0] = escolha03.Substring(0, 1);
+                        guardaPosicoes[1] = escolha03.Substring(1, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                        alpinistas = 1;
+                    }
+                    else
+                    {
+                        if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                            guardaPosicoes[0] = escolha07.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                            guardaPosicoes[0] = escolha08.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                            guardaPosicoes[0] = escolha09.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                            guardaPosicoes[0] = escolha10.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                            guardaPosicoes[0] = escolha11.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                            guardaPosicoes[0] = escolha12.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                            alpinistas--;
+                        }
+                    }
                 }
             }
             else if (alpinistas == 2)
@@ -997,18 +1085,21 @@ namespace CantStop
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                    guardaPosicoes[1] = escolha07.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     alpinistas--;
                 }
                 else if ((combinacao02 == true && posicaoJogador[Convert.ToInt32(combi03) - 2] == penultimaPosicao[Convert.ToInt32(combi03) - 2]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                    guardaPosicoes[1] = escolha09.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     alpinistas--;
                 }
                 else if ((combinacao03 == true && posicaoJogador[Convert.ToInt32(combi05) - 2] == penultimaPosicao[Convert.ToInt32(combi05) - 2]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                    guardaPosicoes[1] = escolha11.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     alpinistas--;
                 }
@@ -1016,16 +1107,19 @@ namespace CantStop
                 else if ((combinacao01 == true && escolha01.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    guardaPosicoes[1] = escolha01.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
                 }
                 else if ((combinacao02 == true && escolha02.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    guardaPosicoes[1] = escolha02.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
                 }
                 else if ((combinacao03 == true && escolha03.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    guardaPosicoes[1] = escolha03.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
                 }
                 else if (combinacao01 == true && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
@@ -1104,48 +1198,147 @@ namespace CantStop
 
                 else
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                    guardaPosicoes[1] = escolha01.Substring(0, 1);
-                    guardaPosicoes[2] = escolha01.Substring(1, 1);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
-                    alpinistas = 0;
+                    if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                        guardaPosicoes[1] = escolha01.Substring(0, 1);
+                        guardaPosicoes[2] = escolha01.Substring(1, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                        alpinistas = 0;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                        guardaPosicoes[1] = escolha02.Substring(0, 1);
+                        guardaPosicoes[2] = escolha02.Substring(1, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                        alpinistas = 0;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                        guardaPosicoes[1] = escolha03.Substring(0, 1);
+                        guardaPosicoes[2] = escolha03.Substring(1, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                        alpinistas = 0;
+                    }
+                    else
+                    {
+                        if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                            guardaPosicoes[1] = escolha07.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                            guardaPosicoes[1] = escolha08.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                            guardaPosicoes[1] = escolha09.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                            guardaPosicoes[1] = escolha10.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                            guardaPosicoes[1] = escolha11.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                            alpinistas--;
+                        }
+                        else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                        {
+                            Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                            guardaPosicoes[1] = escolha12.Substring(0, 1);
+                            posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                            alpinistas--;
+                        }
+                    }
                 }
             }
             else if (alpinistas == 1)
             {
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                    alpinistas--;
+                    if ((escolha01.Substring(1, 0) == guardaPosicoes[0] || escolha01.Substring(1, 0) == guardaPosicoes[1]))
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        guardaPosicoes[2] = escolha07.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        alpinistas--;
+                    }
                 }
                 else if ((combinacao02 == true && posicaoJogador[Convert.ToInt32(combi03) - 2] == penultimaPosicao[Convert.ToInt32(combi03) - 2]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
-                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                    alpinistas--;
+                    if ((escolha02.Substring(1, 0) == guardaPosicoes[0] || escolha02.Substring(1, 0) == guardaPosicoes[1]))
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        guardaPosicoes[2] = escolha09.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        alpinistas--;
+                    }
                 }
                 else if ((combinacao03 == true && posicaoJogador[Convert.ToInt32(combi05) - 2] == penultimaPosicao[Convert.ToInt32(combi05) - 2]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
-                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                    alpinistas--;
+                    if ((escolha03.Substring(1, 0) == guardaPosicoes[0] || escolha03.Substring(1, 0) == guardaPosicoes[1]))
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        guardaPosicoes[2] = escolha11.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        alpinistas--;
+                    }
                 }
 
                 else if ((combinacao01 == true && (escolha01.Substring(0, 1) == guardaPosicoes[0] || escolha01.Substring(0, 1) == guardaPosicoes[1])) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    guardaPosicoes[2] = escolha01.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
                 }
                 else if ((combinacao02 == true && (escolha02.Substring(0, 1) == guardaPosicoes[0] || escolha02.Substring(0, 1) == guardaPosicoes[1])) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    guardaPosicoes[2] = escolha02.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
                 }
                 else if ((combinacao03 == true && (escolha03.Substring(0, 1) == guardaPosicoes[0] || escolha03.Substring(0, 1) == guardaPosicoes[1])) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    guardaPosicoes[2] = escolha03.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
                 }
                 else if (combinacao01 == true && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
@@ -1169,6 +1362,8 @@ namespace CantStop
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
                     alpinistas--;
                 }
+
+
                 else if (((escolha01.Substring(0, 1) == guardaPosicoes[0] && escolha01.Substring(1, 1) == guardaPosicoes[1]) ||
                     (escolha01.Substring(0, 1) == guardaPosicoes[1] && escolha01.Substring(1, 1) == guardaPosicoes[0])) && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
@@ -1243,10 +1438,48 @@ namespace CantStop
                 }
                 else
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
-                    guardaPosicoes[2] = escolha07.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                    alpinistas--;
+                    if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        guardaPosicoes[2] = escolha07.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                        guardaPosicoes[2] = escolha08.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        guardaPosicoes[2] = escolha09.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                        guardaPosicoes[2] = escolha10.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        guardaPosicoes[2] = escolha11.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        alpinistas--;
+                    }
+                    else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                    {
+                        Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                        guardaPosicoes[2] = escolha12.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                        alpinistas--;
+                    }
                 }
             }
             else
@@ -1258,10 +1491,6 @@ namespace CantStop
                 string posicao04 = guardaPosicoes[0] + "0";
                 string posicao05 = guardaPosicoes[1] + "0";
                 string posicao06 = guardaPosicoes[2] + "0";
-
-                lblPosicao01.Text = posicao04;
-                lblPosicao02.Text = posicao05;
-                lblPosicao03.Text = posicao06;
 
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
@@ -1337,32 +1566,63 @@ namespace CantStop
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
                 }
 
-                else if ((posicao04 == escolha07.ToString() || posicao05 == escolha07.ToString() || posicao06 == escolha07.ToString()) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                //else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && (escolha07.ToString() == posicao04 || escolha07.ToString() == posicao05 || escolha07.ToString() == posicao06))
+                //{
+                //    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                //    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false && (escolha08.ToString() == posicao04 || escolha08.ToString() == posicao05 || escolha08.ToString() == posicao06))
+                //{
+                //    Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                //    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && (escolha09.ToString() == posicao04 || escolha09.ToString() == posicao05 || escolha09.ToString() == posicao06))
+                //{
+                //    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                //    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false && (escolha10.ToString() == posicao04 || escolha10.ToString() == posicao05 || escolha10.ToString() == posicao06))
+                //{
+                //    Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                //    posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && (escolha11.ToString() == posicao04 || escolha11.ToString() == posicao05 || escolha11.ToString() == posicao06))
+                //{
+                //    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                //    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false && (escolha12.ToString() == posicao04 || escolha12.ToString() == posicao05 || escolha12.ToString() == posicao06))
+                //{
+                //    Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                //    posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                //}
+
+                else if (((escolha07.ToString() == posicao04 || escolha07.ToString() == posicao05) || escolha07.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                 }
-                else if ((posicao04 == escolha08.ToString() || posicao05 == escolha08.ToString() || posicao06 == escolha08.ToString()) && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                else if (((escolha08.ToString() == posicao04 || escolha08.ToString() == posicao05) || escolha08.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
                 }
-                else if ((posicao04 == escolha09.ToString() || posicao05 == escolha09.ToString() || posicao06 == escolha09.ToString()) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                else if (((escolha09.ToString() == posicao04 || escolha09.ToString() == posicao05) || escolha09.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                 }
-                else if ((posicao04 == escolha10.ToString() || posicao05 == escolha10.ToString() || posicao06 == escolha10.ToString()) && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                else if (((escolha10.ToString() == posicao04 || escolha10.ToString() == posicao05) || escolha10.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "2314 ", escolha10);
+                    Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
                 }
-                else if ((posicao04 == escolha11.ToString() || posicao05 == escolha11.ToString() || posicao06 == escolha11.ToString()) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                else if (((escolha11.ToString() == posicao04 || escolha11.ToString() == posicao05) || escolha11.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                 }
-                else if ((posicao04 == escolha12.ToString() || posicao05 == escolha12.ToString() || posicao06 == escolha12.ToString()) && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                else if (((escolha12.ToString() == posicao04 || escolha12.ToString() == posicao05 || escolha12.ToString() == posicao06)) && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
                 {
                     Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
@@ -1376,188 +1636,9 @@ namespace CantStop
             combinacao03 = false;
         }
 
-        public void MoverOficial()
-        {
-            if (combinacao01 == true && verificaMovimento("1234", escolha01) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                return;
-            }
-            else if (combinacao02 == true && verificaMovimento("1423", escolha02) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);          
-                return;
-            }
-            else if (combinacao03 == true && verificaMovimento("1324", escolha03) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                return;
-            }
-            else if (verificaMovimento("1234", escolha01) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                return;
-            }
-            else if (verificaMovimento("1423", escolha02) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
-                return;
-            }
-            else if (verificaMovimento("1324", escolha03) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                return;
-            }
-            else if (verificaMovimento("3412", escolha04) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha04);
-                return;
-            }
-            else if (verificaMovimento("2314", escolha05) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha05);
-                return;
-            }
-            else if (verificaMovimento("2413", escolha06) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha06);
-                return;
-            }
-            else if (verificaMovimento("1234", escolha07) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
-                return;
-            }
-            else if (verificaMovimento("3412", escolha08) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
-                return;
-            }
-            else if (verificaMovimento("1423", escolha09) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
-                return;
-            }
-            else if (verificaMovimento("2314", escolha10) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
-                return;
-            }
-            else if (verificaMovimento("1324", escolha11) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
-                return;
-            }
-            else if (verificaMovimento("2413", escolha12) == true)
-            {
-                //Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
-                return;
-            }
-
-            qtdJogadas++;
-
-            combinacao01 = false;
-            combinacao02 = false;
-            combinacao03 = false;
-
-            return;
-        }
-
-        //public void Mover()
-        //{
-        //    lblTeste1.Text = teste.ToString();
-        //    lblTeste2.Text = teste2.ToString();
-        //    lblTeste3.Text = teste3.ToString();
-
-        //    string ordem = ordemMover;
-        //    string trilha = trilhaMover;
-        //    string retorno = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
-
-        //    if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
-        //    {
-        //        trilhaMover = "";
-        //        ordemMover = "1234";
-        //        qtdJogadas++;
-        //        teste = 0;
-        //        teste2 = 0;
-        //        teste3 = 0;
-        //    }
-        //    else 
-        //    {
-        //        txtConsole.Text = retorno;
-
-        //        if (teste2 == 0)
-        //        {
-        //            trilhaMover = escolha02;
-        //            ordemMover = "1423";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 1)
-        //        {
-        //            trilhaMover = escolha03;
-        //            ordemMover = "1324";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 2)
-        //        {
-        //            trilhaMover = escolha04;
-        //            ordemMover = "3412";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 3)
-        //        {
-        //            trilhaMover = escolha05;
-        //            ordemMover = "2314";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 4)
-        //        {
-        //            trilhaMover = escolha06;
-        //            ordemMover = "2413";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 5)
-        //        {
-        //            trilhaMover = escolha07;
-        //            ordemMover = "1234";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 6)
-        //        {
-        //            trilhaMover = escolha08;
-        //            ordemMover = "3412";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 7)
-        //        {
-        //            trilhaMover = escolha09;
-        //            ordemMover = "1423";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 8)
-        //        {
-        //            trilhaMover = escolha10;
-        //            ordemMover = "2314";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 9)
-        //        {
-        //            trilhaMover = escolha11;
-        //            ordemMover = "1324";
-        //            teste2++;
-        //        }
-        //        else if (teste2 == 10)
-        //        {
-        //            trilhaMover = escolha12;
-        //            ordemMover = "2413";
-        //            teste2 = 0;
-        //        }
-        //    }
-        //}
-
         public void Parar()
         {
-            txtConsole.Text = Jogo.Parar(idPlayer, senhaPlayer);
+            lblErro.Text = Jogo.Parar(idPlayer, senhaPlayer);
             //lblCombinacoes.Text = "";
             qtdJogadas = 0;
             alpinistas = 3;
@@ -1565,6 +1646,13 @@ namespace CantStop
             guardaPosicoes[0] = null;
             guardaPosicoes[1] = null;
             guardaPosicoes[2] = null;
+
+            lblCombinacoes.Text = "";
+
+            picDado1.Image = null;
+            picDado2.Image = null;
+            picDado3.Image = null;
+            picDado4.Image = null;
 
             for (int i = 0; i < 11; i++)
             {
@@ -1575,14 +1663,18 @@ namespace CantStop
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
+            lblErro.Text = "";
+            lblHistorico.Text = "";
+            lblCombinacoes.Text = "";
+
             tmrAtualizaTabuleiro.Enabled = true;
             tmrAtualizaTabuleiro.Start();
-            tmrAtualizaTabuleiro.Interval = 3500;
+            tmrAtualizaTabuleiro.Interval = 2500;
             tmrAtualizaTabuleiro.Tick += new EventHandler(tmrAtualizaTabuleiro_Tick);
 
             tmrAtualizacao.Enabled = true;
             tmrAtualizacao.Start();
-            tmrAtualizacao.Interval = 3500;
+            tmrAtualizacao.Interval = 4000;
             tmrAtualizacao.Tick += new EventHandler(tmrAtualizacao_Tick);
         }
 
@@ -1599,10 +1691,8 @@ namespace CantStop
             else
             {
                 erro++;
-                txtConsole.Text = retorno + " - ERRO: " + erro;
+                lblErro.Text = retorno + " - ERRO: " + erro;
             }
-
-            //txtConsole.Text = "Retorno: " + escolha + " " + retorno;
 
             return false;
         }
@@ -1725,29 +1815,33 @@ namespace CantStop
                 {
                     posicaoJogador[i] = posicaoJogadorBackup[i];
                 }
-                //guardaPosicoes[0] = "";
-                //guardaPosicoes[1] = "";
-                //guardaPosicoes[2] = "";
-                //teste = 0;
-                //teste2 = 0;
+
+                lblCombinacoes.Text = "";
+                picDado1.Image = null;
+                picDado2.Image = null;
+                picDado3.Image = null;
+                picDado4.Image = null;
+
+
+                guardaPosicoes[0] = null;
+                guardaPosicoes[1] = null;
+                guardaPosicoes[2] = null;
             }
 
 
             if (qntRodadas < 10)
             {
-                if (qtdJogadas < 3 && vezJogador == true)
+                if (qtdJogadas < 4 && vezJogador == true)
                 {
+                    RolarDados();
+                    MoverSecundario();
+
                     if (qtdJogadas >= 1)
                     {
                         Verifica();
                     }
-
-                    RolarDados();
-                    //Mover();
-                    //MoverOficial();
-                    MoverSecundario();
                 }
-                else if (qtdJogadas == 3)
+                else if (qtdJogadas == 4)
                 {
                     Parar();
                     qntRodadas++;
@@ -1791,20 +1885,22 @@ namespace CantStop
         {
             ExibirTabuleiro();
             ExibirHistorico();
+            
+            if(lblErro.Text != "")
+            {
+                lblErro.Text = "";
+            }
+            //lblVetor.Text = guardaPosicoes[0] + " | " + guardaPosicoes[1] + " | " + guardaPosicoes[2];
 
-            lblAlpinistas.Text = alpinistas.ToString();
+            //lblVetorPosicao.Text = posicaoJogador[0] + " | " + posicaoJogador[1] + " | " +
+            //    posicaoJogador[2] + " | " + posicaoJogador[3] + " | " + posicaoJogador[4] + " | " +
+            //    posicaoJogador[5] + " | " + posicaoJogador[6] + " | " + posicaoJogador[7] + " | " +
+            //    posicaoJogador[8] + " | " + posicaoJogador[9] + " | " + posicaoJogador[10];
 
-            lblVetor.Text = guardaPosicoes[0] + " | " + guardaPosicoes[1] + " | " + guardaPosicoes[2];
-
-            lblVetorPosicao.Text = posicaoJogador[0] + " | " + posicaoJogador[1] + " | " +
-                posicaoJogador[2] + " | " + posicaoJogador[3] + " | " + posicaoJogador[4] + " | " +
-                posicaoJogador[5] + " | " + posicaoJogador[6] + " | " + posicaoJogador[7] + " | " +
-                posicaoJogador[8] + " | " + posicaoJogador[9] + " | " + posicaoJogador[10];
-
-            lblBackup.Text = posicaoJogadorBackup[0] + " | " + posicaoJogadorBackup[1] + " | " +
-                posicaoJogadorBackup[2] + " | " + posicaoJogadorBackup[3] + " | " + posicaoJogadorBackup[4] + " | " +
-                posicaoJogadorBackup[5] + " | " + posicaoJogadorBackup[6] + " | " + posicaoJogadorBackup[7] + " | " +
-                posicaoJogadorBackup[8] + " | " + posicaoJogadorBackup[9] + " | " + posicaoJogadorBackup[10];
+            //lblBackup.Text = posicaoJogadorBackup[0] + " | " + posicaoJogadorBackup[1] + " | " +
+            //    posicaoJogadorBackup[2] + " | " + posicaoJogadorBackup[3] + " | " + posicaoJogadorBackup[4] + " | " +
+            //    posicaoJogadorBackup[5] + " | " + posicaoJogadorBackup[6] + " | " + posicaoJogadorBackup[7] + " | " +
+            //    posicaoJogadorBackup[8] + " | " + posicaoJogadorBackup[9] + " | " + posicaoJogadorBackup[10];
         }
 
         public void VotarLobby()
