@@ -154,22 +154,27 @@ namespace CantStop
         public void ExibirHistorico()
         {
             //lblHistorico.Text = Jogo.ExibirHistorico(idPartidaAtual);
-            lblHistorico.Text = "";
+            //lblHistorico.Text = "";
+            //string texto;
+
+            txtHistorico.Text = "";
             string retorno = Jogo.ExibirHistorico(idPartidaAtual);
+            txtHistorico.Text = retorno;
 
-            retorno = retorno.Replace("\r", "");
-            string[] linha = retorno.Split('\n');
+            //retorno = retorno.Replace("\r", "");
+            //string[] linha = retorno.Split('\n');
 
-            int contador = linha.Length;
-            if (linha.Length > 15)
-            {
-                contador = 15;
-            }
+            //int contador = linha.Length;
+            //if (linha.Length > 15)
+            //{
+            //    contador = 15;
+            //}
 
-            for (int i = 0; i < contador; i++)
-            {
-                lblHistorico.Text += linha[i] +  "\n";
-            }
+            //for (int i = 0; i < contador; i++)
+            //{
+            //    texto = linha[i] + "\n";
+            //    txtHistorico.Text += texto;
+            //}
         }
 
         bool[] trilhasDominadas = new bool[11] { false, false, false, false, false, false, false, false, false, false, false };
@@ -789,6 +794,7 @@ namespace CantStop
             else
             {
                 lblErro.Text = retorno.Substring(5);
+
                 //qtdJogadas = 0;
             }
         }
@@ -838,7 +844,6 @@ namespace CantStop
             }
             else
             {
-                tmrAtualizaTabuleiro.Stop();
                 tmrAtualizacao.Stop();
                 MessageBox.Show(retornoVez.Substring(5));
                 //MessageBox.Show("Jogador " + corJogadorAtual + " ganhou!!!");
@@ -857,12 +862,15 @@ namespace CantStop
         int[] posicaoJogador = new int[11];
         int[] posicaoJogadorBackup = new int[11];
 
-        string teste01;
-        string teste02;
-        string teste03;
-        string teste04;
-        string teste05;
-        string teste06;
+        //string teste01;
+        //string teste02;
+        //string teste03;
+        //string teste04;
+        //string teste05;
+        //string teste06;
+
+        string ultimoMovimentoA;
+        string ultimoMovimentoB;
 
         public void MoverSecundario()
         {
@@ -873,12 +881,12 @@ namespace CantStop
             string combi05 = escolha03.Substring(0, 1);
             string combi06 = escolha03.Substring(1, 1);
 
-            teste01 = escolha01.Substring(0, 1);
-            teste02 = escolha01.Substring(1, 1);
-            teste03 = escolha02.Substring(0, 1);
-            teste04 = escolha02.Substring(1, 1);
-            teste05 = escolha03.Substring(0, 1);
-            teste06 = escolha03.Substring(1, 1);
+            //teste01 = escolha01.Substring(0, 1);
+            //teste02 = escolha01.Substring(1, 1);
+            //teste03 = escolha02.Substring(0, 1);
+            //teste04 = escolha02.Substring(1, 1);
+            //teste05 = escolha03.Substring(0, 1);
+            //teste06 = escolha03.Substring(1, 1);
 
 
             if (escolha01.Substring(0, 1) == "A")
@@ -961,525 +969,935 @@ namespace CantStop
 
             if (alpinistas == 3)
             {
+                //Move 1 alpinista 2x na trilha se a trilha nao estiver dominada
+                //Se o alpinista estiver na penultima posição, move 1x
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                     guardaPosicoes[0] = escolha07.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha07.Substring(0, 1);
+                    ultimoMovimentoB = escolha07.Substring(0, 1);
                 }
                 else if ((combinacao02 == true && posicaoJogador[Convert.ToInt32(combi03) - 2] == penultimaPosicao[Convert.ToInt32(combi03) - 2]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
                     guardaPosicoes[0] = escolha09.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha09.Substring(0, 1);
+                    ultimoMovimentoB = escolha09.Substring(0, 1);
                 }
                 else if ((combinacao03 == true && posicaoJogador[Convert.ToInt32(combi05) - 2] == penultimaPosicao[Convert.ToInt32(combi05) - 2]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
                     guardaPosicoes[0] = escolha11.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha11.Substring(0, 1);
+                    ultimoMovimentoB = escolha11.Substring(0, 1);
                 }
 
+                //Move 1 alpinista 2x na trilha
+                //Se a trilha nao estiver dominada 
                 else if (combinacao01 == true && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     guardaPosicoes[0] = escolha01.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
                     alpinistas--;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(0, 1);
                 }
                 else if (combinacao02 == true && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     guardaPosicoes[0] = escolha02.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
                     alpinistas--;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(0, 1);
                 }
                 else if (combinacao03 == true && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     guardaPosicoes[0] = escolha03.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
                     alpinistas--;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(0, 1);
                 }
-                else
+
+                //Se ambas as trilhas q se quer mover nao estiverem dominadas, permite o movimento
+                else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
                 {
-                    if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
-                    {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                        guardaPosicoes[0] = escolha01.Substring(0, 1);
-                        guardaPosicoes[1] = escolha01.Substring(1, 1);
-                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
-                        alpinistas = 1;
-                    }
-                    else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
-                    {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
-                        guardaPosicoes[0] = escolha02.Substring(0, 1);
-                        guardaPosicoes[1] = escolha02.Substring(1, 1);
-                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
-                        alpinistas = 1;
-                    }
-                    else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
-                    {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                        guardaPosicoes[0] = escolha03.Substring(0, 1);
-                        guardaPosicoes[1] = escolha03.Substring(1, 1);
-                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
-                        alpinistas = 1;
-                    }
-                    else
-                    {
-                        if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
-                            guardaPosicoes[0] = escolha07.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
-                            guardaPosicoes[0] = escolha08.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
-                            guardaPosicoes[0] = escolha09.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
-                            guardaPosicoes[0] = escolha10.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
-                            guardaPosicoes[0] = escolha11.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
-                            guardaPosicoes[0] = escolha12.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
-                            alpinistas--;
-                        }
-                    }
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    guardaPosicoes[0] = escolha01.Substring(0, 1);
+                    guardaPosicoes[1] = escolha01.Substring(1, 1);
+                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
+                    alpinistas = 1;
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    guardaPosicoes[0] = escolha02.Substring(0, 1);
+                    guardaPosicoes[1] = escolha02.Substring(1, 1);
+                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                    posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
+                    alpinistas = 1;
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    guardaPosicoes[0] = escolha03.Substring(0, 1);
+                    guardaPosicoes[1] = escolha03.Substring(1, 1);
+                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                    posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(1, 1);
+                    alpinistas = 1;
+                }
+
+                //Se chegou aqui é pq nao podia mover nas 2 trilhas, entao move em apenas uma
+                else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                    guardaPosicoes[0] = escolha07.Substring(0, 1);
+                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                    alpinistas--;
+                    ultimoMovimentoA = escolha07.Substring(0, 1);
+                    ultimoMovimentoB = escolha07.Substring(0, 1);
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                    guardaPosicoes[0] = escolha08.Substring(0, 1);
+                    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                    ultimoMovimentoA = escolha08.Substring(0, 1);
+                    ultimoMovimentoB = escolha08.Substring(0, 1);
+                    alpinistas--;
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                    guardaPosicoes[0] = escolha09.Substring(0, 1);
+                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                    alpinistas--;
+                    ultimoMovimentoA = escolha09.Substring(0, 1);
+                    ultimoMovimentoB = escolha09.Substring(0, 1);
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                    guardaPosicoes[0] = escolha10.Substring(0, 1);
+                    posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                    alpinistas--;
+                    ultimoMovimentoA = escolha10.Substring(0, 1);
+                    ultimoMovimentoB = escolha10.Substring(0, 1);
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                    guardaPosicoes[0] = escolha11.Substring(0, 1);
+                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                    alpinistas--;
+                    ultimoMovimentoA = escolha11.Substring(0, 1);
+                    ultimoMovimentoB = escolha11.Substring(0, 1);
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                    guardaPosicoes[0] = escolha12.Substring(0, 1);
+                    posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                    alpinistas--;
+                    ultimoMovimentoA = escolha12.Substring(0, 1);
+                    ultimoMovimentoB = escolha12.Substring(0, 1);
                 }
             }
             else if (alpinistas == 2)
             {
+                //Move o alpinista 2x na trilha se a trilha nao estiver dominada
+                //Se o alpinista estiver na penultima posição, move só 1x
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
-                    guardaPosicoes[1] = escolha07.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                    alpinistas--;
+                    if (escolha01.Substring(1, 0) == guardaPosicoes[0] || escolha01.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        guardaPosicoes[1] = escolha07.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
+                    }
                 }
                 else if ((combinacao02 == true && posicaoJogador[Convert.ToInt32(combi03) - 2] == penultimaPosicao[Convert.ToInt32(combi03) - 2]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
-                    guardaPosicoes[1] = escolha09.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                    alpinistas--;
+                    if (escolha02.Substring(1, 0) == guardaPosicoes[0] || escolha02.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        guardaPosicoes[1] = escolha09.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
+                    }
                 }
                 else if ((combinacao03 == true && posicaoJogador[Convert.ToInt32(combi05) - 2] == penultimaPosicao[Convert.ToInt32(combi05) - 2]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
-                    guardaPosicoes[1] = escolha11.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                    alpinistas--;
+                    if (escolha03.Substring(1, 0) == guardaPosicoes[0] || escolha03.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        guardaPosicoes[1] = escolha11.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
+                    }
                 }
 
-                else if ((combinacao01 == true && escolha01.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
-                {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                    guardaPosicoes[1] = escolha01.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
-                }
-                else if ((combinacao02 == true && escolha02.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
-                {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
-                    guardaPosicoes[1] = escolha02.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
-                }
-                else if ((combinacao03 == true && escolha03.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
-                {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                    guardaPosicoes[1] = escolha03.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
-                }
+                //Move o alpinista 2x na trilha se a trilha nao estiver dominada
+                //else if ((combinacao01 == true && escolha01.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                //    //guardaPosicoes[1] = escolha01.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
+                //    ultimoMovimentoA = escolha01.Substring(0, 1);
+                //    ultimoMovimentoB = escolha01.Substring(0, 1);
+                //}
+                //else if ((combinacao02 == true && escolha02.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                //    //guardaPosicoes[1] = escolha02.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
+                //    ultimoMovimentoA = escolha02.Substring(0, 1);
+                //    ultimoMovimentoB = escolha02.Substring(0, 1);
+                //}
+                //else if ((combinacao03 == true && escolha03.Substring(0, 1) == guardaPosicoes[0]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                //    //guardaPosicoes[1] = escolha03.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
+                //    ultimoMovimentoA = escolha03.Substring(0, 1);
+                //    ultimoMovimentoB = escolha03.Substring(0, 1);
+                //}
+
+                //Move o alpinista 2x na trilha se a trilha nao estiver dominada
                 else if (combinacao01 == true && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                    guardaPosicoes[1] = escolha01.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
-                    alpinistas--;
+                    if (escolha01.Substring(1, 0) == guardaPosicoes[0] || escolha01.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
+                        ultimoMovimentoA = escolha01.Substring(0, 1);
+                        ultimoMovimentoB = escolha01.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                        guardaPosicoes[1] = escolha01.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha01.Substring(0, 1);
+                        ultimoMovimentoB = escolha01.Substring(0, 1);
+                    }
                 }
                 else if (combinacao02 == true && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
-                    guardaPosicoes[1] = escolha02.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
-                    alpinistas--;
+                    if (escolha02.Substring(1, 0) == guardaPosicoes[0] || escolha02.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
+                        ultimoMovimentoA = escolha02.Substring(0, 1);
+                        ultimoMovimentoB = escolha02.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                        guardaPosicoes[1] = escolha02.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha02.Substring(0, 1);
+                        ultimoMovimentoB = escolha02.Substring(0, 1);
+                    }
                 }
                 else if (combinacao03 == true && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                    guardaPosicoes[1] = escolha03.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
-                    alpinistas--;
+                    if (escolha03.Substring(1, 0) == guardaPosicoes[0] || escolha03.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
+                        ultimoMovimentoA = escolha03.Substring(0, 1);
+                        ultimoMovimentoB = escolha03.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                        guardaPosicoes[1] = escolha03.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha03.Substring(0, 1);
+                        ultimoMovimentoB = escolha03.Substring(0, 1);
+                    }
                 }
 
-
+                //Verifica se o valor 1 é igual ao primeira valor armazenado, se sim, move nas 2 trilhas, caso as duas trilhas nao estiverem dominadas
                 else if (escolha01.Substring(0, 1) == guardaPosicoes[0] && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     guardaPosicoes[1] = escolha01.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
                 }
+                //Verifica se o valor 2 é igual ao primeira valor armazenado, se sim, move nas 2 trilhas, caso as duas trilhas nao estiverem dominadas
                 else if (escolha01.Substring(1, 1) == guardaPosicoes[0] && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     guardaPosicoes[1] = escolha01.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
                 }
 
                 else if (escolha02.Substring(0, 1) == guardaPosicoes[0] && (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     guardaPosicoes[1] = escolha02.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
                 }
                 else if (escolha02.Substring(1, 1) == guardaPosicoes[0] && (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     guardaPosicoes[1] = escolha02.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
                 }
 
                 else if (escolha03.Substring(0, 1) == guardaPosicoes[0] && (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     guardaPosicoes[1] = escolha03.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(1, 1);
                 }
                 else if (escolha03.Substring(1, 1) == guardaPosicoes[0] && (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     guardaPosicoes[1] = escolha03.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(1, 1);
                 }
 
-                else
+                //Se chegou aqui é pq os novos valores nao estao nos valores armazenados, entao verifica se as 2 trilhas estao dominadas
+                //Caso as trilhas estejam livres, move nas 2 trilhas
+                else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
                 {
-                    if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    guardaPosicoes[1] = escolha01.Substring(0, 1);
+                    guardaPosicoes[2] = escolha01.Substring(1, 1);
+                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                    alpinistas = 0;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    guardaPosicoes[1] = escolha02.Substring(0, 1);
+                    guardaPosicoes[2] = escolha02.Substring(1, 1);
+                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                    posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                    alpinistas = 0;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                {
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    guardaPosicoes[1] = escolha03.Substring(0, 1);
+                    guardaPosicoes[2] = escolha03.Substring(1, 1);
+                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                    posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                    alpinistas = 0;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(1, 1);
+                }
+
+                //Se chegou aqui é pq nao foi possivel mover nas duas trilhas
+                //Entao verifica se uma das trilhas está livre, se sim, realiza o movimento
+                else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                {
+                    if(escolha07.Substring(0, 1) == guardaPosicoes[0])
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                        guardaPosicoes[1] = escolha01.Substring(0, 1);
-                        guardaPosicoes[2] = escolha01.Substring(1, 1);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                         posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
-                        alpinistas = 0;
-                    }
-                    else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
-                    {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
-                        guardaPosicoes[1] = escolha02.Substring(0, 1);
-                        guardaPosicoes[2] = escolha02.Substring(1, 1);
-                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
-                        alpinistas = 0;
-                    }
-                    else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
-                    {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                        guardaPosicoes[1] = escolha03.Substring(0, 1);
-                        guardaPosicoes[2] = escolha03.Substring(1, 1);
-                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
-                        alpinistas = 0;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
                     }
                     else
                     {
-                        if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
-                            guardaPosicoes[1] = escolha07.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
-                            guardaPosicoes[1] = escolha08.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
-                            guardaPosicoes[1] = escolha09.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
-                            guardaPosicoes[1] = escolha10.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
-                            guardaPosicoes[1] = escolha11.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                            alpinistas--;
-                        }
-                        else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
-                        {
-                            Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
-                            guardaPosicoes[1] = escolha12.Substring(0, 1);
-                            posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
-                            alpinistas--;
-                        }
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        guardaPosicoes[1] = escolha07.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
+                    }
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                {
+                    if (escolha08.Substring(0, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                        ultimoMovimentoA = escolha08.Substring(0, 1);
+                        ultimoMovimentoB = escolha08.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                        guardaPosicoes[1] = escolha08.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha08.Substring(0, 1);
+                        ultimoMovimentoB = escolha08.Substring(0, 1);
+                    }
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                {
+                    if (escolha09.Substring(0, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        guardaPosicoes[1] = escolha09.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
+                    }
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                {
+                    if (escolha10.Substring(0, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                        ultimoMovimentoA = escolha10.Substring(0, 1);
+                        ultimoMovimentoB = escolha10.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                        guardaPosicoes[1] = escolha10.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha10.Substring(0, 1);
+                        ultimoMovimentoB = escolha10.Substring(0, 1);
+                    }
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                {
+                    if (escolha11.Substring(0, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        guardaPosicoes[1] = escolha11.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
+                    }
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                {
+                    if (escolha12.Substring(0, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                        ultimoMovimentoA = escolha12.Substring(0, 1);
+                        ultimoMovimentoB = escolha12.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                        guardaPosicoes[1] = escolha12.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha12.Substring(0, 1);
+                        ultimoMovimentoB = escolha12.Substring(0, 1);
                     }
                 }
             }
             else if (alpinistas == 1)
             {
+                //Move o alpinista 2x na trilha, caso o alpinista esteja na penultima posição, move apenas 1x
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
+                    //Verifica se a trilha onde irá mover, está entre as trilhas com alpinistas
                     if ((escolha01.Substring(1, 0) == guardaPosicoes[0] || escolha01.Substring(1, 0) == guardaPosicoes[1]))
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                         posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                        alpinistas--;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
                     }
                     else
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                         guardaPosicoes[2] = escolha07.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
                     }
                 }
                 else if ((combinacao02 == true && posicaoJogador[Convert.ToInt32(combi03) - 2] == penultimaPosicao[Convert.ToInt32(combi03) - 2]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
                     if ((escolha02.Substring(1, 0) == guardaPosicoes[0] || escolha02.Substring(1, 0) == guardaPosicoes[1]))
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
                         posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                        alpinistas--;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
                     }
                     else
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
                         guardaPosicoes[2] = escolha09.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
                     }
                 }
                 else if ((combinacao03 == true && posicaoJogador[Convert.ToInt32(combi05) - 2] == penultimaPosicao[Convert.ToInt32(combi05) - 2]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
                     if ((escolha03.Substring(1, 0) == guardaPosicoes[0] || escolha03.Substring(1, 0) == guardaPosicoes[1]))
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
                         posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                        alpinistas--;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
                     }
                     else
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
                         guardaPosicoes[2] = escolha11.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
                     }
                 }
 
+                //Move o alpinista 2x na trilha, se a trilha nao estiver dominada. E se o alpinsta estiver movendo em umas das trilhas com alpinistas
                 else if ((combinacao01 == true && (escolha01.Substring(0, 1) == guardaPosicoes[0] || escolha01.Substring(0, 1) == guardaPosicoes[1])) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                    guardaPosicoes[2] = escolha01.Substring(0, 1);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                   //guardaPosicoes[2] = escolha01.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(0, 1);
                 }
                 else if ((combinacao02 == true && (escolha02.Substring(0, 1) == guardaPosicoes[0] || escolha02.Substring(0, 1) == guardaPosicoes[1])) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
-                    guardaPosicoes[2] = escolha02.Substring(0, 1);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    //guardaPosicoes[2] = escolha02.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(0, 1);
                 }
                 else if ((combinacao03 == true && (escolha03.Substring(0, 1) == guardaPosicoes[0] || escolha03.Substring(0, 1) == guardaPosicoes[1])) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                    guardaPosicoes[2] = escolha03.Substring(0, 1);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    //guardaPosicoes[2] = escolha03.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(0, 1);
                 }
+
+                //Move o alpinista 2x na trilha, se a trilha nao estiver dominada
                 else if (combinacao01 == true && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
-                    guardaPosicoes[2] = escolha01.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
-                    alpinistas--;
+                    if (escolha01.Substring(1, 0) == guardaPosicoes[0] || escolha01.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
+                        ultimoMovimentoA = escolha01.Substring(0, 1);
+                        ultimoMovimentoB = escolha01.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                        guardaPosicoes[2] = escolha01.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha01.Substring(0, 1);
+                        ultimoMovimentoB = escolha01.Substring(0, 1);
+                    }
                 }
                 else if (combinacao02 == true && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
-                    guardaPosicoes[2] = escolha02.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
-                    alpinistas--;
+                    if (escolha02.Substring(1, 0) == guardaPosicoes[0] || escolha02.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
+                        ultimoMovimentoA = escolha02.Substring(0, 1);
+                        ultimoMovimentoB = escolha02.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                        guardaPosicoes[2] = escolha02.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha02.Substring(0, 1);
+                        ultimoMovimentoB = escolha02.Substring(0, 1);
+                    }
                 }
                 else if (combinacao03 == true && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
-                    guardaPosicoes[2] = escolha03.Substring(0, 1);
-                    posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
-                    alpinistas--;
+                    if (escolha03.Substring(1, 0) == guardaPosicoes[0] || escolha03.Substring(1, 1) == guardaPosicoes[0])
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
+                        ultimoMovimentoA = escolha03.Substring(0, 1);
+                        ultimoMovimentoB = escolha03.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                        guardaPosicoes[2] = escolha03.Substring(0, 1);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
+                        alpinistas--;
+                        ultimoMovimentoA = escolha03.Substring(0, 1);
+                        ultimoMovimentoB = escolha03.Substring(0, 1);
+                    }
                 }
 
-
+                //Se o valor 1 for igual ao primeiro valor armazenado e o segundo valor for igual ao segundo valor armazenado
+                //ou entao se o primeiro valor for igual ao segundo valor armazenado e o segundo valor for igual ao primeiro valor armazenado
+                //move na trilha, caso as duas trilhas nao estiverem dominadas
                 else if (((escolha01.Substring(0, 1) == guardaPosicoes[0] && escolha01.Substring(1, 1) == guardaPosicoes[1]) ||
                     (escolha01.Substring(0, 1) == guardaPosicoes[1] && escolha01.Substring(1, 1) == guardaPosicoes[0])) && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
                 }
                 else if (((escolha02.Substring(0, 1) == guardaPosicoes[0] && escolha02.Substring(1, 1) == guardaPosicoes[1]) ||
                     (escolha02.Substring(0, 1) == guardaPosicoes[1] && escolha02.Substring(1, 1) == guardaPosicoes[0])) && (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
                 }
                 else if (((escolha03.Substring(0, 1) == guardaPosicoes[0] && escolha03.Substring(1, 1) == guardaPosicoes[1]) ||
                     (escolha03.Substring(0, 1) == guardaPosicoes[1] && escolha03.Substring(1, 1) == guardaPosicoes[0])) && (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(1, 1);
                 }
 
+                //Se o primeiro valor for igual ao primeiro valor aramazenado ou o primeiro valor for igual ao segundo valor armazenado e as duas trilhas nao estiverem dominadas
                 else if ((escolha01.Substring(0, 1) == guardaPosicoes[0] || escolha01.Substring(0, 1) == guardaPosicoes[1]) && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     guardaPosicoes[2] = escolha01.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
                 }
+                //Se o segundo valor for igual ao primeiro valor aramazenado ou o segundo valor for igual ao segundo valor armazenado e as duas trilhas nao estiverem dominadas
                 else if ((escolha01.Substring(1, 1) == guardaPosicoes[0] || escolha01.Substring(1, 1) == guardaPosicoes[1]) && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     guardaPosicoes[2] = escolha01.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
                 }
 
                 else if ((escolha02.Substring(0, 1) == guardaPosicoes[0] || escolha02.Substring(0, 1) == guardaPosicoes[1]) && (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     guardaPosicoes[2] = escolha02.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
                 }
                 else if ((escolha02.Substring(1, 1) == guardaPosicoes[0] || escolha02.Substring(1, 1) == guardaPosicoes[1]) && (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     guardaPosicoes[2] = escolha02.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
                 }
 
                 else if ((escolha03.Substring(0, 1) == guardaPosicoes[0] || escolha03.Substring(0, 1) == guardaPosicoes[1]) && (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     guardaPosicoes[2] = escolha03.Substring(1, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(1, 1);
                 }
                 else if ((escolha03.Substring(1, 1) == guardaPosicoes[0] || escolha03.Substring(1, 1) == guardaPosicoes[1]) && (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     guardaPosicoes[2] = escolha03.Substring(0, 1);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
                     alpinistas--;
+                    ultimoMovimentoA = escolha04.Substring(0, 1);
+                    ultimoMovimentoB = escolha04.Substring(1, 1);
                 }
-                else
+
+                //Se chegou aqui é pq a trilha nao está entre os armazenados, caso a trilha nao estiver dominada, move nela
+                //else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && (escolha07.Substring(1, 1) != guardaPosicoes[0] && escolha07.Substring(1, 1) != guardaPosicoes[1]))
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                //    guardaPosicoes[2] = escolha07.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                //    alpinistas--;
+                //    ultimoMovimentoA = escolha07.Substring(0, 1);
+                //    ultimoMovimentoB = escolha07.Substring(0, 1);
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false && (escolha08.Substring(1, 1) != guardaPosicoes[0] && escolha08.Substring(1, 1) != guardaPosicoes[1]))
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                //    guardaPosicoes[2] = escolha08.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                //    alpinistas--;
+                //    ultimoMovimentoA = escolha08.Substring(0, 1);
+                //    ultimoMovimentoB = escolha08.Substring(0, 1);
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && (escolha09.Substring(1, 1) != guardaPosicoes[0] && escolha09.Substring(1, 1) != guardaPosicoes[1]))
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                //    guardaPosicoes[2] = escolha09.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                //    alpinistas--;
+                //    ultimoMovimentoA = escolha09.Substring(0, 1);
+                //    ultimoMovimentoB = escolha09.Substring(0, 1);
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false && (escolha10.Substring(1, 1) != guardaPosicoes[0] && escolha10.Substring(1, 1) != guardaPosicoes[1]))
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                //    guardaPosicoes[2] = escolha10.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                //    alpinistas--;
+                //    ultimoMovimentoA = escolha10.Substring(0, 1);
+                //    ultimoMovimentoB = escolha10.Substring(0, 1);
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && (escolha11.Substring(1, 1) != guardaPosicoes[0] && escolha11.Substring(1, 1) != guardaPosicoes[1]))
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                //    guardaPosicoes[2] = escolha11.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                //    alpinistas--;
+                //    ultimoMovimentoA = escolha11.Substring(0, 1);
+                //    ultimoMovimentoB = escolha11.Substring(0, 1);
+                //}
+                //else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false && (escolha12.Substring(1, 1) != guardaPosicoes[0] && escolha12.Substring(1, 1) != guardaPosicoes[1]))
+                //{
+                //    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                //    guardaPosicoes[2] = escolha12.Substring(0, 1);
+                //    posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                //    alpinistas--;
+                //    ultimoMovimentoA = escolha12.Substring(0, 1);
+                //    ultimoMovimentoB = escolha12.Substring(0, 1);
+                //}
+
+                else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
+                    if (escolha07.Substring(0, 1) == guardaPosicoes[0] || escolha07.Substring(0, 1) == guardaPosicoes[1])
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                        posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                         guardaPosicoes[2] = escolha07.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha07.Substring(0, 1);
+                        ultimoMovimentoB = escolha07.Substring(0, 1);
                     }
-                    else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
+                {
+                    if (escolha08.Substring(0, 1) == guardaPosicoes[0] || escolha08.Substring(0, 1) == guardaPosicoes[1])
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                        posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                        ultimoMovimentoA = escolha08.Substring(0, 1);
+                        ultimoMovimentoB = escolha08.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
                         guardaPosicoes[2] = escolha08.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha08.Substring(0, 1);
+                        ultimoMovimentoB = escolha08.Substring(0, 1);
                     }
-                    else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
+                {
+                    if (escolha09.Substring(0, 1) == guardaPosicoes[0] || escolha09.Substring(0, 1) == guardaPosicoes[1])
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                        posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
                         guardaPosicoes[2] = escolha09.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha09.Substring(0, 1);
+                        ultimoMovimentoB = escolha09.Substring(0, 1);
                     }
-                    else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
+                {
+                    if (escolha10.Substring(0, 1) == guardaPosicoes[0] || escolha10.Substring(0, 1) == guardaPosicoes[1])
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                        posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                        ultimoMovimentoA = escolha10.Substring(0, 1);
+                        ultimoMovimentoB = escolha10.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
                         guardaPosicoes[2] = escolha10.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha10.Substring(0, 1);
+                        ultimoMovimentoB = escolha10.Substring(0, 1);
                     }
-                    else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
+                {
+                    if (escolha11.Substring(0, 1) == guardaPosicoes[0] || escolha11.Substring(0, 1) == guardaPosicoes[1])
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                        posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
                         guardaPosicoes[2] = escolha11.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha11.Substring(0, 1);
+                        ultimoMovimentoB = escolha11.Substring(0, 1);
                     }
-                    else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                }
+                else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
+                {
+                    if (escolha12.Substring(0, 1) == guardaPosicoes[0] || escolha12.Substring(0, 1) == guardaPosicoes[1])
                     {
-                        Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                        posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                        ultimoMovimentoA = escolha12.Substring(0, 1);
+                        ultimoMovimentoB = escolha12.Substring(0, 1);
+                    }
+                    else
+                    {
+                        lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
                         guardaPosicoes[2] = escolha12.Substring(0, 1);
                         posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
                         alpinistas--;
+                        ultimoMovimentoA = escolha12.Substring(0, 1);
+                        ultimoMovimentoB = escolha12.Substring(0, 1);
                     }
+                    
                 }
             }
             else
@@ -1492,144 +1910,157 @@ namespace CantStop
                 string posicao05 = guardaPosicoes[1] + "0";
                 string posicao06 = guardaPosicoes[2] + "0";
 
+                //Move o alpinista 2x na trilha, caso o alpinista estiver na penultima posição, move apenas 1x
                 if ((combinacao01 == true && posicaoJogador[Convert.ToInt32(combi01) - 2] == penultimaPosicao[Convert.ToInt32(combi01) - 2]) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                    alpinistas--;
+                    ultimoMovimentoA = escolha07.Substring(0, 1);
+                    ultimoMovimentoB = escolha07.Substring(0, 1);
                 }
                 else if ((combinacao02 == true && posicaoJogador[Convert.ToInt32(combi03) - 2] == penultimaPosicao[Convert.ToInt32(combi03) - 2]) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                    alpinistas--;
+                    ultimoMovimentoA = escolha09.Substring(0, 1);
+                    ultimoMovimentoB = escolha09.Substring(0, 1);
                 }
                 else if ((combinacao03 == true && posicaoJogador[Convert.ToInt32(combi05) - 2] == penultimaPosicao[Convert.ToInt32(combi05) - 2]) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                    alpinistas--;
+                    ultimoMovimentoA = escolha11.Substring(0, 1);
+                    ultimoMovimentoB = escolha11.Substring(0, 1);
                 }
 
-
+                //Move o alpinista 2x na trilha, se a trilha nao estiver dominada. Verifica se a trilha q quer mover está entre os armazenados
                 else if ((combinacao01 == true && (escolha01.Substring(0, 1) == guardaPosicoes[0] || escolha01.Substring(0, 1) == guardaPosicoes[1] || escolha01.Substring(0, 1) == guardaPosicoes[2])) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 2;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(0, 1);
                 }
                 else if ((combinacao02 == true && (escolha02.Substring(0, 1) == guardaPosicoes[0] || escolha02.Substring(0, 1) == guardaPosicoes[1] || escolha02.Substring(0, 1) == guardaPosicoes[2])) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 2;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(0, 1);
                 }
                 else if ((combinacao03 == true && (escolha03.Substring(0, 1) == guardaPosicoes[0] || escolha03.Substring(0, 1) == guardaPosicoes[1] || escolha03.Substring(0, 1) == guardaPosicoes[2])) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 2;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(0, 1);
                 }
 
 
+                //Do valores armazenados, se o valor 1 com o 2, 1 com o 3, ou 2 com o 3, for igual á escolha, move na trilha, caso a trilha nao esteja dominada
                 else if ((posicao01 == escolha01.ToString() || posicao02 == escolha01.ToString() || posicao03 == escolha01.ToString()) && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha01);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                    ultimoMovimentoA = escolha01.Substring(0, 1);
+                    ultimoMovimentoB = escolha01.Substring(1, 1);
                 }
                 else if ((posicao01 == escolha02.ToString() || posicao02 == escolha02.ToString() || posicao03 == escolha02.ToString()) && (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha02);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                    ultimoMovimentoA = escolha02.Substring(0, 1);
+                    ultimoMovimentoB = escolha02.Substring(1, 1);
                 }
                 else if ((posicao01 == escolha03.ToString() || posicao02 == escolha03.ToString() || posicao03 == escolha03.ToString()) && (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha03);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                    ultimoMovimentoA = escolha03.Substring(0, 1);
+                    ultimoMovimentoB = escolha03.Substring(1, 1);
                 }
                 else if ((posicao01 == escolha04.ToString() || posicao02 == escolha04.ToString() || posicao03 == escolha04.ToString()) && (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha04);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha04);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                    ultimoMovimentoA = escolha04.Substring(0, 1);
+                    ultimoMovimentoB = escolha04.Substring(1, 1);
                 }
                 else if ((posicao01 == escolha05.ToString() || posicao02 == escolha05.ToString() || posicao03 == escolha05.ToString()) && (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha05);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha05);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                    ultimoMovimentoA = escolha05.Substring(0, 1);
+                    ultimoMovimentoB = escolha05.Substring(1, 1);
                 }
                 else if ((posicao01 == escolha06.ToString() || posicao02 == escolha06.ToString() || posicao03 == escolha06.ToString()) && (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false))
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha06);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha06);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                    ultimoMovimentoA = escolha06.Substring(0, 1);
+                    ultimoMovimentoB = escolha06.Substring(1, 1);
                 }
 
-                //else if (trilhasDominadas[Convert.ToInt32(combi01) - 2] == false && (escolha07.ToString() == posicao04 || escolha07.ToString() == posicao05 || escolha07.ToString() == posicao06))
-                //{
-                //    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
-                //    posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
-                //}
-                //else if (trilhasDominadas[Convert.ToInt32(combi02) - 2] == false && (escolha08.ToString() == posicao04 || escolha08.ToString() == posicao05 || escolha08.ToString() == posicao06))
-                //{
-                //    Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
-                //    posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
-                //}
-                //else if (trilhasDominadas[Convert.ToInt32(combi03) - 2] == false && (escolha09.ToString() == posicao04 || escolha09.ToString() == posicao05 || escolha09.ToString() == posicao06))
-                //{
-                //    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
-                //    posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
-                //}
-                //else if (trilhasDominadas[Convert.ToInt32(combi04) - 2] == false && (escolha10.ToString() == posicao04 || escolha10.ToString() == posicao05 || escolha10.ToString() == posicao06))
-                //{
-                //    Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
-                //    posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
-                //}
-                //else if (trilhasDominadas[Convert.ToInt32(combi05) - 2] == false && (escolha11.ToString() == posicao04 || escolha11.ToString() == posicao05 || escolha11.ToString() == posicao06))
-                //{
-                //    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
-                //    posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
-                //}
-                //else if (trilhasDominadas[Convert.ToInt32(combi06) - 2] == false && (escolha12.ToString() == posicao04 || escolha12.ToString() == posicao05 || escolha12.ToString() == posicao06))
-                //{
-                //    Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
-                //    posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
-                //}
 
+                //Se chegou aqui é pq nao foi possivel mover em duas trilhas.
+                //Verifica se a escolha é igual ao numero armazenado 1 com 0, 2 com 0 ou 3 com 0, se sim, verifica se a trilha está livre, se o retorno for positivo move na trilha.
                 else if (((escolha07.ToString() == posicao04 || escolha07.ToString() == posicao05) || escolha07.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi01) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1234", escolha07);
                     posicaoJogador[Convert.ToInt32(combi01) - 2] += 1;
+                    ultimoMovimentoA = escolha07.Substring(0, 1);
+                    ultimoMovimentoB = escolha07.Substring(0, 1);
                 }
                 else if (((escolha08.ToString() == posicao04 || escolha08.ToString() == posicao05) || escolha08.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi02) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "3412", escolha08);
                     posicaoJogador[Convert.ToInt32(combi02) - 2] += 1;
+                    ultimoMovimentoA = escolha08.Substring(0, 1);
+                    ultimoMovimentoB = escolha08.Substring(0, 1);
                 }
                 else if (((escolha09.ToString() == posicao04 || escolha09.ToString() == posicao05) || escolha09.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi03) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1423", escolha09);
                     posicaoJogador[Convert.ToInt32(combi03) - 2] += 1;
+                    ultimoMovimentoA = escolha09.Substring(0, 1);
+                    ultimoMovimentoB = escolha09.Substring(0, 1);
                 }
                 else if (((escolha10.ToString() == posicao04 || escolha10.ToString() == posicao05) || escolha10.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi04) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2314", escolha10);
                     posicaoJogador[Convert.ToInt32(combi04) - 2] += 1;
+                    ultimoMovimentoA = escolha10.Substring(0, 1);
+                    ultimoMovimentoB = escolha10.Substring(0, 1);
                 }
                 else if (((escolha11.ToString() == posicao04 || escolha11.ToString() == posicao05) || escolha11.ToString() == posicao06) && trilhasDominadas[Convert.ToInt32(combi05) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "1324", escolha11);
                     posicaoJogador[Convert.ToInt32(combi05) - 2] += 1;
+                    ultimoMovimentoA = escolha11.Substring(0, 1);
+                    ultimoMovimentoB = escolha11.Substring(0, 1);
                 }
                 else if (((escolha12.ToString() == posicao04 || escolha12.ToString() == posicao05 || escolha12.ToString() == posicao06)) && trilhasDominadas[Convert.ToInt32(combi06) - 2] == false)
                 {
-                    Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
+                    lblErroTeste.Text = Jogo.Mover(idPlayer, senhaPlayer, "2413", escolha12);
                     posicaoJogador[Convert.ToInt32(combi06) - 2] += 1;
+                    ultimoMovimentoA = escolha12.Substring(0, 1);
+                    ultimoMovimentoB = escolha12.Substring(0, 1);
                 }
             }
 
+            lblVetor.Text = " | " + guardaPosicoes[0] + " | " + guardaPosicoes[1] + " | " + guardaPosicoes[2] + " | ";
+            
             qtdJogadas++;
+
+            lblErroVerificar.Text = alpinistas.ToString();
+
+            lblErro.Text = "";
 
             combinacao01 = false;
             combinacao02 = false;
@@ -1638,173 +2069,126 @@ namespace CantStop
 
         public void Parar()
         {
-            lblErro.Text = Jogo.Parar(idPlayer, senhaPlayer);
-            //lblCombinacoes.Text = "";
-            qtdJogadas = 0;
-            alpinistas = 3;
+            //lblErro.Text = Jogo.Parar(idPlayer, senhaPlayer);
+            string retorno = Jogo.Parar(idPlayer, senhaPlayer);
 
-            guardaPosicoes[0] = null;
-            guardaPosicoes[1] = null;
-            guardaPosicoes[2] = null;
-
-            lblCombinacoes.Text = "";
-
-            picDado1.Image = null;
-            picDado2.Image = null;
-            picDado3.Image = null;
-            picDado4.Image = null;
-
-            for (int i = 0; i < 11; i++)
+            if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
             {
-                posicaoJogadorBackup[i] = posicaoJogador[i];
-            }
+                //lblCombinacoes.Text = "";
+                qtdJogadas = 0;
+                alpinistas = 3;
 
+                guardaPosicoes[0] = null;
+                guardaPosicoes[1] = null;
+                guardaPosicoes[2] = null;
+
+                for (int i = 0; i < 11; i++)
+                {
+                    posicaoJogadorBackup[i] = posicaoJogador[i];
+                }
+
+                qntRodadas++;
+
+                ultimoMovimentoA = "";
+                ultimoMovimentoB = "";
+            }
+            else
+            {
+                if (retorno != "ERRO:Não é a vez deste jogador\r\n")
+                {
+                    lblErro.Text = retorno.Substring(5);
+                }
+                //lblErro.Text = retorno.Substring(5);
+            }
         }
 
         private void Tabuleiro_Load(object sender, EventArgs e)
         {
             lblErro.Text = "";
-            lblHistorico.Text = "";
+            txtHistorico.Text = "";
             lblCombinacoes.Text = "";
-
-            tmrAtualizaTabuleiro.Enabled = true;
-            tmrAtualizaTabuleiro.Start();
-            tmrAtualizaTabuleiro.Interval = 2500;
-            tmrAtualizaTabuleiro.Tick += new EventHandler(tmrAtualizaTabuleiro_Tick);
 
             tmrAtualizacao.Enabled = true;
             tmrAtualizacao.Start();
-            tmrAtualizacao.Interval = 4000;
+            tmrAtualizacao.Interval = 2500;
             tmrAtualizacao.Tick += new EventHandler(tmrAtualizacao_Tick);
         }
 
         int erro = 0;
 
-        public bool verificaMovimento(string ordem, string trilha)
-        {
-            string retorno = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
+        //public bool verificaMovimento(string ordem, string trilha)
+        //{
+        //    string retorno = Jogo.Mover(idPlayer, senhaPlayer, ordem, trilha);
 
-            if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
-            {
-                return true;
-            }
-            else
-            {
-                erro++;
-                lblErro.Text = retorno + " - ERRO: " + erro;
-            }
+        //    if (retorno == "" || retorno.Substring(0, 4) != "ERRO")
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        erro++;
+        //        lblErro.Text = retorno + " - ERRO: " + erro;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         private void Verifica()
         {
-            if (escolha01.Substring(0, 1) == "A")
+            if (ultimoMovimentoA == "A")
             {
-                teste01 = "10";
+                ultimoMovimentoA = "10";
             }
-            else if (escolha01.Substring(0, 1) == "B")
+            else if (ultimoMovimentoA == "B")
             {
-                teste01 = "11";
+                ultimoMovimentoA = "11";
             }
-            else if (escolha01.Substring(0, 1) == "C")
+            else if (ultimoMovimentoA == "C")
             {
-                teste01 = "12";
-            }
-
-            if (escolha01.Substring(1, 1) == "A")
-            {
-                teste02 = "10";
-            }
-            else if (escolha01.Substring(1, 1) == "B")
-            {
-                teste02 = "11";
-            }
-            else if (escolha01.Substring(1, 1) == "C")
-            {
-                teste02 = "12";
+                ultimoMovimentoA = "12";
             }
 
-            if (escolha02.Substring(0, 1) == "A")
+            if (ultimoMovimentoB == "A")
             {
-                teste03 = "10";
+                ultimoMovimentoB = "10";
             }
-            else if (escolha02.Substring(0, 1) == "B")
+            else if (ultimoMovimentoB == "B")
             {
-                teste03 = "11";
+                ultimoMovimentoB = "11";
             }
-            else if (escolha02.Substring(0, 1) == "C")
+            else if (ultimoMovimentoB == "C")
             {
-                teste03 = "12";
-            }
-
-            if (escolha02.Substring(1, 1) == "A")
-            {
-                teste04 = "10";
-            }
-            else if (escolha02.Substring(1, 1) == "B")
-            {
-                teste04 = "11";
-            }
-            else if (escolha02.Substring(1, 1) == "C")
-            {
-                teste04 = "12";
+                ultimoMovimentoB = "12";
             }
 
-            if (escolha03.Substring(0, 1) == "A")
-            {
-                teste05 = "10";
-            }
-            else if (escolha03.Substring(0, 1) == "B")
-            {
-                teste05 = "11";
-            }
-            else if (escolha03.Substring(0, 1) == "C")
-            {
-                teste05 = "12";
-            }
-
-            if (escolha03.Substring(1, 1) == "A")
-            {
-                teste06 = "10";
-            }
-            else if (escolha03.Substring(1, 1) == "B")
-            {
-                teste06 = "11";
-            }
-            else if (escolha03.Substring(1, 1) == "C")
-            {
-                teste06 = "12";
-            }
-
-            if (posicaoJogador[Convert.ToInt32(teste01) - 2] == ultimaPosicao[Convert.ToInt32(teste01) - 2])
+            if (((posicaoJogador[Convert.ToInt32(ultimoMovimentoA) - 2] == ultimaPosicao[Convert.ToInt32(ultimoMovimentoA) - 2]) && trilhasDominadas[Convert.ToInt32(ultimoMovimentoA) - 2] == false) ||
+                ((posicaoJogador[Convert.ToInt32(ultimoMovimentoB) - 2] == ultimaPosicao[Convert.ToInt32(ultimoMovimentoB) - 2]) && trilhasDominadas[Convert.ToInt32(ultimoMovimentoB) - 2] == false))
             {
                 Parar();
             }
-            else if (posicaoJogador[Convert.ToInt32(teste02) - 2] == ultimaPosicao[Convert.ToInt32(teste02) - 2])
-            {
-                Parar();
-            }
-            else if (posicaoJogador[Convert.ToInt32(teste03) - 2] == ultimaPosicao[Convert.ToInt32(teste03) - 2])
-            {
-                Parar();
-            }
-            else if (posicaoJogador[Convert.ToInt32(teste04) - 2] == ultimaPosicao[Convert.ToInt32(teste04) - 2])
-            {
-                Parar();
-            }
-            else if (posicaoJogador[Convert.ToInt32(teste05) - 2] == ultimaPosicao[Convert.ToInt32(teste05) - 2])
-            {
-                Parar();
-            }
-            else if (posicaoJogador[Convert.ToInt32(teste06) - 2] == ultimaPosicao[Convert.ToInt32(teste06) - 2])
-            {
-                Parar();
-            }
+
+            //teste01 = "";
+            //teste02 = "";
+            //teste03 = "";
+            //teste04 = "";
+            //teste05 = "";
+            //teste06 = "";
         }
         private void tmrAtualizacao_Tick(object sender, EventArgs e)
         {
             VerificarVez();
+
+            lblVetorPosicao.Text = posicaoJogador[0] + " | " + posicaoJogador[1] + " | " +
+                posicaoJogador[2] + " | " + posicaoJogador[3] + " | " + posicaoJogador[4] + " | " +
+                posicaoJogador[5] + " | " + posicaoJogador[6] + " | " + posicaoJogador[7] + " | " +
+                posicaoJogador[8] + " | " + posicaoJogador[9] + " | " + posicaoJogador[10] + " UltimoA:" + ultimoMovimentoA + " UltimoB:" + ultimoMovimentoB;
+
+            lblBackup.Text = posicaoJogadorBackup[0] + " | " + posicaoJogadorBackup[1] + " | " +
+                posicaoJogadorBackup[2] + " | " + posicaoJogadorBackup[3] + " | " + posicaoJogadorBackup[4] + " | " +
+                posicaoJogadorBackup[5] + " | " + posicaoJogadorBackup[6] + " | " + posicaoJogadorBackup[7] + " | " +
+                posicaoJogadorBackup[8] + " | " + posicaoJogadorBackup[9] + " | " + posicaoJogadorBackup[10];
+
+            lblErroVerificar.Text = alpinistas.ToString();
 
             if (vezJogador == false)
             {
@@ -1822,85 +2206,48 @@ namespace CantStop
                 picDado3.Image = null;
                 picDado4.Image = null;
 
-
                 guardaPosicoes[0] = null;
                 guardaPosicoes[1] = null;
                 guardaPosicoes[2] = null;
+
+                ultimoMovimentoA = "";
+                ultimoMovimentoB = "";
+
+                lblVetor.Text = " | " + guardaPosicoes[0] + " | " + guardaPosicoes[1] + " | " + guardaPosicoes[2] + " | ";
             }
-
-
-            if (qntRodadas < 10)
-            {
-                if (qtdJogadas < 4 && vezJogador == true)
-                {
-                    RolarDados();
-                    MoverSecundario();
-
-                    if (qtdJogadas >= 1)
-                    {
-                        Verifica();
-                    }
-                }
-                else if (qtdJogadas == 4)
-                {
-                    Parar();
-                    qntRodadas++;
-                }
-            }
-            //else if (qntRodadas < 12)
-            //{
-            //    if (qtdJogadas < 3 && vezJogador == true)
-            //    {
-            //        RolarDados();
-            //        //Mover();
-            //        //MoverOficial();
-            //        MoverSecundario();
-            //    }
-            //    else if (qtdJogadas == 3)
-            //    {
-            //        Parar();
-            //        qntRodadas++;
-            //    }
-            //}
             else
             {
-                if (qtdJogadas < 2 && vezJogador == true)
+                if(qntRodadas < 20)
                 {
-                    RolarDados();
-                    //Mover();
-                    //MoverOficial();
-                    MoverSecundario();
+                    if (qtdJogadas < 4)
+                    {
+                        RolarDados();
+                        MoverSecundario();
+                        Verifica();
+                    }
+                    else
+                    {
+                        Parar();
+                    }
                 }
-                else if (qtdJogadas == 2)
+                else
                 {
-                    Parar();
-                    qntRodadas++;
+                    if (qtdJogadas < 2)
+                    {
+                        RolarDados();
+                        MoverSecundario();
+                        Verifica();
+                    }
+                    else
+                    {
+                        Parar();
+                    }
                 }
+                
             }
 
-            //DadosOutroJogador();
-        }
-
-        private void tmrAtualizaTabuleiro_Tick(object sender, EventArgs e)
-        {
             ExibirTabuleiro();
             ExibirHistorico();
-            
-            if(lblErro.Text != "")
-            {
-                lblErro.Text = "";
-            }
-            //lblVetor.Text = guardaPosicoes[0] + " | " + guardaPosicoes[1] + " | " + guardaPosicoes[2];
-
-            //lblVetorPosicao.Text = posicaoJogador[0] + " | " + posicaoJogador[1] + " | " +
-            //    posicaoJogador[2] + " | " + posicaoJogador[3] + " | " + posicaoJogador[4] + " | " +
-            //    posicaoJogador[5] + " | " + posicaoJogador[6] + " | " + posicaoJogador[7] + " | " +
-            //    posicaoJogador[8] + " | " + posicaoJogador[9] + " | " + posicaoJogador[10];
-
-            //lblBackup.Text = posicaoJogadorBackup[0] + " | " + posicaoJogadorBackup[1] + " | " +
-            //    posicaoJogadorBackup[2] + " | " + posicaoJogadorBackup[3] + " | " + posicaoJogadorBackup[4] + " | " +
-            //    posicaoJogadorBackup[5] + " | " + posicaoJogadorBackup[6] + " | " + posicaoJogadorBackup[7] + " | " +
-            //    posicaoJogadorBackup[8] + " | " + posicaoJogadorBackup[9] + " | " + posicaoJogadorBackup[10];
         }
 
         public void VotarLobby()

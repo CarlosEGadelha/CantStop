@@ -40,17 +40,21 @@ namespace CantStop
             this.lblVersao = new System.Windows.Forms.Label();
             this.lblCombinacoes = new System.Windows.Forms.Label();
             this.tmrAtualizacao = new System.Windows.Forms.Timer(this.components);
-            this.tmrAtualizaTabuleiro = new System.Windows.Forms.Timer(this.components);
             this.picSuaCor = new System.Windows.Forms.PictureBox();
             this.picJogadorVez = new System.Windows.Forms.PictureBox();
             this.lblSuaCor = new System.Windows.Forms.Label();
             this.lblJogadorVez = new System.Windows.Forms.Label();
             this.lblPiracicaba = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblHistorico = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtHistorico = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblErro = new System.Windows.Forms.Label();
+            this.lblErroTeste = new System.Windows.Forms.Label();
+            this.lblVetor = new System.Windows.Forms.Label();
+            this.lblErroVerificar = new System.Windows.Forms.Label();
+            this.lblVetorPosicao = new System.Windows.Forms.Label();
+            this.lblBackup = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDado4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDado2)).BeginInit();
@@ -138,10 +142,6 @@ namespace CantStop
             // 
             this.tmrAtualizacao.Interval = 2500;
             // 
-            // tmrAtualizaTabuleiro
-            // 
-            this.tmrAtualizaTabuleiro.Interval = 2500;
-            // 
             // picSuaCor
             // 
             this.picSuaCor.Location = new System.Drawing.Point(148, 89);
@@ -183,7 +183,7 @@ namespace CantStop
             this.lblPiracicaba.AutoSize = true;
             this.lblPiracicaba.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPiracicaba.ForeColor = System.Drawing.Color.White;
-            this.lblPiracicaba.Location = new System.Drawing.Point(350, 15);
+            this.lblPiracicaba.Location = new System.Drawing.Point(400, 15);
             this.lblPiracicaba.Name = "lblPiracicaba";
             this.lblPiracicaba.Size = new System.Drawing.Size(167, 37);
             this.lblPiracicaba.TabIndex = 0;
@@ -199,19 +199,9 @@ namespace CantStop
             this.panel1.Size = new System.Drawing.Size(964, 64);
             this.panel1.TabIndex = 101;
             // 
-            // lblHistorico
-            // 
-            this.lblHistorico.AutoSize = true;
-            this.lblHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHistorico.Location = new System.Drawing.Point(9, 32);
-            this.lblHistorico.Name = "lblHistorico";
-            this.lblHistorico.Size = new System.Drawing.Size(48, 13);
-            this.lblHistorico.TabIndex = 103;
-            this.lblHistorico.Text = "Histórico";
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblHistorico);
+            this.groupBox1.Controls.Add(this.txtHistorico);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 160);
             this.groupBox1.Name = "groupBox1";
@@ -219,6 +209,18 @@ namespace CantStop
             this.groupBox1.TabIndex = 106;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Histórico ";
+            // 
+            // txtHistorico
+            // 
+            this.txtHistorico.BackColor = System.Drawing.Color.White;
+            this.txtHistorico.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHistorico.Location = new System.Drawing.Point(17, 25);
+            this.txtHistorico.Multiline = true;
+            this.txtHistorico.Name = "txtHistorico";
+            this.txtHistorico.ReadOnly = true;
+            this.txtHistorico.Size = new System.Drawing.Size(400, 222);
+            this.txtHistorico.TabIndex = 105;
             // 
             // groupBox2
             // 
@@ -244,6 +246,54 @@ namespace CantStop
             this.lblErro.TabIndex = 102;
             this.lblErro.Text = "Erro";
             // 
+            // lblErroTeste
+            // 
+            this.lblErroTeste.AutoSize = true;
+            this.lblErroTeste.Location = new System.Drawing.Point(624, 650);
+            this.lblErroTeste.Name = "lblErroTeste";
+            this.lblErroTeste.Size = new System.Drawing.Size(0, 13);
+            this.lblErroTeste.TabIndex = 108;
+            // 
+            // lblVetor
+            // 
+            this.lblVetor.AutoSize = true;
+            this.lblVetor.Location = new System.Drawing.Point(203, 650);
+            this.lblVetor.Name = "lblVetor";
+            this.lblVetor.Size = new System.Drawing.Size(35, 13);
+            this.lblVetor.TabIndex = 109;
+            this.lblVetor.Text = "label1";
+            this.lblVetor.Visible = false;
+            // 
+            // lblErroVerificar
+            // 
+            this.lblErroVerificar.AutoSize = true;
+            this.lblErroVerificar.Location = new System.Drawing.Point(203, 623);
+            this.lblErroVerificar.Name = "lblErroVerificar";
+            this.lblErroVerificar.Size = new System.Drawing.Size(35, 13);
+            this.lblErroVerificar.TabIndex = 110;
+            this.lblErroVerificar.Text = "label1";
+            this.lblErroVerificar.Visible = false;
+            // 
+            // lblVetorPosicao
+            // 
+            this.lblVetorPosicao.AutoSize = true;
+            this.lblVetorPosicao.Location = new System.Drawing.Point(463, 623);
+            this.lblVetorPosicao.Name = "lblVetorPosicao";
+            this.lblVetorPosicao.Size = new System.Drawing.Size(35, 13);
+            this.lblVetorPosicao.TabIndex = 111;
+            this.lblVetorPosicao.Text = "label1";
+            this.lblVetorPosicao.Visible = false;
+            // 
+            // lblBackup
+            // 
+            this.lblBackup.AutoSize = true;
+            this.lblBackup.Location = new System.Drawing.Point(715, 623);
+            this.lblBackup.Name = "lblBackup";
+            this.lblBackup.Size = new System.Drawing.Size(35, 13);
+            this.lblBackup.TabIndex = 112;
+            this.lblBackup.Text = "label2";
+            this.lblBackup.Visible = false;
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,6 +301,11 @@ namespace CantStop
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(964, 672);
+            this.Controls.Add(this.lblBackup);
+            this.Controls.Add(this.lblVetorPosicao);
+            this.Controls.Add(this.lblErroVerificar);
+            this.Controls.Add(this.lblVetor);
+            this.Controls.Add(this.lblErroTeste);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblErro);
@@ -297,16 +352,20 @@ namespace CantStop
         private System.Windows.Forms.Label lblVersao;
         private System.Windows.Forms.Label lblCombinacoes;
         private System.Windows.Forms.Timer tmrAtualizacao;
-        private System.Windows.Forms.Timer tmrAtualizaTabuleiro;
         private System.Windows.Forms.PictureBox picSuaCor;
         private System.Windows.Forms.PictureBox picJogadorVez;
         private System.Windows.Forms.Label lblSuaCor;
         private System.Windows.Forms.Label lblJogadorVez;
         private System.Windows.Forms.Label lblPiracicaba;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblHistorico;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtHistorico;
         private System.Windows.Forms.Label lblErro;
+        private System.Windows.Forms.Label lblErroTeste;
+        private System.Windows.Forms.Label lblVetor;
+        private System.Windows.Forms.Label lblErroVerificar;
+        private System.Windows.Forms.Label lblVetorPosicao;
+        private System.Windows.Forms.Label lblBackup;
     }
 }
