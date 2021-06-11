@@ -140,7 +140,7 @@ namespace CantStop
             // 
             // tmrAtualizacao
             // 
-            this.tmrAtualizacao.Interval = 2500;
+            this.tmrAtualizacao.Interval = 3000;
             // 
             // picSuaCor
             // 
@@ -272,7 +272,6 @@ namespace CantStop
             this.lblErroVerificar.Size = new System.Drawing.Size(35, 13);
             this.lblErroVerificar.TabIndex = 110;
             this.lblErroVerificar.Text = "label1";
-            this.lblErroVerificar.Visible = false;
             // 
             // lblVetorPosicao
             // 
@@ -287,7 +286,7 @@ namespace CantStop
             // lblBackup
             // 
             this.lblBackup.AutoSize = true;
-            this.lblBackup.Location = new System.Drawing.Point(715, 623);
+            this.lblBackup.Location = new System.Drawing.Point(762, 623);
             this.lblBackup.Name = "lblBackup";
             this.lblBackup.Size = new System.Drawing.Size(35, 13);
             this.lblBackup.TabIndex = 112;
